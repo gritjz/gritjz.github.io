@@ -55,9 +55,6 @@ git pull upstream master
 </code></pre>
 </li>
 <li><p>Commit your changes in logical chunks. Please adhere to these <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">git commit<br>message conventions</a><br>or your code is unlikely be merged into the main project. Use Git’s<br><a href="https://help.github.com/articles/interactive-rebase">interactive rebase</a><br>feature to tidy up your commits before making them public.</p>
-<p>Be sure to test the <code>normalize.css</code> file for style conformance.</p>
-<pre><code class="bash">npm test
-</code></pre>
 <p>Be sure to add a test to the <code>test.html</code> file if appropriate, and test<br>your change in all supported browsers.</p>
 </li>
 <li><p>Locally rebase the upstream development branch into your topic branch:</p>
@@ -101,5 +98,4 @@ git pull upstream master
 <li>Checkout the <code>gh-pages</code> branch and follow the instructions in the README.</li>
 </ol>
 <h3 id="Semver-strategy"><a href="#Semver-strategy" class="headerlink" title="Semver strategy"></a>Semver strategy</h3><p><a href="http://semver.org/">Semver</a> is a widely accepted method for deciding how<br>version numbers are incremented in a project. Versions are written as<br>MAJOR.MINOR.PATCH.</p>
-<p>Any change to CSS rules whatsoever is considered backwards-breaking and will<br>result in a new <strong>major</strong> release. Others changes with no impact on rendering<br>are considered backwards-compatible and will result in a new <strong>patch</strong> release.</p>
-<p>No changes to CSS rules can add functionality in a backwards-compatible manner,<br>therefore no changes are considered <strong>minor</strong>. For instance, a normalization on<br>an element selector may override a user style on a universal selector, a<br>change to <code>opacity</code> might cause <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/3901363/">inputs to disappear</a>,<br>or a change to <code>background-color</code> might cause <a href="https://github.com/jonathantneal/sanitize.css/issues/42">backgrounds to shrink</a>.</p>
+<p>Any change to CSS rules whatsoever is considered backwards-breaking and will<br>result in a new <strong>major</strong> release. No changes to CSS rules can add<br>functionality in a backwards-compatible manner, therefore no changes are<br>considered <strong>minor</strong>. Others changes with no impact on rendering are considered<br>backwards-compatible and will result in a new <strong>patch</strong> release.</p>
