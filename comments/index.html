@@ -1,123 +1,70 @@
-<!DOCTYPE html>
-<html lang="zh-cmn-Hans">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>comments | Steven Zhang</title>
-  
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+{% extends '_layout.swig' %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
-  
-<link rel="stylesheet" href="/css/style.css">
+  {% block title %}{#
+  #}{% set page_title_suffix = ' | ' + config.title %}{#
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+  #}{% if page.type === "categories" and not page.title %}{#
+    #}{{ __('title.category') + page_title_suffix }}{#
+  #}{% elif page.type === "tags" and not page.title %}{#
+    #}{{ __('title.tag') + page_title_suffix }}{#
+  #}{% else %}{#
+    #}{{ page.title + page_title_suffix }}{#
+  #}{% endif %}{#
+#}{% endblock %}
 
-<body style="background-color:#FFFFFF;">
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/header.jpg)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>
-            <h1>
-                Steven Zhang
-            </h1>
-        </div>
-        
-            <div>
-                <h2>
-                    Software Engineer
-                </h2>   
+{% block page_class %}page-post-detail{% endblock %}
+
+{% block content %}
+
+  <div id="posts" class="posts-expand">
+    {##################}
+    {### PAGE BLOCK ###}
+    {##################}
+    <div class="post-block page">
+      {% include '_partials/page-header.swig' %}
+      {#################}
+      {### PAGE BODY ###}
+      {#################}
+      <div class="post-body{% if theme.han %} han-init-context{% endif %}{% if page.direction && page.direction.toLowerCase() === 'rtl' %} rtl{% endif %}">
+        {# tagcloud page support #}
+        {% if page.type === "tags" %}
+          <div class="tag-cloud">
+            <div class="tag-cloud-title">
+                {{ _p('counter.tag_cloud', site.tags.length) }}
             </div>
-        
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
-        
-            
-                <a target="_blank" rel="noopener" href="https://github.com/gritjz">
-                    <img src="/assets/github.svg" />
-                </a>
-            
-        
-            
-                <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/jzhangcs/">
-                    <img src="/assets/linkedin.svg" />
-                </a>
-            
-        
-            
-                <a target="_blank" rel="noopener" href="https://www.facebook.com/profile.php?id=100006483148434">
-                    <img src="/assets/facebook.svg" />
-                </a>
-            
-        
-    </section>
-</aside>
-
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>comments</h1>
-    </header>
-
-    <section>
-      
-
-      
-
-    </section>
-    
-    
-</article>
-
-</div>
-
-            <footer>
-    <div>© 2021 - Steven Zhang </div>
-    <div>
-        <!-- <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span> -->
+            <div class="tag-cloud-tags">
+              {{ tagcloud({min_font: 12, max_font: 30, amount: 300, color: true, start_color: '#ccc', end_color: '#111'}) }}
+            </div>
+          </div>
+        {% elif page.type === 'categories' %}
+          <div class="category-all-page">
+            <div class="category-all-title">
+                {{ _p('counter.categories', site.categories.length) }}
+            </div>
+            <div class="category-all">
+              {{ list_categories() }}
+            </div>
+          </div>
+        {% else %}
+          {{ page.content }}
+        {% endif %}
+      </div>
+      {#####################}
+      {### END PAGE BODY ###}
+      {#####################}
     </div>
-</footer>
+    {######################}
+    {### END PAGE BLOCK ###}
+    {######################}
+  </div>
 
-        </div>
-    </div>
-</div>
+{% endblock %}
 
-<script src="/js/pager/dist/singlepager.js"></script>
+{% block sidebar %}
+  {{ sidebar_template.render(false) }}
+{% endblock %}
 
-<script>
-var sp = new Pager('data-pager-shell')
-
-</script>
-</body>
-</html>
+{% block script_extra %}
+  {% include '_scripts/pages/post-details.swig' %}
+{% endblock %}

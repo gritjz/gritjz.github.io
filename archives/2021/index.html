@@ -1,224 +1,62 @@
-<!DOCTYPE html>
-<html lang="zh-cmn-Hans">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Steven Zhang</title>
-  
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+{% extends '_layout.swig' %}
+{% import '_macro/post-collapse.swig' as post_template %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
-  
-<link rel="stylesheet" href="/css/style.css">
+{% block title %}{{ __('title.archive') }} | {{ config.title }}{% endblock %}
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+{% block page_class %}page-archive{% endblock %}
 
-<body style="background-color:#FFFFFF;">
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/header.jpg)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>
-            <h1>
-                Steven Zhang
-            </h1>
-        </div>
-        
-            <div>
-                <h2>
-                    Software Engineer
-                </h2>   
-            </div>
-        
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
-        
-            
-                <a target="_blank" rel="noopener" href="https://github.com/gritjz">
-                    <img src="/assets/github.svg" />
-                </a>
-            
-        
-            
-                <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/jzhangcs/">
-                    <img src="/assets/linkedin.svg" />
-                </a>
-            
-        
-            
-                <a target="_blank" rel="noopener" href="https://www.facebook.com/profile.php?id=100006483148434">
-                    <img src="/assets/facebook.svg" />
-                </a>
-            
-        
-    </section>
-</aside>
+{% block content %}
 
-    <div class="container">
-        <div data-pager-shell>
-            <div class="Archives">
-  
-  
-  
-    
-    <section class="TimeSection">
-    <h1 class="time-section-year">
-        2021
-    </h1>
-    <ul class="time-section-list">
-      
-      
-        <li>
-            <a href="/2021/03/30/thirdpost/">
-                <h2>This is my third post!</h2>
-            </a>
-            <div class='ListMeta'>
-  <time datetime="2021-03-30T04:07:44.000Z" itemprop="datePublished">
-    2021-03-30
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/tag2/">tag2</a> }
-  </li>
+  {#####################}
+  {### ARCHIVE BLOCK ###}
+  {#####################}
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
+      <span class="archive-page-counter">
+        {% set cheers %}
+        {% set posts_length = site.posts.length %}
+        {% if posts_length > 210 %} {% set cheers = 'excellent' %}
+          {% elif posts_length > 130 %} {% set cheers = 'great' %}
+          {% elif posts_length > 80 %} {% set cheers = 'good' %}
+          {% elif posts_length > 50 %} {% set cheers = 'nice' %}
+          {% elif posts_length > 30 %} {% set cheers = 'ok' %}
+        {% else %}
+          {% set cheers = 'um' %}
+        {% endif %}
+        {{ __('cheers.' + cheers) }}! {{ _p("counter.archive_posts", site.posts.length) }} {{ __('keep_on') }}
+      </span>
 
-  </ul>
-  
-  
-  / 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/categories/cat2/">cat2</a> }
-  </li>
+      {% for post in page.posts %}
 
+        {# Show year #}
+        {% set year %}
+        {% set post.year = date(post.date, 'YYYY') %}
 
-  </ul>
-  
-</div>
+        {% if post.year !== year %}
+          {% set year = post.year %}
+          <div class="collection-title">
+            <{% if theme.seo %}h2{% else %}h1{% endif %} class="archive-year" id="archive-year-{{ year }}">{{ year }}</{% if theme.seo %}h2{% else %}h1{% endif %}>
+          </div>
+        {% endif %}
+        {# endshow #}
 
-        </li>
-      
-        <li>
-            <a href="/2021/03/29/secondpost/">
-                <h2>This is my second post!</h2>
-            </a>
-            <div class='ListMeta'>
-  <time datetime="2021-03-30T03:55:49.000Z" itemprop="datePublished">
-    2021-03-29
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/tag2/">tag2</a> }
-  </li>
+        {{ post_template.render(post) }}
 
+      {% endfor %}
 
-  </ul>
-  
-  
-  / 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/categories/cat2/">cat2</a> }
-  </li>
-
-
-  </ul>
-  
-</div>
-
-        </li>
-      
-        <li>
-            <a href="/2021/03/29/post/">
-                <h2>This is my first post!</h2>
-            </a>
-            <div class='ListMeta'>
-  <time datetime="2021-03-30T03:17:29.000Z" itemprop="datePublished">
-    2021-03-29
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/tag1/">tag1</a> }
-  </li>
-
-
-  </ul>
-  
-  
-  / 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/categories/cat1/">cat1</a> }
-  </li>
-
-
-  </ul>
-  
-</div>
-
-        </li>
-      
-    </ul>
-</section>
-
-  
-</div>
-            <footer>
-    <div>© 2021 - Steven Zhang </div>
-    <div>
-        <!-- <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span> -->
     </div>
-</footer>
+  </div>
+  {#########################}
+  {### END ARCHIVE BLOCK ###}
+  {#########################}
 
-        </div>
-    </div>
-</div>
+  {% include '_partials/pagination.swig' %}
 
-<script src="/js/pager/dist/singlepager.js"></script>
+{% endblock %}
 
-<script>
-var sp = new Pager('data-pager-shell')
-
-</script>
-</body>
-</html>
+{% block sidebar %}
+  {{ sidebar_template.render(false) }}
+{% endblock %}
