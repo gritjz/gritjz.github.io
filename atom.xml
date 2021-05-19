@@ -3,11 +3,11 @@
   <title>GRIT</title>
   
   <subtitle>Welcome to my place</subtitle>
-  <link href="https://gritjz.github.io/:lang/atom.xml" rel="self"/>
+  <link href="https://gritjz.github.io/atom.xml" rel="self"/>
   
-  <link href="https://gritjz.github.io/:lang/"/>
+  <link href="https://gritjz.github.io/"/>
   <updated>2021-05-19T02:03:40.195Z</updated>
-  <id>https://gritjz.github.io/:lang/</id>
+  <id>https://gritjz.github.io/</id>
   
   <author>
     <name>Steven Zhang</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>MyBlog</title>
-    <link href="https://gritjz.github.io/:lang/en/Blog/"/>
-    <id>https://gritjz.github.io/:lang/en/Blog/</id>
+    <link href="https://gritjz.github.io/en/Blog/"/>
+    <id>https://gritjz.github.io/en/Blog/</id>
     <published>2021-04-11T16:58:19.000Z</published>
     <updated>2021-05-19T02:03:40.195Z</updated>
     
@@ -35,14 +35,14 @@
     
     
     
-    <category term="tag2" scheme="https://gritjz.github.io/:lang/tags/tag2/"/>
+    <category term="tag2" scheme="https://gritjz.github.io/tags/tag2/"/>
     
   </entry>
   
   <entry>
     <title>我的博客</title>
-    <link href="https://gritjz.github.io/:lang/zh-CN/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
-    <id>https://gritjz.github.io/:lang/zh-CN/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/</id>
+    <link href="https://gritjz.github.io/zh-CN/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://gritjz.github.io/zh-CN/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/</id>
     <published>2021-04-11T16:58:10.000Z</published>
     <updated>2021-05-19T02:03:11.715Z</updated>
     
@@ -58,7 +58,7 @@
     
     
     
-    <category term="tag1" scheme="https://gritjz.github.io/:lang/tags/tag1/"/>
+    <category term="tag1" scheme="https://gritjz.github.io/tags/tag1/"/>
     
   </entry>
   

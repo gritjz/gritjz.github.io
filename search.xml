@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>MyBlog</title>
-    <url>/:lang/en/Blog/</url>
+    <url>/en/Blog/</url>
     <content><![CDATA[<p>hhh</p>
 ]]></content>
       <tags>
@@ -11,7 +11,7 @@
   </entry>
   <entry>
     <title>我的博客</title>
-    <url>/:lang/zh-CN/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/</url>
+    <url>/zh-CN/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p>首发于<br>CS专业那些事</p>
 ]]></content>
       <tags>
