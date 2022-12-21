@@ -266,6 +266,40 @@
 
 
     
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+  <div id="gitalk-container"></div>
+
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'cf8ee4912fb41e54df1c',
+        clientSecret: '37c5f1fca4f9fbefa6fffd6cd9800754d017040f',
+        repo: 'gritjz.github.io',
+        owner: 'Steven Zhang',
+        admin: ['gritjz'],
+        id: location.pathname,
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+
+
+      </div>
+    
   </div>
 
 
