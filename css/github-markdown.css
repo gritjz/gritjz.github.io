@@ -253,6 +253,7 @@
 .markdown-body h6 {
   margin-top: 0;
   margin-bottom: 0;
+  color: var(--color-text-md-content)
 }
 
 .markdown-body h1 {
@@ -288,6 +289,7 @@
 .markdown-body p {
   margin-top: 0;
   margin-bottom: 10px;
+  color: var(--color-text-md-content)
 }
 
 .markdown-body blockquote {
