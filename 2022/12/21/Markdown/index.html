@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Steven Zhang" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      Markdown Quick Sheet 
+      
+      
+      |
+    
+     Steven&#39;s blog
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon1.png">
+    <link rel="icon" href="/images/favicon1.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  <!---->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-4C6251J3NN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4C6251J3NN');
+    </script>
+   -->
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4C6251J3NN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4C6251J3NN');
+</script>
+
+  
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar1.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Steven Zhang</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Posts</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">Me</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Markdown Quick Sheet</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2022-12-21 17:27:23
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Markdown/" title="Markdown">
+                    #Markdown
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="Markdown-Quick-Sheet-x2F-Markdown-速查表"><a href="#Markdown-Quick-Sheet-x2F-Markdown-速查表" class="headerlink" title="Markdown Quick Sheet &#x2F; Markdown 速查表"></a>Markdown Quick Sheet &#x2F; Markdown 速查表</h1><p><img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/8872/music/hi.png" alt="greeting bear"></p>
+<hr>
+<h2 id="Heading-标题"><a href="#Heading-标题" class="headerlink" title="Heading 标题"></a>Heading 标题</h2><p>Use <code>#</code> to create heading.<br>使用 <code>#</code> 开头创建标题</p>
+<h3 id="means-H3"><a href="#means-H3" class="headerlink" title="### means H3"></a>### means H3</h3><h4 id="means-H4"><a href="#means-H4" class="headerlink" title="#### means H4"></a>#### means H4</h4><h3 id="Heading-ID-设置标题ID"><a href="#Heading-ID-设置标题ID" class="headerlink" title="Heading ID 设置标题ID"></a>Heading ID 设置标题ID</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Append <span class="code">`&#123;#ID&#125;`</span> with header to add ID for header. You can use this for page jumping.</span><br><span class="line">在标题后添加 <span class="code">`&#123;#ID&#125;`</span> 以为该标题设置ID。你可以用这来实现页面内跳转。</span><br><span class="line"></span><br><span class="line"><span class="section">#### Heading123 &#123;#123&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Blockquote-引用"><a href="#Blockquote-引用" class="headerlink" title="Blockquote 引用"></a>Blockquote 引用</h2><p>Use <code>&gt;</code> to create blockquote. 使用 <code>&gt;</code> 开头创建引用内容</p>
+<blockquote>
+<p>This is block quote,</p>
+<blockquote>
+<p>it has levels.</p>
+<blockquote>
+<p>use different number of  ‘<code>&gt;</code>‘</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="Horizontal-Rules-分割线"><a href="#Horizontal-Rules-分割线" class="headerlink" title="Horizontal Rules 分割线"></a>Horizontal Rules 分割线</h2><p>Use <code>***</code> or <code>---</code> to create horizontal rules for contents.<br>使用 <code>***</code> 或 <code>---</code> 开头创建分割线</p>
+<hr>
+<h2 id="Italic-斜体"><a href="#Italic-斜体" class="headerlink" title="Italic 斜体"></a>Italic 斜体</h2><p>Use <code>*ABC*</code> or <code>_ABC_</code> for italicized text.<br>使用 <code>*内容*</code> 进行包裹 或使用 <code>_ 内容 _</code> 进行包裹</p>
+<p><em><code>*italicized text*</code></em>      <em><code>_italicized text_</code></em></p>
+<hr>
+<h2 id="Bold-加粗"><a href="#Bold-加粗" class="headerlink" title="Bold 加粗"></a>Bold 加粗</h2><p>Use <code>**ABC**</code> to bold. 使用 <code>**加粗**</code> 进行包裹</p>
+<p>ABC <strong>ABC</strong></p>
+<hr>
+<h2 id="Strikethrough-删除线"><a href="#Strikethrough-删除线" class="headerlink" title="Strikethrough 删除线"></a>Strikethrough 删除线</h2><p>Use <code>~~ABC~~</code> to create strike-through text.<br>使用 <code>~~删除线~~</code> 进行包裹.</p>
+<p><del>ABC</del></p>
+<hr>
+<h2 id="Highlight-高亮"><a href="#Highlight-高亮" class="headerlink" title="Highlight 高亮"></a>Highlight 高亮</h2><p>Use <code>==</code> to surround to highlight the content.<br>使用 <code>==</code> 包含以高亮显示内容。</p>
+<p>&#x3D;&#x3D;HIGH,HIGH,HIGH&#x3D;&#x3D;</p>
+<hr>
+<h2 id="Subscript-下标"><a href="#Subscript-下标" class="headerlink" title="Subscript 下标"></a>Subscript 下标</h2><p>Use <code>~</code> to surround to subscript.<br>使用 <code>~</code> 来下标内容。</p>
+<p><code>H~2~O</code><br>H<del>2</del>O</p>
+<h2 id="superscript-上标"><a href="#superscript-上标" class="headerlink" title="superscript 上标"></a>superscript 上标</h2><p>Use <code>^</code> to surround to superscript.<br>使用 <code>^</code> 来上标内容。</p>
+<p><code>X^100^</code><br>X^100^</p>
+<hr>
+<h2 id="List-列表"><a href="#List-列表" class="headerlink" title="List 列表"></a>List 列表</h2><h3 id="Unordered-List-无序列表"><a href="#Unordered-List-无序列表" class="headerlink" title="Unordered List 无序列表"></a>Unordered List 无序列表</h3><p>Use <code>*</code> , <code>-</code> , <code>+</code> + <code>space</code> to create Unordered List. Use <code>tab</code> to level down<br>使用 <code>*</code> 、<code>-</code> 、<code>+</code> 创建无序列表 + <code>空格</code>, 使用<br><code>tab</code> 增加层级。</p>
+<ul>
+<li>1</li>
+<li>2</li>
+<li>3<ul>
+<li>4<ul>
+<li>5<ul>
+<li>6</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Ordered-List-有序列表"><a href="#Ordered-List-有序列表" class="headerlink" title="Ordered List 有序列表"></a>Ordered List 有序列表</h3><p>Use <code>1.</code> + <code>space</code> to create ordered list.<br>使用 <code>1.</code> 开头 + <code>空格</code></p>
+<ol>
+<li><ol>
+<li></li>
+</ol>
+</li>
+<li><ol>
+<li></li>
+</ol>
+</li>
+<li><ol>
+<li></li>
+</ol>
+</li>
+<li><ol>
+<li>Here is <code>1.</code>, but shown as <code>4.</code>.</li>
+</ol>
+</li>
+</ol>
+<h3 id="Task-List-任务列表"><a href="#Task-List-任务列表" class="headerlink" title="Task List 任务列表"></a>Task List 任务列表</h3><p>Valid only with un&#x2F;ordered list, which starts with <code>*</code>.<br>Then, use <code>[ ]</code> or <code>[X]</code> + <code>space</code>, <code>[ ]</code> unchecked , <code>[X]</code> checked<br>搭配无序列表开头<code>*</code> ，然后使用 <code>[ ]</code> 或 <code>[X]</code> + <code>空格</code></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Done</li>
+<li><input disabled="" type="checkbox"> Processing</li>
+</ul>
+<h3 id="Definition-List-定义列表"><a href="#Definition-List-定义列表" class="headerlink" title="Definition List 定义列表"></a>Definition List 定义列表</h3><p>Use definition list to present the definition for a term.</p>
+<p>使用定义列表可以为某个事物赋予定义。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">term</span><br><span class="line">: definition</span><br></pre></td></tr></table></figure>
+<dl><dt>term</dt><dd>definition</dd></dl><hr>
+<h2 id="Link-链接"><a href="#Link-链接" class="headerlink" title="Link 链接"></a>Link 链接</h2><h3 id="Website-网站"><a href="#Website-网站" class="headerlink" title="Website 网站"></a>Website 网站</h3><p>Use <code>[link text](link)</code> to create a website link.<br>使用 <code>[link text](link)</code> 创建网站链接。</p>
+<p><a target="_blank" rel="noopener" href="https://gritjz.github.io/">ABC</a><br><a target="_blank" rel="noopener" href="https://gritjz.github.io/">https://gritjz.github.io/</a></p>
+<h3 id="Image-图片"><a href="#Image-图片" class="headerlink" title="Image 图片"></a>Image 图片</h3><h4 id="Basic-Formart-基本格式"><a href="#Basic-Formart-基本格式" class="headerlink" title="Basic Formart 基本格式"></a>Basic Formart 基本格式</h4><p>Alt text is The Alt tag of the image, which is used to describe the keywords of the image. Image link: It can be the local address or URL of the image. “hover text” will appear when the mouse hovers over the image. Alt text and hover text are optional.<br>Alt text：图片的Alt标签，用来描述图片的关键词。Image link：可以是图片的本地地址或者是网址。”hover text”：鼠标悬置于图片上会出现的标题文字。<br><code>![alt text](Image link.jpg &quot;hover text&quot;)</code></p>
+<h4 id="Local-Image-本地图片"><a href="#Local-Image-本地图片" class="headerlink" title="Local Image 本地图片"></a>Local Image 本地图片</h4><p>You only need to fill in the directory path of the image in basic format, and both of absolute paths and relative paths are supported.<br>图片链接改为本地地址。绝对路径和相对路径都可以。<br><code>![avatar](/USERS/image.jpg &quot;avatar&quot;)</code></p>
+<h4 id="Internet-Image-网络图片"><a href="#Internet-Image-网络图片" class="headerlink" title="Internet Image 网络图片"></a>Internet Image 网络图片</h4><p>Use the Internet link as image link. Not stable if the image link is removed.<br>用图片的网络地址，有可能链接被移除，所以不稳定。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![avatar](https://upload.wikimedia.org/wikipedia/en/d/d6/Avatar_%282009_film%29_poster.jpg &quot;avatar&quot;)</span><br></pre></td></tr></table></figure>
+<h4 id="Convert-Image-to-Markdown-Document-转换图片为markdown文件（base64）"><a href="#Convert-Image-to-Markdown-Document-转换图片为markdown文件（base64）" class="headerlink" title="Convert Image to Markdown Document 转换图片为markdown文件（base64）"></a>Convert Image to Markdown Document 转换图片为markdown文件（base64）</h4><p>Use the base64 transcoding tool to convert the image into a base64 string, and then fill the string into the link in the basic format.<br>将图片转换成base64形式的字符串，然后把字符串写入链接中。</p>
+<p><code>![ABC](base64 string)</code></p>
+<code>
+![ABC][b_str]
+[b_str]:base64 string
+</code>
+
+
+
+<hr>
+<h2 id="Code-block-代码块"><a href="#Code-block-代码块" class="headerlink" title="Code block 代码块"></a>Code block 代码块</h2><p>Use <code>` `</code> to create code block. or use HTML <code>&lt;code&gt;ABC&lt;/code&gt;</code>.<br>使用 <code>` `</code> 创建短句代码块，或使用HTML <code>&lt;code&gt;ABC&lt;/code&gt;</code></p>
+<p><code>`code`</code><br><code>`&lt;code&gt;ABC&lt;/code&gt;`</code></p>
+<p>Use <code>```javascript</code> to create code block with language mark and use another <code>```</code> at the end of code to fence the code.</p>
+<p>使用 <code>```javascript</code>  创建带语言标识的代码块, 并在代码后加上另一个<code>```</code> 来包含整段代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello Steven!&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Table-表格"><a href="#Table-表格" class="headerlink" title="Table 表格"></a>Table 表格</h2><p>Use <code>|</code> + <code>space</code> to create table by surrounding the contents with <code>|</code>, like <code>| Table 1 | Table 2 |</code>. After the first line, you need <code>-</code> to be added as <code>| - | - |</code> to identify the first line is table head. Table head will be bolded.<br>使用 <code>|</code> + <code>space</code> 来创建表格。将表格内容用<code>|</code>包含，即<code>| Table 1 | Table 2 |</code>。在定义了一行后，还需要在下一行添加一行 <code>-</code> 表示第一行是表头，即<code>| - | - |</code> ，这样表格就创建好了，之后只需要用 <code>|</code> 添加表格内容就好了。</p>
+<p>| Table 1 | Table 2 |</p>
+<table>
+<thead>
+<tr>
+<th>Table 1</th>
+<th>Table 2</th>
+<th>with <code>-</code></th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th>Table 1</th>
+<th align="center">Tbale 2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ABC</td>
+<td align="center"><del>DEF</del></td>
+</tr>
+<tr>
+<td>GHI</td>
+<td align="center"><strong>JK</strong> L</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="Math-Expression-数学公式"><a href="#Math-Expression-数学公式" class="headerlink" title="Math Expression 数学公式"></a>Math Expression 数学公式</h2><p>Math formula is supported by <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/TeX">TeX</a></p>
+<p>数学公式通过 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/TeX">TeX 表达式</a>支持。</p>
+<p>Use <code>$</code> to surround formula to present single line formula as <code>$E = mc^2$</code>.</p>
+<p>使用 <code>$</code> 包含公式来表示单行公式： <code>$E = mc^2$</code></p>
+<p>$E &#x3D; mc^2$</p>
+<p>Math code block is supported by surrounding with <code>$$</code> .<br>使用 <code>$$</code> 的数学公式块也是支持的。</p>
+<pre><code>$$
+\begin&#123;aligned&#125;
+T( (v\_1 + v\_2) \otimes w) &amp;= T(v\_1 \otimes w) + T(v\_2 \otimes w) \\
+T( v \otimes (w\_1 + w\_2)) &amp;= T(v \otimes w\_1) + T(v \otimes w\_2) \\
+T( (\alpha v) \otimes w ) &amp;= T( \alpha ( v \otimes w) ) \\
+T( v \otimes (\alpha w) ) &amp;= T( \alpha ( v \otimes w) ) \\
+\end&#123;aligned&#125;
+$$ 
+</code></pre>
+<p>$$<br>\begin{aligned}<br>T( (v_1 + v_2) \otimes w) &amp;&#x3D; T(v_1 \otimes w) + T(v_2 \otimes w) \<br>T( v \otimes (w_1 + w_2)) &amp;&#x3D; T(v \otimes w_1) + T(v \otimes w_2) \<br>T( (\alpha v) \otimes w ) &amp;&#x3D; T( \alpha ( v \otimes w) ) \<br>T( v \otimes (\alpha w) ) &amp;&#x3D; T( \alpha ( v \otimes w) ) \<br>\end{aligned}<br>$$</p>
+<hr>
+<h2 id="Emoji-👻"><a href="#Emoji-👻" class="headerlink" title="Emoji 👻"></a>Emoji 👻</h2><p>Use <a target="_blank" rel="noopener" href="https://www.webfx.com/tools/emoji-cheat-sheet/">Emoji Cheat Sheet</a> to find the emoji you need and add emoji as <code>:sunglasses:</code> 😎<br>使用 <a target="_blank" rel="noopener" href="https://www.webfx.com/tools/emoji-cheat-sheet/">Emoji 快捷指令</a>找到想要emoji，然后添加。例如， <code>:sunglasses:</code> 😎</p>
+<hr>
+<h2 id="Diagram-图表"><a href="#Diagram-图表" class="headerlink" title="Diagram 图表"></a>Diagram 图表</h2><p>Diagram is supported by <a target="_blank" rel="noopener" href="https://mermaid-js.github.io/mermaid/#/">Mermaid</a>. You can use <code>```mermaid</code> 同create and <code>```Diagram1--&gt;Diagram 2```</code> to present relationships.</p>
+<p>图表由 <a target="_blank" rel="noopener" href="https://mermaid-js.github.io/mermaid/#/">Mermaid</a>驱动。你可以输入 <code>```mermaid</code> 来添加图表， 并用 <code>```Diagram1--&gt;Diagram 2```</code> 来表示关系。</p>
+<pre><code>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph TD;</span><br><span class="line">    EditorState--&gt;EditorView;</span><br><span class="line">    EditorView--&gt;DOMEvent;</span><br><span class="line">    DOMEvent--&gt;Transaction;</span><br><span class="line">    Transaction--&gt;EditorState;</span><br></pre></td></tr></table></figure>
+</code></pre>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph TD;</span><br><span class="line">    EditorState--&gt;EditorView;</span><br><span class="line">    EditorView--&gt;DOMEvent;</span><br><span class="line">    DOMEvent--&gt;Transaction;</span><br><span class="line">    Transaction--&gt;EditorState;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Comment-注释"><a href="#Comment-注释" class="headerlink" title="Comment 注释"></a>Comment 注释</h2><p>Use <code>[comment]:</code> to comment out for markdown.<br>使用 <code>[comment]:</code> 为markdown添加注释<br><code>[comment]:　YOUCANTSEEME</code></p>
+<hr>
+<h2 id="Collapse-x2F-Fold-折叠"><a href="#Collapse-x2F-Fold-折叠" class="headerlink" title="Collapse&#x2F;Fold 折叠"></a>Collapse&#x2F;Fold 折叠</h2><p>To collapse the code, use HTML <code>&lt;details&gt;</code>.<br>要折叠markdown,可以使用HTML的<code>&lt;details&gt;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;details open&gt; Folded contents &lt;/details&gt;</span><br><span class="line">&lt;details close&gt; Folded contents &lt;/details&gt;</span><br><span class="line">&lt;details close&gt;&lt;summary&gt;ABC&lt;/summary&gt; Folded contents&lt;/details&gt;</span><br></pre></td></tr></table></figure>
+<p><code>open</code> and <code>close</code> to set collapse on and off by default. You can also use <code>&lt;summary&gt;</code> to change the title of <code>&lt;details&gt;</code>.</p>
+<p><code>open</code> 和 <code>close</code> 是设置折叠是否默认开启。可以搭配 <code>&lt;summary&gt;</code> 来更改 <code>&lt;details&gt;</code>的标题</p>
+<details close>Folded contents</details>
+<details close><summary>ABC</summary> Folded contents</details>
+
+
+<hr>
+<hr>
+<p>Good Day :smile:</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2022/12/21/hello-world%20-%20Copy/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2022-12-21 17:27:23
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Markdown/" title="Markdown">
+                        #Markdown
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/12/21/MARKDOWN-0/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown-Quick-Sheet-x2F-Markdown-%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="toc-text">Markdown Quick Sheet &#x2F; Markdown 速查表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Heading-%E6%A0%87%E9%A2%98"><span class="toc-text">Heading 标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#means-H3"><span class="toc-text">### means H3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#means-H4"><span class="toc-text">#### means H4</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Heading-ID-%E8%AE%BE%E7%BD%AE%E6%A0%87%E9%A2%98ID"><span class="toc-text">Heading ID 设置标题ID</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Blockquote-%E5%BC%95%E7%94%A8"><span class="toc-text">Blockquote 引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Horizontal-Rules-%E5%88%86%E5%89%B2%E7%BA%BF"><span class="toc-text">Horizontal Rules 分割线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Italic-%E6%96%9C%E4%BD%93"><span class="toc-text">Italic 斜体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bold-%E5%8A%A0%E7%B2%97"><span class="toc-text">Bold 加粗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Strikethrough-%E5%88%A0%E9%99%A4%E7%BA%BF"><span class="toc-text">Strikethrough 删除线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Highlight-%E9%AB%98%E4%BA%AE"><span class="toc-text">Highlight 高亮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Subscript-%E4%B8%8B%E6%A0%87"><span class="toc-text">Subscript 下标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#superscript-%E4%B8%8A%E6%A0%87"><span class="toc-text">superscript 上标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List-%E5%88%97%E8%A1%A8"><span class="toc-text">List 列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unordered-List-%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-text">Unordered List 无序列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ordered-List-%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-text">Ordered List 有序列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Task-List-%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8"><span class="toc-text">Task List 任务列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition-List-%E5%AE%9A%E4%B9%89%E5%88%97%E8%A1%A8"><span class="toc-text">Definition List 定义列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Link-%E9%93%BE%E6%8E%A5"><span class="toc-text">Link 链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Website-%E7%BD%91%E7%AB%99"><span class="toc-text">Website 网站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Image-%E5%9B%BE%E7%89%87"><span class="toc-text">Image 图片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Basic-Formart-%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="toc-text">Basic Formart 基本格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Local-Image-%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87"><span class="toc-text">Local Image 本地图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Internet-Image-%E7%BD%91%E7%BB%9C%E5%9B%BE%E7%89%87"><span class="toc-text">Internet Image 网络图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Convert-Image-to-Markdown-Document-%E8%BD%AC%E6%8D%A2%E5%9B%BE%E7%89%87%E4%B8%BAmarkdown%E6%96%87%E4%BB%B6%EF%BC%88base64%EF%BC%89"><span class="toc-text">Convert Image to Markdown Document 转换图片为markdown文件（base64）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code-block-%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-text">Code block 代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Table-%E8%A1%A8%E6%A0%BC"><span class="toc-text">Table 表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Math-Expression-%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="toc-text">Math Expression 数学公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Emoji-%F0%9F%91%BB"><span class="toc-text">Emoji 👻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Diagram-%E5%9B%BE%E8%A1%A8"><span class="toc-text">Diagram 图表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Comment-%E6%B3%A8%E9%87%8A"><span class="toc-text">Comment 注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Collapse-x2F-Fold-%E6%8A%98%E5%8F%A0"><span class="toc-text">Collapse&#x2F;Fold 折叠</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+  <div id="gitalk-container"></div>
+
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'cf8ee4912fb41e54df1c',
+        clientSecret: '93a304631a54109c21a3fcb1295e7df23c03925c',
+        repo: 'blog-comments',
+        owner: 'gritjz',
+        admin: ['gritjz'],
+        id: location.pathname,
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/gritjz">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Steven Zhang</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+    <div class="footer-views">
+      
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+      
+          本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        
+      
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        
+      
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Searching...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Markdown%20Quick%20Sheet + '&url=' + http%3A%2F%2Fexample.com%2F2022%2F12%2F21%2FMarkdown%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2022/12/21/Markdown/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>
