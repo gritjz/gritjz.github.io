@@ -131,7 +131,6 @@
         <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
 <!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-
   <!-- LaTex Display -->
 
   
@@ -146,10 +145,9 @@
   </script>
 
 
-
-
-
-  <!-- clipboard -->
+    
+      
+        <!-- clipboard -->
 
   
     <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
@@ -159,32 +157,26 @@
 
 
 
-
-
-
-
-  
-  <!-- 分类页 url形式：https://yoursite/categories/ -->
-  <div class="container category-index">
-    <div>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown/">Markdown</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown/MD-Qucik-Sheet/">MD Qucik Sheet</a><span class="category-list-count">1</span></li></ul></li></ul>
-    </div>
-  </div>
-  
-
-  
-
-  
-
-  
-
+          
+            
+                
+                  <!-- 分类页 url形式：https://yoursite/categories/ -->
+                  <div class="container category-index">
+                    <div>
+                      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown/">Markdown</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown/MD-Qucik-Sheet/">MD Qucik Sheet</a><span class="category-list-count">1</span></li></ul></li></ul>
+                    </div>
+                  </div>
+                  
+                    
+                        
+                            
         
 <div class="footer">
   <div class="social">
     <ul>
       
         <li>
-          <a title="github" target="_blank" rel="noopener" href="https://github.com/gritjz">
+          <a title="github" href="https://github.com/gritjz">
             <i class="iconfont icon-github"></i>
           </a>
         </li>
@@ -195,14 +187,14 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Steven Zhang</a>
+        <a href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2022 Steven Zhang</a>
         
     </div>
   
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        <a href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
         
     </div>
   
@@ -220,8 +212,19 @@
       
     </div>
   
+
+  
+    <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+    <script>
+      if (window.mermaid) {
+        mermaid.initialize({theme: 'forest'});
+      }
+    </script>
+  
+  
 </div>
 
+ 
       </div>
 
       <div class="tools-bar">

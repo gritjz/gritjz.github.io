@@ -396,8 +396,8 @@ a:hover {
 
 .post-details .post-title {
   text-align: center;
-  font-size: 2.2rem;
-  font-weight: 600;
+  font-size: 3.2rem;
+  font-weight: 999;
   color: var(--color-text-a);
   padding-bottom: 10px;
 }
