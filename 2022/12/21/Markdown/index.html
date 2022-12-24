@@ -11,7 +11,7 @@
   
   <title>
     
-      Markdown Quick Sheet / Markdown 速查表 
+      Markdown Cheatsheet / Markdown 速查表 
       
       
       |
@@ -166,7 +166,7 @@
                               <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
                               <div class="container post-details" id="post-details">
                                 <div class="post-content">
-                                  <div class="post-title">Markdown Quick Sheet / Markdown 速查表</div>
+                                  <div class="post-title">Markdown Cheatsheet / Markdown 速查表</div>
                                   <div class="post-attach">
                                     <span class="post-pubtime">
                                       <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
@@ -177,16 +177,16 @@
                                           
                                             <span class="span--category">
                                               
-                                                <a href="/categories/Markdown/" title="Markdown">
-                                                  &nbsp;Markdown
+                                                <a href="/categories/Hexo/" title="Hexo">
+                                                  &nbsp;Hexo
                                                 </a>
                                                 
                                             </span>
                                             
                                             <span class="span--category">
                                               
-                                                  <a href="/categories/Markdown/MD-Qucik-Sheet/" title="MD Qucik Sheet">
-                                                    &nbsp;<b>>>&nbsp;MD Qucik Sheet</b>
+                                                  <a href="/categories/Hexo/Markdown/" title="Markdown">
+                                                    &nbsp;<b>>>&nbsp;Markdown</b>
                                                   </a>
                                                   
                                             </span>
@@ -202,6 +202,11 @@
                                           
                                           <span class="span--tag mr-8">
                                             <b><a href="/tags/Hexo/" title="Hexo" style="color:Orange"> #Hexo
+                                            </a></b>
+                                          </span>
+                                          
+                                          <span class="span--tag mr-8">
+                                            <b><a href="/tags/Cheatsheet/" title="Cheatsheet" style="color:Orange"> #Cheatsheet
                                             </a></b>
                                           </span>
                                           
@@ -238,7 +243,7 @@
 <p><del>ABC</del></p>
 <hr>
 <h2 id="Highlight-高亮"><a href="#Highlight-高亮" class="headerlink" title="Highlight 高亮"></a>Highlight 高亮</h2><p>Use <code>==</code> to surround to highlight the content.<br>使用 <code>==</code> 包含以高亮显示内容。</p>
-<p>&#x3D;&#x3D;HIGH,HIGH,HIGH&#x3D;&#x3D;</p>
+<p>=&#x3D;HIGH,HIGH,HIGH&#x3D;&#x3D;</p>
 <hr>
 <h2 id="Subscript-下标"><a href="#Subscript-下标" class="headerlink" title="Subscript 下标"></a>Subscript 下标</h2><p>Use <code>~</code> to surround to subscript.<br>使用 <code>~</code> 来下标内容。</p>
 <p><code>H~2~O</code><br>H<del>2</del>O</p>
@@ -286,23 +291,19 @@
 </ul>
 <h3 id="Definition-List-定义列表"><a href="#Definition-List-定义列表" class="headerlink" title="Definition List 定义列表"></a>Definition List 定义列表</h3><p>Use definition list to present the definition for a term.</p>
 <p>使用定义列表可以为某个事物赋予定义。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">term</span><br><span class="line">: definition</span><br></pre></td></tr></table></figure>
+<pre><code>term
+: definition
+</code></pre>
 <dl><dt>term</dt><dd>definition</dd></dl><hr>
 <h2 id="Link-链接"><a href="#Link-链接" class="headerlink" title="Link 链接"></a>Link 链接</h2><h3 id="Website-网站"><a href="#Website-网站" class="headerlink" title="Website 网站"></a>Website 网站</h3><p>Use <code>[link text](link)</code> to create a website link.<br>使用 <code>[link text](link)</code> 创建网站链接。</p>
 <p><a href="https://gritjz.github.io/">ABC</a><br><a href="https://gritjz.github.io/">https://gritjz.github.io/</a></p>
 <h3 id="Image-图片"><a href="#Image-图片" class="headerlink" title="Image 图片"></a>Image 图片</h3><h4 id="Basic-Formart-基本格式"><a href="#Basic-Formart-基本格式" class="headerlink" title="Basic Formart 基本格式"></a>Basic Formart 基本格式</h4><p>Alt text is The Alt tag of the image, which is used to describe the keywords of the image. Image link: It can be the local address or URL of the image. “hover text” will appear when the mouse hovers over the image. Alt text and hover text are optional.<br>Alt text：图片的Alt标签，用来描述图片的关键词。Image link：可以是图片的本地地址或者是网址。”hover text”：鼠标悬置于图片上会出现的标题文字。<br><code>![alt text](Image link.jpg &quot;hover text&quot;)</code></p>
 <h4 id="Local-Image-本地图片"><a href="#Local-Image-本地图片" class="headerlink" title="Local Image 本地图片"></a>Local Image 本地图片</h4><p>You only need to fill in the directory path of the image in basic format, and both of absolute paths and relative paths are supported.<br>图片链接改为本地地址。绝对路径和相对路径都可以。<br><code>![avatar](/USERS/image.jpg &quot;avatar&quot;)</code></p>
 <h4 id="Internet-Image-网络图片"><a href="#Internet-Image-网络图片" class="headerlink" title="Internet Image 网络图片"></a>Internet Image 网络图片</h4><p>Use the Internet link as image link. Not stable if the image link is removed.<br>用图片的网络地址，有可能链接被移除，所以不稳定。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![avatar](https://upload.wikimedia.org/wikipedia/en/d/d6/Avatar_%282009_film%29_poster.jpg &quot;avatar&quot;)</span><br></pre></td></tr></table></figure>
+<pre><code>![avatar](https://upload.wikimedia.org/wikipedia/en/d/d6/Avatar_%282009_film%29_poster.jpg &quot;avatar&quot;)
+</code></pre>
 <h4 id="Convert-Image-to-Markdown-Document-转换图片为markdown文件（base64）"><a href="#Convert-Image-to-Markdown-Document-转换图片为markdown文件（base64）" class="headerlink" title="Convert Image to Markdown Document 转换图片为markdown文件（base64）"></a>Convert Image to Markdown Document 转换图片为markdown文件（base64）</h4><p>Use the base64 transcoding tool to convert the image into a base64 string, and then fill the string into the link in the basic format.<br>将图片转换成base64形式的字符串，然后把字符串写入链接中。</p>
 <p><code>![ABC](base64 string)</code></p>
-<code>
-![ABC][b_str]
-[b_str]:base64 string
-</code>
-
-
-
 <hr>
 <h2 id="Code-block-代码块"><a href="#Code-block-代码块" class="headerlink" title="Code block 代码块"></a>Code block 代码块</h2><p>Use <code>` `</code> to create code block. or use HTML <code>&lt;code&gt;ABC&lt;/code&gt;</code>.<br>使用 <code>` `</code> 创建短句代码块，或使用HTML <code>&lt;code&gt;ABC&lt;/code&gt;</code></p>
 <p><code>`code`</code><br><code>`&lt;code&gt;ABC&lt;/code&gt;`</code></p>
@@ -358,40 +359,28 @@ $$
 <hr>
 <h2 id="Emoji-👻"><a href="#Emoji-👻" class="headerlink" title="Emoji 👻"></a>Emoji 👻</h2><p>Use <a href="https://www.webfx.com/tools/emoji-cheat-sheet/">Emoji Cheat Sheet</a> to find the emoji you need and add emoji as <code>:sunglasses:</code> 😎<br>使用 <a href="https://www.webfx.com/tools/emoji-cheat-sheet/">Emoji 快捷指令</a>找到想要emoji，然后添加。例如， <code>:sunglasses:</code> 😎</p>
 <hr>
-<h2 id="Diagram-图表"><a href="#Diagram-图表" class="headerlink" title="Diagram 图表"></a>Diagram 图表</h2><p>Diagram is supported by <a href="https://mermaid-js.github.io/mermaid/#/">Mermaid</a>. You can use <code>&lt;pre class=&quot;mermaid&quot;&gt; graph TD... &lt;/pre&gt;</code>  to create and <code>Diagram1--&gt;Diagram 2</code> to present flow diagram. <a href="https://github.com/mermaid-js/mermaid/blob/develop/README.md">More Details</a> </p>
+<h2 id="Diagram-图表"><a href="#Diagram-图表" class="headerlink" title="Diagram 图表"></a>Diagram 图表</h2><p>Diagram is supported by <a href="https://mermaid-js.github.io/mermaid/#/">Mermaid</a>. You can use <code>&lt;pre class=&quot;mermaid&quot;&gt; graph TD... &lt;/pre&gt;</code>  to create and <code>Diagram1--&gt;Diagram 2</code> to present flow diagram. <a href="https://github.com/mermaid-js/mermaid/blob/develop/README.md">More Details</a></p>
 <p>图表由 <a href="https://mermaid-js.github.io/mermaid/#/">Mermaid</a>驱动。你可以输入 <code>&lt;pre class=&quot;mermaid&quot;&gt; graph TD... &lt;/pre&gt;</code> 来添加图表， 并用 <code>```Diagram1--&gt;Diagram 2```</code> 来表示关系。<a href="https://github.com/mermaid-js/mermaid/blob/develop/README.zh-CN.md">更多细节</a></p>
-<pre><code>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre class=&quot;mermaid&quot;&gt;</span><br><span class="line">graph TD</span><br><span class="line">    A[Work] --&gt;|Earn money| B(Go shopping)</span><br><span class="line">    B --&gt; C&#123;Considering&#125;</span><br><span class="line">    C --&gt;|One| D[LV]</span><br><span class="line">    C --&gt;|Two| E[iPhone]</span><br><span class="line">    C --&gt;|Three| F[Stock share]</span><br><span class="line">&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<pre class="mermaid">
 graph TD
     A[Work] -->|Earn money| B(Go shopping)
-    B --> C&#123;Considering&#125;
+    B --> C{Considering}
     C -->|One| D[LV]
     C -->|Two| E[iPhone]
     C -->|Three| F[Stock share]
-</code></pre>
-
-
-<pre class="mermaid">
-    graph TD
-        A[Work] -->|Earn money| B(Go shopping)
-        B --> C{Considering}
-        C -->|One| D[LV]
-        C -->|Two| E[iPhone]
-        C -->|Three| F[Stock share]
-  </pre>
-
-
+</pre>
 
 <hr>
 <h2 id="Comment-注释"><a href="#Comment-注释" class="headerlink" title="Comment 注释"></a>Comment 注释</h2><p>Use <code>[comment]:</code> to comment out for markdown.<br>使用 <code>[comment]:</code> 为markdown添加注释<br><code>[comment]:　YOUCANTSEEME</code></p>
 <hr>
 <h2 id="Collapse-x2F-Fold-折叠"><a href="#Collapse-x2F-Fold-折叠" class="headerlink" title="Collapse&#x2F;Fold 折叠"></a>Collapse&#x2F;Fold 折叠</h2><p>To collapse the code, use HTML <code>&lt;details&gt;</code>.<br>要折叠markdown,可以使用HTML的<code>&lt;details&gt;</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;details open&gt; Folded contents &lt;/details&gt;</span><br><span class="line">&lt;details close&gt; Folded contents &lt;/details&gt;</span><br><span class="line">&lt;details close&gt;&lt;summary&gt;ABC&lt;/summary&gt; Folded contents&lt;/details&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;details open&gt; Folded contents &lt;/details&gt;
+&lt;details close&gt; Folded contents &lt;/details&gt;
+&lt;details close&gt;&lt;summary&gt;ABC&lt;/summary&gt; Folded contents&lt;/details&gt;
+</code></pre>
 <p><code>open</code> and <code>close</code> to set collapse on and off by default. You can also use <code>&lt;summary&gt;</code> to change the title of <code>&lt;details&gt;</code>.</p>
 <p><code>open</code> 和 <code>close</code> 是设置折叠是否默认开启。可以搭配 <code>&lt;summary&gt;</code> 来更改 <code>&lt;details&gt;</code>的标题</p>
-<details close>Folded contents</details>
-<details close><summary>ABC</summary> Folded contents</details>
-
-
 <hr>
 <hr>
 <p>Good Day<br>😎</p>
@@ -412,16 +401,16 @@ graph TD
                                               
                                                 <span class="span--category">
                                                   
-                                                    <a href="/categories/Markdown/" title="Markdown">
-                                                      &nbsp;Markdown
+                                                    <a href="/categories/Hexo/" title="Hexo">
+                                                      &nbsp;Hexo
                                                     </a>
                                                     
                                                 </span>
                                                 
                                                 <span class="span--category">
                                                   
-                                                      <a href="/categories/Markdown/MD-Qucik-Sheet/" title="MD Qucik Sheet">
-                                                        &nbsp;<b>>>&nbsp;MD Qucik Sheet</b>
+                                                      <a href="/categories/Hexo/Markdown/" title="Markdown">
+                                                        &nbsp;<b>>>&nbsp;Markdown</b>
                                                       </a>
                                                       
                                                 </span>
@@ -440,11 +429,23 @@ graph TD
                                                 </a></b>
                                               </span>
                                               
+                                              <span class="span--tag mr-8">
+                                                <b><a href="/tags/Cheatsheet/" title="Cheatsheet" style="color:Orange"> #Cheatsheet
+                                                </a></b>
+                                              </span>
+                                              
                                           </span>
                                           
                                       </div>
                                       <div class="post-foot-prev">
                                         
+                                          <a href="/2022/12/23/Install-Mermaid-Diagram-in-Hexo/" target="_self">
+                                            <span>
+                                              Next
+                                            </span>
+                                            <i class="iconfont icon-chevronright"></i>
+                                          </a>
+                                          
                                       </div>
                                     </div>
                                     
@@ -789,7 +790,7 @@ graph TD
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Markdown%20Quick%20Sheet%20%2F%20Markdown%20%E9%80%9F%E6%9F%A5%E8%A1%A8 + '&url=' + http%3A%2F%2Fexample.com%2F2022%2F12%2F21%2FMarkdown%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Markdown%20Cheatsheet%20%2F%20Markdown%20%E9%80%9F%E6%9F%A5%E8%A1%A8 + '&url=' + http%3A%2F%2Fexample.com%2F2022%2F12%2F21%2FMarkdown%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
