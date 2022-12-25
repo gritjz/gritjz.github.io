@@ -196,12 +196,12 @@
                                         <i class="iconfont icon-tags mr-10" title="Tags"></i>
                                         
                                           <span class="span--tag mr-8">
-                                            <b><a href="/tags/Hexo/" title="Hexo" style="color:Orange"> #Hexo
+                                            <b><a href="/tags/Mermaid/" title="Mermaid" style="color:Orange"> #Mermaid
                                             </a></b>
                                           </span>
                                           
                                           <span class="span--tag mr-8">
-                                            <b><a href="/tags/Mermaid/" title="Mermaid" style="color:Orange"> #Mermaid
+                                            <b><a href="/tags/Hexo/" title="Hexo" style="color:Orange"> #Hexo
                                             </a></b>
                                           </span>
                                           
@@ -249,7 +249,9 @@
 
 <p>More details, see <a href="https://github.com/mermaid-js/mermaid">Mermaid Tutorials</a>.</p>
 <h1 id="Possible-Issues"><a href="#Possible-Issues" class="headerlink" title="Possible Issues"></a>Possible Issues</h1><p>In Steps 3, after you added the script into <code>footer.ejs</code> and execute <code>hexo g</code>, the console could hint you that </p>
-<p><code>theme.mermaid.enable</code> and <code>theme.mermaid.version</code> could not be retrieved. </p>
+<p><code>theme.mermaid.enable</code> and <code>theme.mermaid.version</code> could not be retrieved as follows.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Cannot read property &#x27;enable&#x27; of undefined</span><br><span class="line">Cannot read property &#x27;version&#x27; of undefined</span><br></pre></td></tr></table></figure>
+
 <p>This is because hexo cannot find the settings in the theme’s config file. </p>
 <p>So, add the script in Step 2 into both of <code>hexo/_config.yml</code> and <code>Themes/YOURTHEME/_config.yml</code>.</p>
 <p>Once you added the script and <code>hexo g</code>,  the Mermaid setings in <code>Themes/YOURTHEME/_config.yml</code> can be removed, and just make sure keep it in<code> hexo/_config.yml</code>.</p>
@@ -298,12 +300,12 @@
                                             <i class="iconfont icon-tags mr-10" title="Tags"></i>
                                             
                                               <span class="span--tag mr-8">
-                                                <b><a href="/tags/Hexo/" title="Hexo" style="color:Orange"> #Hexo
+                                                <b><a href="/tags/Mermaid/" title="Mermaid" style="color:Orange"> #Mermaid
                                                 </a></b>
                                               </span>
                                               
                                               <span class="span--tag mr-8">
-                                                <b><a href="/tags/Mermaid/" title="Mermaid" style="color:Orange"> #Mermaid
+                                                <b><a href="/tags/Hexo/" title="Hexo" style="color:Orange"> #Hexo
                                                 </a></b>
                                               </span>
                                               
@@ -312,6 +314,13 @@
                                       </div>
                                       <div class="post-foot-prev">
                                         
+                                          <a href="/2022/12/25/Net6-WebApi-Basics/" target="_self">
+                                            <span>
+                                              Next
+                                            </span>
+                                            <i class="iconfont icon-chevronright"></i>
+                                          </a>
+                                          
                                       </div>
                                     </div>
                                     

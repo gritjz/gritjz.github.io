@@ -11,6 +11,11 @@
   
   <title>
     
+      .Net6 + WebApi Basics 
+      
+      
+      |
+    
      Steven&#39;s blog
   </title>
 
@@ -123,57 +128,119 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title=".Net6 + WebApi Basics">
-        <div class="time-m-d">2022-12-25</div>
-        <div class="title">
-          <a href="/2022/12/25/Net6-WebApi-Basics/">
-            
-              
-                <span>.Net6 + WebApi Basics</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Install Mermaid Diagram in Hexo">
-        <div class="time-m-d">2022-12-23</div>
-        <div class="title">
-          <a href="/2022/12/23/Install-Mermaid-Diagram-in-Hexo/">
-            
-              
-                <span>Install Mermaid Diagram in Hexo</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Markdown Cheatsheet / Markdown 速查表">
-        <div class="time-m-d">2022-12-21</div>
-        <div class="title">
-          <a href="/2022/12/21/Markdown/">
-            
-              
-                <span>Markdown Cheatsheet / Markdown 速查表</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-  </div>
-  <nav class="post-navigation">
-    
-    <span class="page-num">1 / 1</span>
-    
-  </nav>
-</div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+    
+      
+        <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+          
+            
+                
+                    
+                        
+                            
+                              <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+                              <div class="container post-details" id="post-details">
+                                <div class="post-content">
+                                  <div class="post-title">.Net6 + WebApi Basics</div>
+                                  <div class="post-attach">
+                                    <span class="post-pubtime">
+                                      <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+                                      2022-12-25 13:17:56
+                                    </span>
+                                    
+                                  </div>
+                                  <div class="markdown-body">
+                                    
+                                  </div>
+                                  
+                                    <div class="prev-or-next">
+                                      <div class="post-foot-next">
+                                        
+                                          <a href="/2022/12/23/Install-Mermaid-Diagram-in-Hexo/" target="_self">
+                                            <i class="iconfont icon-chevronleft"></i>
+                                            <span>
+                                              Prev
+                                            </span>
+                                          </a>
+                                          
+                                      </div>
+                                      <div class="post-attach">
+                                        <span class="post-pubtime">
+                                          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+                                          2022-12-25 13:17:56
+                                        </span>
+                                        
+                                      </div>
+                                      <div class="post-foot-prev">
+                                        
+                                      </div>
+                                    </div>
+                                    
+                                </div>
+                                
+
+                                  
+                                    <div class="comments-container">
+                                      
+
+
+
+
+
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+  <div id="gitalk-container"></div>
+
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'cf8ee4912fb41e54df1c',
+        clientSecret: '93a304631a54109c21a3fcb1295e7df23c03925c',
+        repo: 'blog-comments',
+        owner: 'gritjz',
+        admin: ['gritjz'],
+        id: location.pathname,
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+
+
+                                    </div>
+                                    
+                              </div>
+                              
         
 <div class="footer">
   <div class="social">
@@ -445,6 +512,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net6%20%2B%20WebApi%20Basics + '&url=' + http%3A%2F%2Fexample.com%2F2022%2F12%2F25%2FNet6-WebApi-Basics%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2022/12/25/Net6-WebApi-Basics/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
