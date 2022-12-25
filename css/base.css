@@ -17,7 +17,7 @@ body.hidden {
 }
 
 :root[color-mode="light"] {
-  --color-text-md-content: #1273d5;
+  --color-text-md-content: #24292E;
   --color-text-md-code-bg: #1b1f230d;
 }
 :root[color-mode="dark"] {
@@ -29,7 +29,7 @@ body.hidden {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   line-height: 2;
-  color: #1273d5;
+  color: #24292E;
   font-size: 1.6rem;
   line-height: 2;
   word-wrap: break-word;

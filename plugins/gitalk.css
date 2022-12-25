@@ -4,7 +4,7 @@
 }
 
 :root[color-mode="light"] {
-  --color-text-md-content: #1273d5;
+  --color-text-md-content: #24292E;
   --color-text-md-code-bg: #1b1f230d;
 }
 :root[color-mode="dark"] {
@@ -16,7 +16,7 @@
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   line-height: 1.5;
-  color: #1273d5;
+  color: #24292E;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 16px;
   line-height: 1.5;
@@ -40,7 +40,7 @@
 
 .markdown-body .pl-smi,
 .markdown-body .pl-s .pl-s1 {
-  color: #1273d5;
+  color: #24292E;
 }
 
 .markdown-body .pl-ent {
@@ -102,13 +102,12 @@
 
 .markdown-body .pl-mi {
   font-style: italic;
-  color: #1273d5;
+  color: #24292E;
 }
 
 .markdown-body .pl-mb {
   font-weight: bold;
-  color: #1273d5;
-  color: #1273d5;
+  color: #24292E;
 }
 
 .markdown-body .pl-md {

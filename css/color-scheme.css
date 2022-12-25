@@ -1,23 +1,23 @@
 /* light scheme */
 :root[color-mode="light"] {
-  --bg-body: #f8ffca;
+  --bg-body: #e3cea6;
   --color-text-base: #2f7604;
   --color-text-a: #000000;
   --color-text-a-hover: #000000;
   --color-text-a-active: #000000;
   --color-text-sub: #8e8e8e;
-  --color-text-md-title: #1273d5;
-  --color-text-md-content: #1273d5;
-  --color-text-md-code: #e96900;
-  --bg-text-md-code: #f8f8f8;
-  --bg-block-md-quote: #f8f8f8; 
+  --color-text-md-title: #24292E;
+  --color-text-md-content: #24292E;
+  --color-text-md-code: #2f7604;
+  --bg-text-md-code: #ffffff99;
+  --bg-block-md-quote: #ffffff99; 
   --color-block-md-quote: #555555;
   --color-divider-md-border: #5858581a;
-  --bg-content-search: rgb(255 255 255 / 60%);
+  --bg-content-search: #ffffff99;
   --bg-block-md-pre: #e6e6e6;
   --color-text-md-pre: #555555;
   --bg-block-md-table: #ffffff;
-  --bg-block-md-table-2: #313744;
+  --bg-block-md-table-2: #ffffff;
   --color-border-md-table: #dfe2e5;
 }
 
@@ -31,7 +31,7 @@
   --color-text-sub: #8e8e8e;
   --color-text-md-title: #babbc1;
   --color-text-md-content: #babbc1;
-  --color-text-md-code: #e96900;
+  --color-text-md-code: #e1a730;
   --bg-text-md-code: #3b4252;
   --bg-block-md-quote: #3a4252;
   --color-block-md-quote: #abb9cf;
@@ -40,6 +40,6 @@
   --bg-block-md-pre: #3a4252;
   --color-text-md-pre: #abb9cf;
   --bg-block-md-table: #2E3440;
-  --bg-block-md-table-2: #313744;
+  --bg-block-md-table-2: #2E3440;
   --color-border-md-table: #4c566a;
 }
