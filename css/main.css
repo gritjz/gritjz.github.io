@@ -272,7 +272,7 @@ figure .pin-copy {
 
 .markdown-body .pl-smi,
 .markdown-body .pl-s .pl-s1 {
-  color: #24292e;
+  color: #1273d5;
 }
 
 .markdown-body .pl-ent {
@@ -334,12 +334,12 @@ figure .pin-copy {
 
 .markdown-body .pl-mi {
   font-style: italic;
-  color: #24292e;
+  color: #1273d5;
 }
 
 .markdown-body .pl-mb {
   font-weight: bold;
-  color: #24292e;
+  color: #1273d5;
 }
 
 .markdown-body .pl-md {
@@ -1027,18 +1027,18 @@ figure .pin-copy {
   --color-text-a-hover: #000000;
   --color-text-a-active: #000000;
   --color-text-sub: #8e8e8e;
-  --color-text-md-title: #24292e;
-  --color-text-md-content: #24292e;
+  --color-text-md-title: #1273d5;
+  --color-text-md-content: #1273d5;
   --color-text-md-code: #e96900;
   --bg-text-md-code: #f8f8f8;
-  --bg-block-md-quote: #EEEEEE;
+  --bg-block-md-quote: #f8f8f8; 
   --color-block-md-quote: #555555;
   --color-divider-md-border: #5858581a;
   --bg-content-search: rgb(255 255 255 / 60%);
   --bg-block-md-pre: #e6e6e6;
   --color-text-md-pre: #555555;
   --bg-block-md-table: #ffffff;
-  --bg-block-md-table-2: #f6f8fa;
+  --bg-block-md-table-2: #313744;
   --color-border-md-table: #dfe2e5;
 }
 
@@ -1083,11 +1083,20 @@ body.hidden {
   padding-right: 6px;
 }
 
+:root[color-mode="light"] {
+  --color-text-md-content: #1273d5;
+  --color-text-md-code-bg: #1b1f230d;
+}
+:root[color-mode="dark"] {
+  --color-text-md-content: #babbc1;
+  --color-text-md-code-bg: #4c4d4f;
+} 
+
 .markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   line-height: 2;
-  color: #24292e;
+  color: #1273d5;
   font-size: 1.6rem;
   line-height: 2;
   word-wrap: break-word;

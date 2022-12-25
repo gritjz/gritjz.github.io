@@ -16,11 +16,20 @@ body.hidden {
   padding-right: 6px;
 }
 
+:root[color-mode="light"] {
+  --color-text-md-content: #1273d5;
+  --color-text-md-code-bg: #1b1f230d;
+}
+:root[color-mode="dark"] {
+  --color-text-md-content: #babbc1;
+  --color-text-md-code-bg: #4c4d4f;
+} 
+
 .markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   line-height: 2;
-  color: #24292e;
+  color: #1273d5;
   font-size: 1.6rem;
   line-height: 2;
   word-wrap: break-word;
