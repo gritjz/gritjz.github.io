@@ -1,14 +1,14 @@
 /* light scheme */
 :root[color-mode="light"] {
-  --bg-body: #e3cea6;
-  --color-text-base: #2f7604;
+  --bg-body: #deedd8;
+  --color-text-base: #e1a730;
   --color-text-a: #000000;
   --color-text-a-hover: #000000;
   --color-text-a-active: #000000;
   --color-text-sub: #8e8e8e;
   --color-text-md-title: #24292E;
   --color-text-md-content: #24292E;
-  --color-text-md-code: #2f7604;
+  --color-text-md-code: #e1a730;
   --bg-text-md-code: #ffffff99;
   --bg-block-md-quote: #ffffff99; 
   --color-block-md-quote: #555555;
