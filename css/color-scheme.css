@@ -8,14 +8,14 @@
   --color-text-sub: #8e8e8e;
   --color-text-md-title: #24292E;
   --color-text-md-content: #24292E;
-  --color-text-md-code: #e1a730;
+  --color-text-md-code: #24292E;
   --bg-text-md-code: #ffffff99;
   --bg-block-md-quote: #ffffff99; 
   --color-block-md-quote: #555555;
   --color-divider-md-border: #5858581a;
   --bg-content-search: #ffffff99;
-  --bg-block-md-pre: #e6e6e6;
-  --color-text-md-pre: #555555;
+  --bg-block-md-pre: #2d2d2d;
+  --color-text-md-pre: #abb9cf;
   --bg-block-md-table: #ffffff;
   --bg-block-md-table-2: #ffffff;
   --color-border-md-table: #dfe2e5;
@@ -37,7 +37,7 @@
   --color-block-md-quote: #abb9cf;
   --color-divider-md-border: #ffffff4f;
   --bg-content-search: rgb(59 66 82 / 60%);
-  --bg-block-md-pre: #3a4252;
+  --bg-block-md-pre: #2d2d2d;
   --color-text-md-pre: #abb9cf;
   --bg-block-md-table: #2E3440;
   --bg-block-md-table-2: #2E3440;
