@@ -16,7 +16,7 @@
       
       |
     
-     Steven&#39;s blog
+     Steven&#39;s Blog
   </title><meta name="robots" content="noindex">
 
   
@@ -232,7 +232,7 @@
 <p>处理的方式很简单</p>
 <p>我们先安装一个扩展包</p>
 <p>nuget安装 <code>Microsoft.AspNetCore.Mvc.NewtonsoftJson</code></p>
-<p><img src="/2022/Net6-WebApi-Basics-3/NewtonsoftJson.png" alt="截图"></p>
+<p><img src="/Net/Net6/WebApi_3c7d34fa6de3/NewtonsoftJson.png" alt="截图"></p>
 <p>安装<code>NewtonsoftJson</code> 注意版本是根据你项目的依赖来选择的。这里我使用的是.NET 6 适用的6.0.12版本。</p>
 <p>只需要在<code>Program.cs</code> 文件下添加几行代码<br>找到<code>builder.Services.AddControllers()</code></p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddControllers()</span><br><span class="line">  .AddNewtonsoftJson(options =&gt;</span><br><span class="line">  &#123;</span><br><span class="line">      options.SerializerSettings.DateFormatString = <span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
@@ -611,12 +611,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net6%20%2B%20WebApi%20Basics%203 + '&url=' + http%3A%2F%2Fexample.com%2F2022%2FNet6-WebApi-Basics-3%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net6%20%2B%20WebApi%20Basics%203 + '&url=' + http%3A%2F%2Fexample.com%2F3c7d34fa6de3%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2022/Net6-WebApi-Basics-3/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/3c7d34fa6de3/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
