@@ -239,17 +239,21 @@
 <hr>
 <h3 id="Try-a-Code"><a href="#Try-a-Code" class="headerlink" title="Try a Code"></a><strong>Try a Code</strong></h3><p>Let’s make a trial on the template code of <strong>WeatherForcast</strong> to understand how the <code>URL</code> and <code>Index</code> are set up.</p>
 <p><strong>URL Setup</strong></p>
-<p>Comment the Get()<br>   <img src="/Net6-WebApi-Basics-2/Comment.png" alt="Comment"></p>
+<p>Comment the Get() function</p>
+<img src="Comment.png"  alt="Comment" style="zoom:50%;"/>
+
 <p>Replace with following code</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpGet(<span class="string">&quot;GetWeatherForecast/&#123;userid&#125;&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">Get</span>(<span class="params"><span class="built_in">string</span> userid</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> userid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em><strong>Result:</strong></em><br><code>https://localhost:7048/WeatherForecast/GetWeatherForecast/123</code></p>
-<p><img src="/Net6-WebApi-Basics-2/code1.png" alt="Code1"></p>
+<img src="code1.png" alt="code1" style="zoom:50%;"/>
+
 <p>In <code>HttpGet</code> attribute, use <code>&#123;userid&#125;</code> to identify the <code>userid</code> in URL. The <code>userid</code> can be set in <code>Get()</code>.</p>
 <p><strong>Index Setup</strong></p>
 <p>Now, replace with following code to see how <code>Index</code> is setup.</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpGet(<span class="string">&quot;GetWeatherForecast/&#123;userid&#125;/&#123;index0&#125;&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">Get</span>(<span class="params"><span class="built_in">string</span> userid, <span class="built_in">string</span> index1, <span class="built_in">string</span> index2</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> userid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em><strong>Result:</strong></em><br><code>https://localhost:7048/WeatherForecast/GetWeatherForecast/A/B?index1=C&amp;index2=D</code></p>
-<p><img src="/Net6-WebApi-Basics-2/code2.png" alt="code2"></p>
+<img src="code2.png" alt="code2" style="zoom:50%;"/>
+
 <p><strong>Therefore,</strong></p>
 <p>Parameters in both <code>HttpGet</code> and <code>Get</code> are specified as <strong>URL</strong>.</p>
 <p>Parameters in <code>HttpGet</code>, but not in <code>Get</code> are specified as <strong>URL</strong>.</p>
