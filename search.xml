@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>.Net6 + WebApi Basics 3</title>
+      <link href="/Net6-WebApi-Basics-3/"/>
+      <url>/Net6-WebApi-Basics-3/</url>
+      
+        <content type="html"><![CDATA[<h1 id="JSON-Formatter-for-Date"><a href="#JSON-Formatter-for-Date" class="headerlink" title="JSON Formatter for Date"></a>JSON Formatter for Date</h1><h2 id="Why-Formatting-Date"><a href="#Why-Formatting-Date" class="headerlink" title="Why Formatting Date"></a>Why Formatting Date</h2><p>When we receive the returned data, the Json time we return is a long string, which is obviously not front-end friendly. </p><p>As following example, <code>&quot;date&quot;</code> has a lot ambiguous display making people difficult to read.</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2022-12-29T15:52:14.9140737-05:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;temperatureC&quot;</span><span class="punctuation">:</span> <span class="number">-8</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;temperatureF&quot;</span><span class="punctuation">:</span> <span class="number">18</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;summary&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Bracing&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure><p>So we have to format the date and time in the prefered way.</p><h2 id="Method-to-Format-Date"><a href="#Method-to-Format-Date" class="headerlink" title="Method to Format Date"></a>Method to Format Date</h2><p><strong>First,</strong><br>We need to install a add-on package with <code>Nuget</code></p><p>Browse Nuget and install<br><code>Microsoft.AspNetCore.Mvc.NewtonsoftJson</code></p><p><img src="/Net6-WebApi-Basics-3/NewtonsoftJson.png" alt="Install NewtonsoftJson"></p><p><em><strong>Note:</strong></em></p><p>while installing <code>NewtonsoftJson</code>, the version is chosen based on your project’s dependencies. Here I am using version <code>6.0.12</code> for <code>.NET 6</code>.</p><p><strong>Then,</strong></p><p>Find <code>builder.Services.AddControllers()</code> in <code>Program.cs</code>, and modify with following code.</p><p><code>&quot;yyyy-MM-dd HH:mm:ss&quot;</code> is the customized format.</p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddControllers()</span><br><span class="line">  .AddNewtonsoftJson(options =&gt;</span><br><span class="line">  &#123;</span><br><span class="line">      options.SerializerSettings.DateFormatString = <span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure><p>Result:</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2022-12-29 15:55:43&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;temperatureC&quot;</span><span class="punctuation">:</span> <span class="number">39</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;temperatureF&quot;</span><span class="punctuation">:</span> <span class="number">102</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;summary&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Chilly&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><hr><p>Easy!<br>Good Day<br>😎</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> .Net </category>
+          
+          <category> .Net6 </category>
+          
+          <category> WebApi </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C# </tag>
+            
+            <tag> .Net6 </tag>
+            
+            <tag> WebApi </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>.Net6 + WebApi Basics 2</title>
       <link href="/Net6-WebApi-Basics-2/"/>
       <url>/Net6-WebApi-Basics-2/</url>
