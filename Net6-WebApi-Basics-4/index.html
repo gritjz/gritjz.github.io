@@ -226,20 +226,41 @@
                                     <h1 id="Swagger"><a href="#Swagger" class="headerlink" title="Swagger"></a>Swagger</h1><blockquote>
 <p><a href="https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-6.0&tabs=visual-studio">Swagger</a> is a web service for generating, describing and invoking RESTful interfaces. </p>
 </blockquote>
-<p>Simply, Swagger is a service that displays all interfaces you want to explicitly display in the project on the web page, and can perform interface calls and tests.</p>
-<h1 id="Swagger-Documentation"><a href="#Swagger-Documentation" class="headerlink" title="Swagger Documentation"></a>Swagger Documentation</h1><p><a href="https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-6.0&tabs=visual-studio">Swagger</a> is our good friend to help us finish the documentation by using it to test our interfaces. It only displays some common information of interfaces, so we usually need to modify some configurations in order to use Swagger for interface management more conveniently.</p>
+<p>Simply, Swagger is a service that displays all interfaces you want to explicitly display in the project on the web page, and can perform interface calls and tests. Therefore, 3 main functions can Swagger achieve.</p>
+<ol>
+<li><p><u>Interface documentation</u></p>
+<p>List all interfaces in the project on the web page, so that back-end developers do not need to write special interface documents for front-end users;</p>
+</li>
+<li><p><u>Updated interface information </u></p>
+<p> After the interface is updated, you only need to modify the Swagger description in the code to generate a new interface document in real time, thus avoiding the problem that the interface document is outdated and cannot be used</p>
+</li>
+<li><p><u>Call the interface</u></p>
+<p>Through the Swagger page, we can directly call the interface, which reduces the debugging cost in the project development stage.</p>
+</li>
+</ol>
 <hr>
 <p>Next are some common ways to better use Swagger</p>
+<hr>
 <h2 id="Comment-in-Swagger"><a href="#Comment-in-Swagger" class="headerlink" title="Comment in Swagger"></a>Comment in Swagger</h2><p>We hope to add an introduction after each methods or interfaces to facilitate our testing and front-end reading, so that we make comments in Swagger for better understanding.</p>
-<h3 id="Step-I-Turn-on-Documentation-File-Generation"><a href="#Step-I-Turn-on-Documentation-File-Generation" class="headerlink" title="Step I. Turn on Documentation File Generation"></a>Step I. Turn on Documentation File Generation</h3><p>we need to turn on Documentation File Generation<br>There are two ways to turn on <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags"><code>Documentation File Generation</code></a></p>
-<p><strong>A. From Project File (.csproj)</strong><br>Right-click your project &gt; Edit Project File &gt; Modify <code>GeneraterDocumentationFile</code> tag to <code>True</code>.</p>
+<h3 id="Step-I-Turn-on-Documentation-File-Generation"><a href="#Step-I-Turn-on-Documentation-File-Generation" class="headerlink" title="Step I. Turn on Documentation File Generation"></a><strong>Step I. Turn on Documentation File Generation</strong></h3><p>we need to turn on Documentation File Generation<br>There are <strong>two</strong> methods to turn on <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags"><code>Documentation File Generation</code></a></p>
+<p><strong><u>Method A:</u></strong>  From Project File (.csproj)</p>
+<p>Right-click your project &gt; Edit Project File &gt; Modify <code>GeneraterDocumentationFile</code> tag to <code>True</code>.</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">    //Add following code</span><br><span class="line">    <span class="tag">&lt;<span class="name">GenerateDocumentationFile</span>&gt;</span>True<span class="tag">&lt;/<span class="name">GenerateDocumentationFile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span> </span><br></pre></td></tr></table></figure>
 <p><img src="/Net6-WebApi-Basics-4/37a0f83b92fc0a92b73aa59f0011cc7d.png" alt="Project File"></p>
-<p><strong>B. From Properties</strong><br>Right-click the project -&gt; Properties -&gt; Build -&gt; Output -&gt; Documentation File -&gt; Check to <code>Generate a file containing API documentation</code></p>
+<p><strong><u>Method B:</u></strong> From Properties</p>
+<p>Right-click the project -&gt; Properties -&gt; Build -&gt; Output -&gt; Documentation File -&gt; Check to <code>Generate a file containing API documentation</code></p>
 <p><img src="/Net6-WebApi-Basics-4/719ea3637c0d5fc26421d8c1fdf93ea6.png" alt="Properties"></p>
-<h3 id="Step-II-Add-Comment-to-Swagger"><a href="#Step-II-Add-Comment-to-Swagger" class="headerlink" title="Step II. Add Comment to Swagger"></a>Step II. Add Comment to Swagger</h3><p>Add comment as common way for C# to any Controller or Class with <code>///</code> , then the comment will be shown on Swagger UI.</p>
-<p>Add to controller<br><img src="/Net6-WebApi-Basics-4/fa255a68c39b6572744145beeb6cebbc.png" alt="add to controller"></p>
-<!-- flag of hidden posts -->
+<h3 id="Step-II-Add-Comment-to-Swagger"><a href="#Step-II-Add-Comment-to-Swagger" class="headerlink" title="Step II. Add Comment to Swagger"></a><strong>Step II. Add Comment to Swagger</strong></h3><p>Add comment as common way for C# to any Controller or Class with <code>///</code> , then the comment will be shown on Swagger UI.</p>
+<p><strong>Add comments to controller</strong><br><img src="/Net6-WebApi-Basics-4/fa255a68c39b6572744145beeb6cebbc.png" alt="comments to controller"></p>
+<p><strong>Add comments to Class</strong><br><img src="/Net6-WebApi-Basics-4/13bf17d4b36c4c6ff5f473f281d77b32.png" alt="comments to Class"></p>
+<p><strong>Result:</strong><br><img src="/Net6-WebApi-Basics-4/47b50c2e7417394ae0f0acacb690fccb.png" alt="result"></p>
+<p><em><strong><u>Note:</u></strong></em></p>
+<ol>
+<li>If the return type is object, Schemas does <strong>NOT</strong> show the comment in Swagger UI.<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpGet(Name = <span class="string">&quot;GetWeatherForecast&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IEnumerable&lt;<span class="built_in">object</span>&gt; <span class="title">Get</span>()</span></span><br></pre></td></tr></table></figure></li>
+<li>However, If the get type is specified, <code>Schemas</code> <strong>DOES</strong> show the comment even the return type is <code>object</code>.<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpPost(Name = <span class="string">&quot;GetWeatherForecast&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IEnumerable&lt;<span class="built_in">object</span>&gt; <span class="title">Get</span>(<span class="params">WeatherForecast weather_res</span>)</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="Version-Control-in-Swagger"><a href="#Version-Control-in-Swagger" class="headerlink" title="Version Control in Swagger"></a>Version Control in Swagger</h2><!-- flag of hidden posts -->
                                   </div>
 
                                   
@@ -315,7 +336,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Swagger"><span class="toc-text">Swagger</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Swagger-Documentation"><span class="toc-text">Swagger Documentation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Comment-in-Swagger"><span class="toc-text">Comment in Swagger</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-I-Turn-on-Documentation-File-Generation"><span class="toc-text">Step I. Turn on Documentation File Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-II-Add-Comment-to-Swagger"><span class="toc-text">Step II. Add Comment to Swagger</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Swagger"><span class="toc-text">Swagger</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Comment-in-Swagger"><span class="toc-text">Comment in Swagger</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-I-Turn-on-Documentation-File-Generation"><span class="toc-text">Step I. Turn on Documentation File Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-II-Add-Comment-to-Swagger"><span class="toc-text">Step II. Add Comment to Swagger</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Version-Control-in-Swagger"><span class="toc-text">Version Control in Swagger</span></a></li></ol></li></ol>
       
     </div>
   </div>
