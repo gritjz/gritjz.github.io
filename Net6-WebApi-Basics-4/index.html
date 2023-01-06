@@ -228,25 +228,25 @@
 </blockquote>
 <p>Simply, Swagger is a service that displays all interfaces you want to explicitly display in the project on the web page, and can perform interface calls and tests. Therefore, 3 main functions can Swagger achieve.</p>
 <ol>
-<li><p><u>Interface documentation</u></p>
+<li><p><strong><u>Interface documentation</u></strong></p>
 <p>List all interfaces in the project on the web page, so that back-end developers do not need to write special interface documents for front-end users;</p>
 </li>
-<li><p><u>Updated interface information </u></p>
+<li><p><strong><u>Updated interface information </u></strong></p>
 <p> After the interface is updated, you only need to modify the Swagger description in the code to generate a new interface document in real time, thus avoiding the problem that the interface document is outdated and cannot be used</p>
 </li>
-<li><p><u>Call the interface</u></p>
+<li><p><strong><u>Call the interface</u></strong></p>
 <p>Through the Swagger page, we can directly call the interface, which reduces the debugging cost in the project development stage.</p>
 </li>
 </ol>
 <h1 id="Common-Ways-to-use-Swagger"><a href="#Common-Ways-to-use-Swagger" class="headerlink" title="Common Ways to use Swagger"></a>Common Ways to use Swagger</h1><p>Next are some common ways to better use Swagger</p>
 <ol>
-<li>Comment</li>
-<li>Version Control</li>
-<li>JWT authentication</li>
+<li><strong><u>Comment</u></strong></li>
+<li><strong><u>Version Control</u></strong></li>
+<li><strong><u>JWT authentication </u></strong></li>
 </ol>
 <hr>
 <h2 id="Comment-in-Swagger"><a href="#Comment-in-Swagger" class="headerlink" title="Comment in Swagger"></a>Comment in Swagger</h2><p>We hope to add an introduction after each methods or interfaces to facilitate our testing and front-end reading, so that we make comments in Swagger for better understanding.</p>
-<h3 id="Step-I-Turn-on-Documentation-File-Generation"><a href="#Step-I-Turn-on-Documentation-File-Generation" class="headerlink" title="Step I. Turn on Documentation File Generation"></a><strong>Step I. Turn on Documentation File Generation</strong></h3><p>we need to turn on Documentation File Generation<br>There are <strong>two</strong> methods to turn on <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags"><code>Documentation File Generation</code></a></p>
+<h3 id="Step-I-Turn-on-Documentation-File-Generation"><a href="#Step-I-Turn-on-Documentation-File-Generation" class="headerlink" title="Step I. Turn on Documentation File Generation"></a><strong>Step I. Turn on Documentation File Generation</strong></h3><p>There are <strong>two</strong> methods to turn on <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags">Documentation File Generation</a></p>
 <p><strong><u>Method A:</u></strong>  From Project File (.csproj)</p>
 <p>Right-click your project &gt; Edit Project File &gt; Modify <code>GeneraterDocumentationFile</code> tag to <code>True</code>.</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">    //Add following code</span><br><span class="line">    <span class="tag">&lt;<span class="name">GenerateDocumentationFile</span>&gt;</span>True<span class="tag">&lt;/<span class="name">GenerateDocumentationFile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span> </span><br></pre></td></tr></table></figure>
