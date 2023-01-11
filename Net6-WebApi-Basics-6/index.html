@@ -17,7 +17,7 @@
       |
     
      Steven&#39;s Blog
-  </title><meta name="robots" content="noindex">
+  </title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon1.png">
@@ -233,29 +233,38 @@
                                   </div>
                                   
                                   <div class="markdown-body">
-                                    <h1 id="使用SqlSugar-连接操作数据库"><a href="#使用SqlSugar-连接操作数据库" class="headerlink" title="使用SqlSugar 连接操作数据库"></a>使用SqlSugar 连接操作数据库</h1><p>为什么使用sqlSugar而不是EF Core<br>因为SqlSugar相对简单，配置少，上手容易，对新手更加友好</p>
-<p><a href="https://www.donet5.com/Home/Doc">官方文档地址</a></p>
-<p><strong>Nuget 安装SqlSugarCore</strong></p>
-<p>如果忘记了可以去看官方文档.</p>
-<p><strong>依赖注入</strong></p>
-<p>两种方式 具体看文档，这里只介绍Net 自带的IOC.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">SqlSugarScope sqlSugar = <span class="keyword">new</span> SqlSugarScope(</span><br><span class="line">    <span class="keyword">new</span> ConnectionConfig()</span><br><span class="line">    &#123;</span><br><span class="line">        DbType = SqlSugar.DbType.SqlServer,</span><br><span class="line">        ConnectionString = <span class="string">&quot;&quot;</span>,</span><br><span class="line">        IsAutoCloseConnection = <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">        db =&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//单例参数配置，所有上下文生效</span></span><br><span class="line">            db.Aop.OnLogExecuting = (sql, pars) =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//Console.WriteLine(sql);//输出sql</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;);</span><br><span class="line">services.AddSingleton&lt;ISqlSugarClient&gt;(sqlSugar);</span><br></pre></td></tr></table></figure>
-<p>这里主要视频演示吧,官方文档比我写的要好.</p>
+                                    <h1 id="Use-SqlSugar-to-connect-with-DB"><a href="#Use-SqlSugar-to-connect-with-DB" class="headerlink" title="Use SqlSugar to connect with DB"></a>Use SqlSugar to connect with DB</h1><p>SQLSugar is relatively simple, less configuration, easy to get started, and more friendly to novices.</p>
+<p><a href="https://www.donet5.com/Home/Doc">SQLSugar</a></p>
+<p>Other ORM: <a href="https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-7.0">EF Core</a>, <a href="https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/">ADO.NET</a></p>
+<p><strong>Insall SqlSugarCore</strong></p>
+<p>You can directly install SqlSugar in Nuget by searching <code>SqlSugarCore</code>.</p>
+<p><strong>Dependency Injection</strong></p>
+<p>Use .NET included IOC to launch.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">SqlSugarScope sqlSugar = <span class="keyword">new</span> SqlSugarScope(</span><br><span class="line">    <span class="keyword">new</span> ConnectionConfig()</span><br><span class="line">    &#123;</span><br><span class="line">        DbType = SqlSugar.DbType.SqlServer,</span><br><span class="line">        ConnectionString = <span class="string">&quot;&quot;</span>,</span><br><span class="line">        IsAutoCloseConnection = <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">        db =&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//Singleton parameter configuration, all contexts take effect</span></span><br><span class="line">            db.Aop.OnLogExecuting = (sql, pars) =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//Console.WriteLine(sql);// output sql</span></span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;);</span><br><span class="line">services.AddSingleton&lt;ISqlSugarClient&gt;(sqlSugar);</span><br></pre></td></tr></table></figure>
+
+
 <p><strong>CodeFirst</strong></p>
-<p>具体参数还是看官方文档</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建库</span></span><br><span class="line">db.DbMaintenance.CreateDatabase();</span><br><span class="line"><span class="comment">//建表</span></span><br><span class="line">db.CodeFirst.InitTables(<span class="keyword">typeof</span>(CodeFirstTable1));</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.donet5.com/Home/Doc">More Details</a></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Create DB</span></span><br><span class="line">db.DbMaintenance.CreateDatabase();</span><br><span class="line"><span class="comment">//Create Tables</span></span><br><span class="line">db.CodeFirst.InitTables(<span class="keyword">typeof</span>(CodeFirstTable1));</span><br></pre></td></tr></table></figure>
 
 
 
 <hr>
 <p>Good Day<br>😎</p>
-<!-- flag of hidden posts -->
+
                                   </div>
 
                                   
                                     <div class="prev-or-next">
                                       <div class="post-foot-next">
                                         
+                                          <a href="/Net6-WebApi-Basics-5/" target="_self">
+                                            <i class="iconfont icon-chevronleft"></i>
+                                            <span>
+                                              Prev
+                                            </span>
+                                          </a>
+                                          
                                       </div>
                                       <div class="post-attach">
                                         <span class="post-pubtime">
@@ -325,7 +334,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8SqlSugar-%E8%BF%9E%E6%8E%A5%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">使用SqlSugar 连接操作数据库</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Use-SqlSugar-to-connect-with-DB"><span class="toc-text">Use SqlSugar to connect with DB</span></a></li></ol>
       
     </div>
   </div>
