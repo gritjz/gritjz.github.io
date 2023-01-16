@@ -11,13 +11,13 @@
   
   <title>
     
-      .Net6 + WebApi Basics 2 
+      .Net6 + WebApi Basics 7 
       
       
       |
     
      Steven&#39;s Blog
-  </title>
+  </title><meta name="robots" content="noindex">
 
   
     <link rel="apple-touch-icon" href="/images/favicon1.png">
@@ -176,11 +176,11 @@
                               <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
                               <div class="container post-details" id="post-details">
                                 <div class="post-content">
-                                  <div class="post-title">.Net6 + WebApi Basics 2</div>
+                                  <div class="post-title">.Net6 + WebApi Basics 7</div>
                                   <div class="post-attach">
                                     <span class="post-pubtime">
                                       <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-                                      2022-12-28 11:21:14
+                                      2023-01-15 22:08:47
                                     </span>
                                      <span class="post-categories">
                                           <i class="iconfont icon-bookmark" title="Categories"></i>
@@ -233,66 +233,23 @@
                                   </div>
                                   
                                   <div class="markdown-body">
-                                    <h1 id="Restful-API"><a href="#Restful-API" class="headerlink" title="Restful API"></a><strong>Restful API</strong></h1><pre><code>There are two basic points to be noted for Restful API.
-1. Use HTTP functions to execute CRUD operations.
-2. The resources are stored in URL.
-</code></pre>
-<h2 id="Regular-URL-Format"><a href="#Regular-URL-Format" class="headerlink" title="Regular URL Format"></a>Regular URL Format</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Create user</span><br><span class="line">http<span class="punctuation">:</span><span class="comment">//localhost/createuser</span></span><br><span class="line"></span><br><span class="line">Delete user with id = <span class="number">1</span></span><br><span class="line">http<span class="punctuation">:</span><span class="comment">//localhost/deleteuser?userid=1</span></span><br><span class="line"></span><br><span class="line">Get user&#x27;s list</span><br><span class="line">http<span class="punctuation">:</span><span class="comment">//localhost/getuser</span></span><br><span class="line"></span><br><span class="line">Get user with id = <span class="number">1</span></span><br><span class="line">http<span class="punctuation">:</span><span class="comment">//localhost/getuser?userid=1</span></span><br><span class="line"></span><br><span class="line">update user with id = <span class="number">1</span></span><br><span class="line">http<span class="punctuation">:</span><span class="comment">//localhost/updateuser?userid=1</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Restful-URL-Format-with-HTTP-Functions"><a href="#Restful-URL-Format-with-HTTP-Functions" class="headerlink" title="Restful URL Format with HTTP Functions"></a>Restful URL Format with HTTP Functions</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Search users&#x27; list</span><br><span class="line"><span class="punctuation">[</span>GET<span class="punctuation">]</span><span class="punctuation">:</span> http<span class="punctuation">:</span><span class="comment">//localhost/user </span></span><br><span class="line"></span><br><span class="line">Search user <span class="number">1</span>&#x27;s list</span><br><span class="line"><span class="punctuation">[</span>GET<span class="punctuation">]</span><span class="punctuation">:</span> http<span class="punctuation">:</span><span class="comment">//localhost/user/1 </span></span><br><span class="line"></span><br><span class="line">Create an user</span><br><span class="line"><span class="punctuation">[</span>POST<span class="punctuation">]</span><span class="punctuation">:</span> http<span class="punctuation">:</span><span class="comment">//localhost/user </span></span><br><span class="line"></span><br><span class="line">Update user with id=<span class="number">1</span></span><br><span class="line"><span class="punctuation">[</span>PUT<span class="punctuation">]</span><span class="punctuation">:</span> http<span class="punctuation">:</span><span class="comment">//localhost/user/1 </span></span><br><span class="line"></span><br><span class="line">Delete user with id=<span class="number">1</span></span><br><span class="line"><span class="punctuation">[</span>DELETE<span class="punctuation">]</span><span class="punctuation">:</span> http<span class="punctuation">:</span><span class="comment">//localhost/user/1 </span></span><br></pre></td></tr></table></figure>
-
-<p>For example,<br><code>http://localhost/updateuser?userid=1</code></p>
-<p>This address can be seperated into two parts by <code>?</code>:</p>
-<p><code>URL + ? + Index</code></p>
-<p>Before <code>?</code>, it is a <strong><code>URL</code></strong>, where stores the resources.</p>
-<p>After  <code>?</code>, it is a <strong><code>index</code></strong>, which shows where to find the resources.</p>
-<hr>
-<h3 id="Try-a-Code"><a href="#Try-a-Code" class="headerlink" title="Try a Code"></a><strong>Try a Code</strong></h3><p>Let’s make a trial on the template code of <strong>WeatherForcast</strong> to understand how the <code>URL</code> and <code>Index</code> are set up.</p>
-<p><strong>URL Setup</strong></p>
-<p>Comment the Get() function</p>
-<img src="Comment.png"  alt="Comment" style="zoom:50%;"/>
-
-<p>Replace with following code</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpGet(<span class="string">&quot;GetWeatherForecast/&#123;userid&#125;&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">Get</span>(<span class="params"><span class="built_in">string</span> userid</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> userid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><em><strong>Result:</strong></em><br><code>https://localhost:7048/WeatherForecast/GetWeatherForecast/123</code></p>
-<img src="code1.png" alt="code1" style="zoom:50%;"/>
-
-<p>In <code>HttpGet</code> attribute, use <code>&#123;userid&#125;</code> to identify the <code>userid</code> in URL. The <code>userid</code> can be set in <code>Get()</code>.</p>
-<p><strong>Index Setup</strong></p>
-<p>Now, replace with following code to see how <code>Index</code> is setup.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpGet(<span class="string">&quot;GetWeatherForecast/&#123;userid&#125;/&#123;index0&#125;&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">Get</span>(<span class="params"><span class="built_in">string</span> userid, <span class="built_in">string</span> index1, <span class="built_in">string</span> index2</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> userid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><em><strong>Result:</strong></em><br><code>https://localhost:7048/WeatherForecast/GetWeatherForecast/A/B?index1=C&amp;index2=D</code></p>
-<img src="code2.png" alt="code2" style="zoom:50%;"/>
-
-<p><strong>Therefore,</strong></p>
-<p>Parameters in both <code>HttpGet</code> and <code>Get</code> are specified as <strong>URL</strong>.</p>
-<p>Parameters in <code>HttpGet</code>, but not in <code>Get</code> are specified as <strong>URL</strong>.</p>
-<p>Parameters in <code>Get</code>, but not in <code>HttpGet</code> are specified as <strong>Index</strong>.</p>
-<p>Multiple <code>Index</code> are connected with <code>&amp;</code> after <code>?</code>.</p>
-<hr>
-<p><strong>Next:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-3/">.Net6 + WebApi Basics 3</a></p>
-<p><strong>Last:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-1/">.Net6 + WebApi Basics 1</a></p>
+                                    <hr>
+<p><strong>Next:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-8/">.Net6 + WebApi Basics 8</a></p>
+<p><strong>Last:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-6/">.Net6 + WebApi Basics 6</a></p>
 <hr>
 <p>Good Day<br>😎</p>
-
+<!-- flag of hidden posts -->
                                   </div>
 
                                   
                                     <div class="prev-or-next">
                                       <div class="post-foot-next">
                                         
-                                          <a href="/Net6-WebApi-Basics-1/" target="_self">
-                                            <i class="iconfont icon-chevronleft"></i>
-                                            <span>
-                                              Prev
-                                            </span>
-                                          </a>
-                                          
                                       </div>
                                       <div class="post-attach">
                                         <span class="post-pubtime">
                                           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-                                          2022-12-28 11:21:14
+                                          2023-01-15 22:08:47
                                         </span>
                                          <span class="post-categories">
                                               <i class="iconfont icon-bookmark" title="Categories"></i>
@@ -345,35 +302,11 @@
                                       </div>
                                       <div class="post-foot-prev">
                                         
-                                          <a href="/Net6-WebApi-Basics-3/" target="_self">
-                                            <span>
-                                              Next
-                                            </span>
-                                            <i class="iconfont icon-chevronright"></i>
-                                          </a>
-                                          
                                       </div>
                                     </div>
                                     
                                 </div>
                                 
-  <div id="btn-catalog" class="btn-catalog">
-    <i class="iconfont icon-catalog"></i>
-  </div>
-  <div class="post-catalog hidden" id="catalog">
-    <div class="title">Contents</div>
-    <div class="catalog-content">
-      
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Restful-API"><span class="toc-text">Restful API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Regular-URL-Format"><span class="toc-text">Regular URL Format</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Restful-URL-Format-with-HTTP-Functions"><span class="toc-text">Restful URL Format with HTTP Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Try-a-Code"><span class="toc-text">Try a Code</span></a></li></ol></li></ol></li></ol>
-      
-    </div>
-  </div>
-
-  
-<script src="/js/catalog.js"></script>
-
-
-
 
                                   
                               </div>
@@ -655,12 +588,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net6%20%2B%20WebApi%20Basics%202 + '&url=' + http%3A%2F%2Fexample.com%2FNet6-WebApi-Basics-2%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net6%20%2B%20WebApi%20Basics%207 + '&url=' + http%3A%2F%2Fexample.com%2FNet6-WebApi-Basics-7%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/Net6-WebApi-Basics-2/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/Net6-WebApi-Basics-7/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
