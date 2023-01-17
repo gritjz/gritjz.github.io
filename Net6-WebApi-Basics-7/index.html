@@ -233,7 +233,22 @@
                                   </div>
                                   
                                   <div class="markdown-body">
-                                    <hr>
+                                    <h1 id="NET-3-Tier-Architecture"><a href="#NET-3-Tier-Architecture" class="headerlink" title=".NET 3-Tier Architecture"></a>.NET 3-Tier Architecture</h1><p>三层架构不止三层<br>BLL DAL UI 层 是三层架构的三层<br>还有一层是Models 我们的实体类层 每张表对应一个实体类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DAL:负责与数据库交互</span><br><span class="line">BLL:负责UI与DAL层交互</span><br><span class="line">UI :负责与前端交互</span><br></pre></td></tr></table></figure>
+
+<p>但是在.Net Core里<br>三层变成了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Repository //对应DAL 暂时这么理解</span><br><span class="line">Services   //对应BLL 暂时这么理解</span><br><span class="line">Api        //对应UI  暂时这么理解 Controller</span><br></pre></td></tr></table></figure>
+<p>Models 没有变化</p>
+<p>在solution中新建3个class libray project,分别叫做Repository, Services and Models<br><img src="/Net6-WebApi-Basics-7/4b878ac4add14aaee3595c79e3c30cf8.png" alt="Alt text"><br><img src="/Net6-WebApi-Basics-7/cf958e3d9032dd416d05be03da5f8a67.png" alt="Alt text"></p>
+<p>UserClass.cs拉入Models</p>
+<p>Nuget引入SqlSugar</p>
+<p>Respository project reference with Models<br><img src="/Net6-WebApi-Basics-7/ed419a6c190dc47453e2169aa3abdf97.png" alt="Alt text"><br>Services project reference with Respository </p>
+<p><img src="/Net6-WebApi-Basics-7/5ca329328fcfd03333996a69d816cffc.png" alt="Alt text"><br>WebApplication1 project reference with Services </p>
+<p><img src="/Net6-WebApi-Basics-7/e8cb866e19bbee2e7814a278bef4ced0.png" alt="Alt text"></p>
+<p>那按照我们这个逻辑去创建我们的项目分层<br>我们还需要创建我们的接口层.</p>
+<p><strong>为什么要用接口</strong></p>
+<p>问就是，解耦，多态，规范开发</p>
+<hr>
 <p><strong>Next:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-8/">.Net6 + WebApi Basics 8</a></p>
 <p><strong>Last:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-6/">.Net6 + WebApi Basics 6</a></p>
 <hr>
@@ -307,6 +322,23 @@
                                     
                                 </div>
                                 
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NET-3-Tier-Architecture"><span class="toc-text">.NET 3-Tier Architecture</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
                                   
                               </div>
