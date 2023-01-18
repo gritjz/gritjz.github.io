@@ -247,22 +247,23 @@
 <p><code>UI</code> : Interact directly with users, like web pages.</p>
 <p><code>BLL</code>: this tier processes the business logic, like execute command, make calculations or middlewares. It is also responsible for the interaction between DAL and UI tiers.</p>
 <p><code>DAL</code>: Only responsible for the interaction between BLL and database.</p>
-<p><a href="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200103194305/NET-3-Tier-Architecture.png">3tier</a></p>
+<p><img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200103194305/NET-3-Tier-Architecture.png" alt="3tier"></p>
 <h1 id="New-3-Tier-Architecture-for-NET"><a href="#New-3-Tier-Architecture-for-NET" class="headerlink" title="New 3-Tier Architecture for .NET"></a>New 3-Tier Architecture for .NET</h1><p>After Microsoft published the .NET Core, the previous 3-Tier Architecture has been modified to new views: Repository, Services, and Api, which are more intuitive to understand what tier’s job is respectively.</p>
 <p>However, even the names of tiers have been changed, their actual job keeps the same. </p>
 <p><code>Repository</code> can be seen as DAL.</p>
 <p><code>Services</code>   can be seen as BLL.</p>
-<p><code>Api</code>        can be seen as UI.</p>
+<p><code>API</code>        can be seen as UI.</p>
 <p><code>Models</code> No Changes</p>
 <p>Let’s make some practice with the weather app to figure out how each of them works.</p>
 <p>Build three <code>Class Libray</code> projects, and named <code>Repository, Services and Models</code>, repectively.</p>
 <p><img src="/Net6-WebApi-Basics-7/4b878ac4add14aaee3595c79e3c30cf8.png" alt="Class Libray"><br><img src="/Net6-WebApi-Basics-7/cf958e3d9032dd416d05be03da5f8a67.png" alt="Class Libray2"></p>
 <p>Then, you can move <code>UserClass.cs</code> to <code>Models</code>, as it presents the entities of database.</p>
 <p><strong>Note</strong>: Install SqlSugar database in NuGet for <code>Models</code>.</p>
-<p>After creation of each tier, you need to link them based on<br>Respository project reference with Models<br><img src="/Net6-WebApi-Basics-7/ed419a6c190dc47453e2169aa3abdf97.png" alt="Alt text"><br>Services project reference with Respository </p>
-<p><img src="/Net6-WebApi-Basics-7/5ca329328fcfd03333996a69d816cffc.png" alt="Alt text"><br>WebApplication1 project reference with Services </p>
-<p><img src="/Net6-WebApi-Basics-7/e8cb866e19bbee2e7814a278bef4ced0.png" alt="Alt text"></p>
-<p>那按照我们这个逻辑去创建我们的项目分层<br>我们还需要创建我们的接口层.</p>
+<p>After creation of each tier, you need to link them based on their processing logics by <code>Project Reference</code>.</p>
+<p><code>Respository</code> project reference with <code>Models</code><br><img src="/Net6-WebApi-Basics-7/ed419a6c190dc47453e2169aa3abdf97.png" alt="Alt text"></p>
+<p><code>Services</code> project reference with <code>Respository </code><br><img src="/Net6-WebApi-Basics-7/5ca329328fcfd03333996a69d816cffc.png" alt="Alt text"></p>
+<p><code>WebApplication1 (API or UI)</code> project reference with <code>Services</code><br><img src="/Net6-WebApi-Basics-7/e8cb866e19bbee2e7814a278bef4ced0.png" alt="Alt text"></p>
+<p>我们还需要创建我们的接口层.</p>
 <p><strong>为什么要用接口</strong></p>
 <p>问就是，解耦，多态，规范开发</p>
 <hr>
