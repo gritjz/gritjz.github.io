@@ -233,16 +233,33 @@
                                   </div>
                                   
                                   <div class="markdown-body">
-                                    <h1 id="NET-3-Tier-Architecture"><a href="#NET-3-Tier-Architecture" class="headerlink" title=".NET 3-Tier Architecture"></a>.NET 3-Tier Architecture</h1><p>三层架构不止三层<br>BLL DAL UI 层 是三层架构的三层<br>还有一层是Models 我们的实体类层 每张表对应一个实体类</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DAL:负责与数据库交互</span><br><span class="line">BLL:负责UI与DAL层交互</span><br><span class="line">UI :负责与前端交互</span><br></pre></td></tr></table></figure>
-
-<p>但是在.Net Core里<br>三层变成了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Repository //对应DAL 暂时这么理解</span><br><span class="line">Services   //对应BLL 暂时这么理解</span><br><span class="line">Api        //对应UI  暂时这么理解 Controller</span><br></pre></td></tr></table></figure>
-<p>Models 没有变化</p>
-<p>在solution中新建3个class libray project,分别叫做Repository, Services and Models<br><img src="/Net6-WebApi-Basics-7/4b878ac4add14aaee3595c79e3c30cf8.png" alt="Alt text"><br><img src="/Net6-WebApi-Basics-7/cf958e3d9032dd416d05be03da5f8a67.png" alt="Alt text"></p>
-<p>UserClass.cs拉入Models</p>
-<p>Nuget引入SqlSugar</p>
-<p>Respository project reference with Models<br><img src="/Net6-WebApi-Basics-7/ed419a6c190dc47453e2169aa3abdf97.png" alt="Alt text"><br>Services project reference with Respository </p>
+                                    <h1 id="3-Tier-Architecture-for-NET-Framework"><a href="#3-Tier-Architecture-for-NET-Framework" class="headerlink" title="3-Tier Architecture for .NET Framework"></a>3-Tier Architecture for .NET Framework</h1><p>Regarding 3-Tier Architecture, you can find a lot of information on the web.</p>
+<p><a href="https://www.c-sharpcorner.com/UploadFile/dacca2/understand-3-tier-architecture-in-C-Sharp-net/">C# Corner</a></p>
+<p><a href="https://www.geeksforgeeks.org/what-is-net-3-tier-architecture/">GeekforGeek</a></p>
+<p>Simply put, 3-Tier Architecture contains <strong>three layers</strong>: </p>
+<p><code>Presentation Tier (UI)</code></p>
+<p><code>Business Tier (BLL)</code></p>
+<p><code>Data Tier (DAL)</code></p>
+<p>Generally speaking, however, the three-tier architecture is not only these three tiers, but there is also a </p>
+<p><code>Models Tier</code> </p>
+<p>, which corresponds to the entity classes in the database.</p>
+<p>Each of these three tiers has its own task and is interconnected but does not interfere with each other.</p>
+<p><code>UI</code> : Interact directly with users, like web pages.</p>
+<p><code>BLL</code>: this tier processes the business logic, like execute command, make calculations or middlewares. It is also responsible for the interaction between DAL and UI tiers.</p>
+<p><code>DAL</code>: Only responsible for the interaction between BLL and database.</p>
+<p><a href="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200103194305/NET-3-Tier-Architecture.png">3tier</a></p>
+<h1 id="New-3-Tier-Architecture-for-NET"><a href="#New-3-Tier-Architecture-for-NET" class="headerlink" title="New 3-Tier Architecture for .NET"></a>New 3-Tier Architecture for .NET</h1><p>After Microsoft published the .NET Core, the previous 3-Tier Architecture has been modified to new views: Repository, Services, and Api, which are more intuitive to understand what tier’s job is respectively.</p>
+<p>However, even the names of tiers have been changed, their actual job keeps the same. </p>
+<p><code>Repository</code> can be seen as DAL.</p>
+<p><code>Services</code>   can be seen as BLL.</p>
+<p><code>Api</code>        can be seen as UI.</p>
+<p><code>Models</code> No Changes</p>
+<p>Let’s make some practice with the weather app to figure out how each of them works.</p>
+<p>Build three <code>Class Libray</code> projects, and named <code>Repository, Services and Models</code>, repectively.</p>
+<p><img src="/Net6-WebApi-Basics-7/4b878ac4add14aaee3595c79e3c30cf8.png" alt="Class Libray"><br><img src="/Net6-WebApi-Basics-7/cf958e3d9032dd416d05be03da5f8a67.png" alt="Class Libray2"></p>
+<p>Then, you can move <code>UserClass.cs</code> to <code>Models</code>, as it presents the entities of database.</p>
+<p><strong>Note</strong>: Install SqlSugar database in NuGet for <code>Models</code>.</p>
+<p>After creation of each tier, you need to link them based on<br>Respository project reference with Models<br><img src="/Net6-WebApi-Basics-7/ed419a6c190dc47453e2169aa3abdf97.png" alt="Alt text"><br>Services project reference with Respository </p>
 <p><img src="/Net6-WebApi-Basics-7/5ca329328fcfd03333996a69d816cffc.png" alt="Alt text"><br>WebApplication1 project reference with Services </p>
 <p><img src="/Net6-WebApi-Basics-7/e8cb866e19bbee2e7814a278bef4ced0.png" alt="Alt text"></p>
 <p>那按照我们这个逻辑去创建我们的项目分层<br>我们还需要创建我们的接口层.</p>
@@ -329,7 +346,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NET-3-Tier-Architecture"><span class="toc-text">.NET 3-Tier Architecture</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Tier-Architecture-for-NET-Framework"><span class="toc-text">3-Tier Architecture for .NET Framework</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#New-3-Tier-Architecture-for-NET"><span class="toc-text">New 3-Tier Architecture for .NET</span></a></li></ol>
       
     </div>
   </div>
