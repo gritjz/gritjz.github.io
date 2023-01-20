@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>.Net6 + WebApi Basics 8</title>
+      <link href="/Net6-WebApi-Basics-8/"/>
+      <url>/Net6-WebApi-Basics-8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Generic-Repository"><a href="#Generic-Repository" class="headerlink" title="Generic Repository"></a>Generic Repository</h1><p>The <code>Services</code> tier is used to link <code>Repository</code> with <code>UI</code>, but a project may have multiple services while the database properties, like Add or Update functions, are generally the same. Creating a specific <code>Repository</code> class for each service would be more than worth the cost. </p><p>Thus, use <code>Generic Repository</code> so that the same Repository code can be used regardless of the type of e different <code>Models</code>.</p><h1 id="Implement-a-Generic-Repository"><a href="#Implement-a-Generic-Repository" class="headerlink" title="Implement a Generic Repository"></a>Implement a Generic Repository</h1><p>Create a class for generic repository with the following code, based on <strong>Sqlsugar</strong>, named <code>Repository</code>.</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Repository</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Repository</span>&lt;<span class="title">T</span>&gt; : <span class="title">SimpleClient</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="keyword">class</span>, <span class="title">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Repository</span>(<span class="params">ISqlSugarClient context = <span class="literal">null</span></span>):<span class="title">base</span>(<span class="params">context</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//.NET IOC</span></span><br><span class="line">            <span class="keyword">base</span>.Context = context;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> Customized functions</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt; <span class="title">CommQuery</span>(<span class="params"><span class="built_in">string</span> json</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//base.Context.Queryable&lt;T&gt;().ToList();</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Then, modify Services tier in <code>UserService.cs</code>.</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Services</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//[PREVIOUS] UserRepository</span></span><br><span class="line">        <span class="comment">//public UserService(UserRepository userRepository)</span></span><br><span class="line">        <span class="comment">//&#123;</span></span><br><span class="line">        <span class="comment">//    UserRepository = userRepository;</span></span><br><span class="line">        <span class="comment">//&#125;</span></span><br><span class="line">        <span class="comment">//public UserRepository UserRepository &#123; get; &#125;</span></span><br><span class="line">        <span class="comment">//public List&lt;UserClass&gt; GetUsers()</span></span><br><span class="line">        <span class="comment">//&#123;</span></span><br><span class="line">        <span class="comment">//    return UserRepository.GetList();</span></span><br><span class="line">        <span class="comment">//&#125;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//[AFTER] Use Generic Repository</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">UserService</span>(<span class="params">Repository&lt;UserClass&gt; repository</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Repository = repository;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">public</span> Repository&lt;UserClass&gt; Repository &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> List&lt;UserClass&gt; <span class="title">GetUsers</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> Repository.GetList();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>As you can see from the above, the generic <code>T</code> calls the <code>UserClass</code> class in <code>Model</code> tier. If you are operating other tables, you only need to modify <code>T</code> in the <code>Service</code> tier.</p><p>Finally, inject the generic repository into IOC in <code>Program.cs</code></p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//builder.Services.AddScoped&lt;UserRepository&gt;();</span></span><br><span class="line">builder.Services.AddScoped(<span class="keyword">typeof</span>(Repository&lt;&gt;));</span><br><span class="line"><span class="comment">//Service injection keeps same.</span></span><br><span class="line">builder.Services.AddScoped&lt;UserService&gt;();</span><br></pre></td></tr></table></figure><hr><p><strong>Next:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-9/">.Net6 + WebApi Basics 9</a></p><p><strong>Last:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-7/">.Net6 + WebApi Basics 7</a></p><hr><p>Good Day<br>😎</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> .Net </category>
+          
+          <category> .Net6 </category>
+          
+          <category> WebApi </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C# </tag>
+            
+            <tag> .Net6 </tag>
+            
+            <tag> WebApi </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>.Net6 + WebApi Basics 7</title>
       <link href="/Net6-WebApi-Basics-7/"/>
       <url>/Net6-WebApi-Basics-7/</url>
@@ -253,9 +286,9 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> Mermaid </tag>
+            
+            <tag> Hexo </tag>
             
         </tags>
       
@@ -282,9 +315,9 @@
       
         <tags>
             
-            <tag> Markdown </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> Markdown </tag>
             
             <tag> Cheatsheet </tag>
             
