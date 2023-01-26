@@ -4,39 +4,6 @@
   
     
     <entry>
-      <title>.Net 6 + WebApi Basics 9</title>
-      <link href="/Net-6-WebApi-Basics-9/"/>
-      <url>/Net-6-WebApi-Basics-9/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Lifetimes-for-Dependency-Injection"><a href="#Lifetimes-for-Dependency-Injection" class="headerlink" title="Lifetimes for Dependency Injection"></a>Lifetimes for Dependency Injection</h1><p>When a service requests from another service via DI, generally in IOC, it is important to know whether the object received is the new instance or an existing instance. Thus, ASP.NET gives three options to request different types of service object.</p><p>There are three types of lifetime for dependency injection(DI) in .NET 6:<br> <code>Transient</code>, <code>Scoped</code>, and <code>Singleton</code>. </p><p>They define the lifetime of services created using DI. </p><h2 id="Transient"><a href="#Transient" class="headerlink" title="Transient"></a>Transient</h2><blockquote><p>The transient service always create a new instance for every request.</p></blockquote><p>Simply put, you sent 10 invitations, and then meet 10 different people.</p><h2 id="Scoped"><a href="#Scoped" class="headerlink" title="Scoped"></a>Scoped</h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> .Net </category>
-          
-          <category> .Net6 </category>
-          
-          <category> WebApi </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> C# </tag>
-            
-            <tag> .Net6 </tag>
-            
-            <tag> WebApi </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>.Net 6 + WebApi Basics 8 - Generic Repository</title>
       <link href="/Net-6-WebApi-Basics-8/"/>
       <url>/Net-6-WebApi-Basics-8/</url>
