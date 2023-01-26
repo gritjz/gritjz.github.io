@@ -11,7 +11,7 @@
   
   <title>
     
-      .Net 6 + WebApi Basics 7 - 3-Tier Architecture 
+      .Net 6 + WebApi Basics 4 - Swagger UI 
       
       
       |
@@ -172,11 +172,11 @@
                               <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
                               <div class="container post-details" id="post-details">
                                 <div class="post-content">
-                                  <div class="post-title">.Net 6 + WebApi Basics 7 - 3-Tier Architecture</div>
+                                  <div class="post-title">.Net 6 + WebApi Basics 4 - Swagger UI</div>
                                   <div class="post-attach">
                                     <span class="post-pubtime">
                                       <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-                                      2023-01-15 22:08:47
+                                      2023-01-02 20:58:27
                                     </span>
                                      <span class="post-categories">
                                           <i class="iconfont icon-bookmark" title="Categories"></i>
@@ -225,7 +225,7 @@
                                           </span>
                                           
                                           <span class="span--tag mr-8">
-                                            <b><a href="/tags/Architecture/" title="Architecture" style="color:Orange"> #Architecture
+                                            <b><a href="/tags/Swagger/" title="Swagger" style="color:Orange"> #Swagger
                                             </a></b>
                                           </span>
                                           
@@ -234,58 +234,76 @@
                                   </div>
                                   
                                   <div class="markdown-body">
-                                    <h1 id="3-Tier-Architecture-for-NET-Framework"><a href="#3-Tier-Architecture-for-NET-Framework" class="headerlink" title="3-Tier Architecture for .NET Framework"></a>3-Tier Architecture for .NET Framework</h1><p>Regarding 3-Tier Architecture, you can find a lot of information on the web.</p>
-<p><a href="https://www.c-sharpcorner.com/UploadFile/dacca2/understand-3-tier-architecture-in-C-Sharp-net/">C# Corner</a></p>
-<p><a href="https://www.geeksforgeeks.org/what-is-net-3-tier-architecture/">GeekforGeek</a></p>
-<p>Simply put, 3-Tier Architecture contains <strong>three layers</strong>: </p>
-<p><code>Presentation Tier (UI)</code></p>
-<p><code>Business Tier (BLL)</code></p>
-<p><code>Data Tier (DAL)</code></p>
-<p>Generally speaking, however, the three-tier architecture is not only these three tiers, but there is also a<br><em><strong><code>Models</code></strong></em> tier, which corresponds to the entity classes in the database.</p>
-<p>Each of these three tiers has its own task and is interconnected but does not interfere with each other.</p>
-<p><code>UI</code> : Interact directly with users, like web pages.</p>
-<p><code>BLL</code>: this tier processes the business logic, like execute command, make calculations or middlewares. It is also responsible for the interaction between DAL and UI tiers.</p>
-<p><code>DAL</code>: Only responsible for the interaction between BLL and database.</p>
-<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200103194305/NET-3-Tier-Architecture.png" alt="3tier" style="zoom:50%;" />
-
-
-<h1 id="New-3-Tier-Architecture-for-NET"><a href="#New-3-Tier-Architecture-for-NET" class="headerlink" title="New 3-Tier Architecture for .NET"></a>New 3-Tier Architecture for .NET</h1><p>After Microsoft published the .NET Core, the previous 3-Tier Architecture has been modified to new views: Repository, Services, and Api, which are more intuitive to understand what tier’s job is respectively.</p>
-<p>However, even the names of tiers have been changed, their actual job keeps the same. </p>
-<p><code>Repository</code> can be seen as DAL, Database.</p>
-<p><code>Services</code>   can be seen as BLL, Business logic.</p>
-<p><code>API</code>        can be seen as UI, Front-end</p>
-<p><code>Models</code> No Changes</p>
-<p>Let’s make some practice with the weather app to figure out how each of them works.</p>
-<p>Build three <code>Class Libray</code> projects, and named <code>Repository, Services and Models</code>, repectively.</p>
-<p><img src="/Net6-WebApi-Basics-7/4b878ac4add14aaee3595c79e3c30cf8.png" alt="Class Libray"><br><img src="/Net6-WebApi-Basics-7/cf958e3d9032dd416d05be03da5f8a67.png" alt="Class Libray2"></p>
-<p>After creation of each tier, you need to link them based on their processing logics by <code>Project Reference</code>.</p>
-<p><code>Respository</code> project reference with <code>Models</code><br><img src="/Net6-WebApi-Basics-7/ed419a6c190dc47453e2169aa3abdf97.png" alt="Alt text"></p>
-<p><code>Services</code> project reference with <code>Respository </code><br><img src="/Net6-WebApi-Basics-7/5ca329328fcfd03333996a69d816cffc.png" alt="Alt text"></p>
-<p><code>WebApplication1 (API or UI)</code> project reference with <code>Services</code><br><img src="/Net6-WebApi-Basics-7/e8cb866e19bbee2e7814a278bef4ced0.png" alt="Alt text"></p>
-<h2 id="Why-3-tier"><a href="#Why-3-tier" class="headerlink" title="Why 3-tier?"></a>Why 3-tier?</h2><p>Decoupling, polymorphism, specification development.</p>
-<h1 id="How-to-use-3-tier"><a href="#How-to-use-3-tier" class="headerlink" title="How to use 3-tier?"></a>How to use 3-tier?</h1><p>NEXT, Let’s figure out the code part.</p>
-<p>Create new class in <code>Models</code>, <code>Repository</code>, and <code>Services</code>, and name them <code>UserClass.cs</code>, <code>UserRepository.cs</code>, <code>UserService.cs</code>, respectively.</p>
-<p><img src="/Net6-WebApi-Basics-7/5a5c66b40533a4a770b04014047a6817.png" alt="3-tier class"></p>
-<p><strong>UserClass.cs</strong></p>
-<p>You can move <code>UserClass.cs</code> from main program to <code>Models</code>.</p>
-<p><strong>Note</strong>: Install SqlSugar database in NuGet for <code>Models</code>, as it presents the entities of database.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Models</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> </span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">SugarTable(<span class="string">&quot;Table_User&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserClass</span></span><br><span class="line">    &#123;</span><br><span class="line">        [<span class="meta">SugarColumn(IsIdentity = true, IsPrimaryKey = true)</span>]</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> ID &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        [<span class="meta">SugarColumn(ColumnName = <span class="string">&quot;User&quot;</span>)</span>]</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">string</span> UserName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> Age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>UserRepository.cs</strong></p>
-<p>Build the object to connect with database, and <code>GetList()</code> to get all of the data from <code>Models</code></p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Repository</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserRepository</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> ISqlSugarClient Db &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">UserRepository</span>(<span class="params">ISqlSugarClient db</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Db = db;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> Get data from DB from UserRepository</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">List</span>&lt;<span class="title">UserClass</span>&gt; <span class="title">GetList</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> Db.Queryable&lt;UserClass&gt;().ToList();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>UserService.cs</strong></p>
-<p><code>GetUsers()</code> to build a business logic to gain data from <code>Repository</code> tier.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Services</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">UserService</span>(<span class="params">UserRepository userRepository</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            UserRepository = userRepository;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">public</span> UserRepository UserRepository &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> List&lt;UserClass&gt; <span class="title">GetUsers</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> UserRepository.GetList();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Now, you have already built the link with <code>Models(Entity) </code> tier in the <code>Repository(Database)</code> tier and use them in the <code>Service(Business Logic)</code> tier.</p>
-<p>Then, we need to figure out the <code>API(Front-end)</code> tier.<br>All what needs to do is adding services to the IOC container by Dependency Injection in <code>Program.cs</code>.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddScoped&lt;UserRepository&gt;();</span><br><span class="line">builder.Services.AddScoped&lt;UserService&gt;();</span><br></pre></td></tr></table></figure>
-<p><em><strong>AddSingleton vs AddScoped vs AddTransient</strong></em></p>
-<p><a href="https://youtu.be/v6Nr7Zman_Y">Video</a></p>
-<p><a href="https://www.52abp.com/post/yoyomooc/44.addSingletonvsAddScopedvsAddTransient">Practice</a></p>
+                                    <h1 id="Swagger"><a href="#Swagger" class="headerlink" title="Swagger"></a>Swagger</h1><blockquote>
+<p><a href="https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-6.0&tabs=visual-studio">Swagger</a> is a web service for generating, describing and invoking RESTful interfaces. </p>
+</blockquote>
+<p>Simply, Swagger is a service that displays all interfaces you want to explicitly display in the project on the web page, and can perform interface calls and tests. Therefore, 3 main functions can Swagger achieve.</p>
+<ol>
+<li><p><strong>Interface documentation</strong></p>
+<p>List all interfaces in the project on the web page, so that back-end developers do not need to write special interface documents for front-end users;</p>
+</li>
+<li><p><strong>Updated interface information</strong></p>
+<p> After the interface is updated, you only need to modify the Swagger description in the code to generate a new interface document in real time, thus avoiding the problem that the interface document is outdated and cannot be used</p>
+</li>
+<li><p><strong>Call the interface</strong></p>
+<p>Through the Swagger page, we can directly call the interface, which reduces the debugging cost in the project development stage.</p>
+</li>
+</ol>
+<h1 id="Common-Ways-to-use-Swagger"><a href="#Common-Ways-to-use-Swagger" class="headerlink" title="Common Ways to use Swagger"></a>Common Ways to use Swagger</h1><p>Next are some common ways to better use Swagger</p>
+<ol>
+<li><strong><a href="#1">Comment</a></strong></li>
+<li><strong><a href="#2">Version Control</a></strong></li>
+<li><strong><a href="#3">JWT authentication</a></strong></li>
+</ol>
 <hr>
-<p><strong>Next:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-8/">.Net6 + WebApi Basics 8</a></p>
-<p><strong>Last:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-6/">.Net6 + WebApi Basics 6</a></p>
+<h2 id="Comment-in-Swagger"><a href="#Comment-in-Swagger" class="headerlink" title="Comment in Swagger "></a><div id="1">Comment in Swagger </div></h2><p>We hope to add an introduction after each methods or interfaces to facilitate our testing and front-end reading, so that we make comments in Swagger for better understanding.</p>
+<h3 id="Step-I-Turn-on-Documentation-File-Generation"><a href="#Step-I-Turn-on-Documentation-File-Generation" class="headerlink" title="Step I. Turn on Documentation File Generation"></a><strong>Step I. Turn on Documentation File Generation</strong></h3><p>There are <strong>two</strong> methods to turn on <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/recommended-tags">Documentation File Generation</a></p>
+<p><strong><u>Method A:</u></strong>  From Project File (.csproj)</p>
+<p>Right-click your project &gt; Edit Project File &gt; Modify <code>GeneraterDocumentationFile</code> tag to <code>True</code>.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">PropertyGroup</span>&gt;</span></span><br><span class="line">    //Add following code</span><br><span class="line">    <span class="tag">&lt;<span class="name">GenerateDocumentationFile</span>&gt;</span>True<span class="tag">&lt;/<span class="name">GenerateDocumentationFile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">PropertyGroup</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<p><img src="/Net-6-WebApi-Basics-4/37a0f83b92fc0a92b73aa59f0011cc7d.png" alt="Project File"></p>
+<p><strong><u>Method B:</u></strong> From Properties</p>
+<p>Right-click the project -&gt; Properties -&gt; Build -&gt; Output -&gt; Documentation File -&gt; Check to <code>Generate a file containing API documentation</code></p>
+<p><img src="/Net-6-WebApi-Basics-4/719ea3637c0d5fc26421d8c1fdf93ea6.png" alt="Properties"></p>
+<h3 id="Step-II-Add-Comment-to-Swagger"><a href="#Step-II-Add-Comment-to-Swagger" class="headerlink" title="Step II. Add Comment to Swagger"></a><strong>Step II. Add Comment to Swagger</strong></h3><p>Add comment as common way for C# to any Controller or Class with <code>///</code> , then the comment will be shown on Swagger UI.</p>
+<p><strong>Add comments to controller</strong><br><img src="/Net-6-WebApi-Basics-4/fa255a68c39b6572744145beeb6cebbc.png" alt="comments to controller"></p>
+<p><strong>Add comments to Class</strong><br><img src="/Net-6-WebApi-Basics-4/13bf17d4b36c4c6ff5f473f281d77b32.png" alt="comments to Class"></p>
+<p><strong>Result:</strong><br><img src="/Net-6-WebApi-Basics-4/47b50c2e7417394ae0f0acacb690fccb.png" alt="result"></p>
+<p><em><strong><u>Note:</u></strong></em></p>
+<ol>
+<li>If the return type is object, Schemas does <strong>NOT</strong> show the comment in Swagger UI.<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpGet(Name = <span class="string">&quot;GetWeatherForecast&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IEnumerable&lt;<span class="built_in">object</span>&gt; <span class="title">Get</span>()</span></span><br></pre></td></tr></table></figure></li>
+<li>However, If the get type is specified, <code>Schemas</code> <strong>DOES</strong> show the comment even the return type is <code>object</code>.<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpPost(Name = <span class="string">&quot;GetWeatherForecast&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IEnumerable&lt;<span class="built_in">object</span>&gt; <span class="title">Get</span>(<span class="params">WeatherForecast weather_res</span>)</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="Version-Control-in-Swagger"><a href="#Version-Control-in-Swagger" class="headerlink" title="Version Control in Swagger"></a><div id="2">Version Control in Swagger</div></h2><p>First, we create a enum class to store the name of versions.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Api Version Enums</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">enum</span> ABC_Versions</span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">   <span class="comment"><span class="doctag">///</span> VersionV1</span></span><br><span class="line">   <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">   V1=<span class="number">1.0</span>,</span><br><span class="line">   <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">   <span class="comment"><span class="doctag">///</span> version V2</span></span><br><span class="line">   <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">   V2=<span class="number">2.0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Second, go to <code>Program.cs</code> and modify <code>AddSwaggerGen()</code>.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddSwaggerGen(options =&gt; &#123;</span><br><span class="line">    <span class="comment">//Single Version</span></span><br><span class="line">    <span class="comment">// options.SwaggerDoc(&quot;V1&quot;, new OpenApiInfo </span></span><br><span class="line">    <span class="comment">// &#123;</span></span><br><span class="line">    <span class="comment">//     Title = $&quot;Project Name&quot;,</span></span><br><span class="line">    <span class="comment">//     Version = &quot;V1&quot;,</span></span><br><span class="line">    <span class="comment">//     Description = $&quot;Project Name: Current version is &#123;version&#125;&quot;</span></span><br><span class="line">    <span class="comment">// &#125;);</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="comment">//Multiple Versions</span></span><br><span class="line">    <span class="keyword">typeof</span>(ApiVersions).GetEnumNames().ToList().ForEach(version =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//Add version introduction in Swagger</span></span><br><span class="line">        options.SwaggerDoc(version, <span class="keyword">new</span> OpenApiInfo</span><br><span class="line">        &#123;</span><br><span class="line">            Title = <span class="string">$&quot;Project Name&quot;</span>,</span><br><span class="line">            Version = version,</span><br><span class="line">            Description = <span class="string">$&quot;Project Name: Current version is <span class="subst">&#123;version&#125;</span>&quot;</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>typeof(ApiVersions).GetEnumNames().ToList().ForEach</code> is to get all of the enum name from above <code>Api Version Enums</code>.</p>
+<p>And, modify <code>UseSwaggerUI()</code>.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (app.Environment.IsDevelopment())</span><br><span class="line">&#123;</span><br><span class="line">    app.UseSwagger();</span><br><span class="line">    app.UseSwaggerUI(options =&gt; &#123;</span><br><span class="line">        <span class="comment">//Single Version</span></span><br><span class="line">        <span class="comment">// options.SwaggerEndpoint($&quot;/swagger/&#123;version&#125;/swagger.json&quot;,$&quot;VERSION:&#123;version&#125;&quot;);</span></span><br><span class="line">       </span><br><span class="line">        <span class="comment">//Multiple Version</span></span><br><span class="line">        <span class="keyword">typeof</span>(ApiVersions).GetEnumNames().ToList().ForEach(version =&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//Switch version</span></span><br><span class="line">            <span class="comment">//1st parameter is which json to choose.</span></span><br><span class="line">            <span class="comment">//2nd parameter is just a name.</span></span><br><span class="line">            options.SwaggerEndpoint(<span class="string">$&quot;/swagger/<span class="subst">&#123;version&#125;</span>/swagger.json&quot;</span>,<span class="string">$&quot;VERSION:<span class="subst">&#123;version&#125;</span>&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Use <code>SwaggerEndpoint</code> to choose swagger’s json file to switch versions.</p>
+<p>Finally, add an <code>[ApiExplorerSettings(GroupName =&quot;V1&quot;)]</code> attribute to the function in controller.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ApiExplorerSettings(GroupName =<span class="string">&quot;V1&quot;</span>)</span>]</span><br><span class="line">[<span class="meta">HttpGet</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IEnumerable&lt;WeatherForecast&gt; <span class="title">Get</span>(<span class="params">Wea weather</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> Enumerable.Range(<span class="number">1</span>, <span class="number">5</span>).Select(index =&gt; <span class="keyword">new</span> WeatherForecast</span><br><span class="line">    &#123;</span><br><span class="line">        Date = DateTime.Now.AddDays(index),</span><br><span class="line">        TemperatureC = Random.Shared.Next(<span class="number">-20</span>, <span class="number">55</span>),</span><br><span class="line">        Summary = Summaries[Random.Shared.Next(Summaries.Length)]</span><br><span class="line">    &#125;)</span><br><span class="line">    .ToArray();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em><strong>Result</strong></em></p>
+<p><img src="/Net-6-WebApi-Basics-4/227a81cd7acb0033885cb42b6133c6f5.png" alt="V1"></p>
+<p><img src="/Net-6-WebApi-Basics-4/57d07b9c0d1e93905d665c922adcb854.png" alt="V2"></p>
+<p>Since the attribute is set to <code>V1</code> for <code>Get()</code>, the interface is only shown is the selected version is <code>V1</code>.<br>If GroupName doesn’t specified the version, the interface will be shown in all versions.</p>
+<p><code>ApiExplorerSettings</code> has two parameters.</p>
+<p><code>[ApiExplorerSettings(GroupName =&quot;V1&quot;, IgnoreApi = false)]</code></p>
+<p><code>GroupName</code>: Name of version</p>
+<p><code>IgnoreApi</code>: Whether the version is ignored.</p>
+<p>When <code>IgnoreApi</code> is set to false,</p>
+<p><img src="/Net-6-WebApi-Basics-4/56ca47c5b37b3d6b864ebef53c12308d.png" alt="IgnoreApiFalse"></p>
+<hr>
+<h2 id="JWT-Authentication"><a href="#JWT-Authentication" class="headerlink" title="JWT Authentication"></a><div id="3">JWT Authentication</div></h2><p>Simply go to <code>Program.cs</code> and modify <code>AddSwaggerGen()</code>.<br>More details will be covered later post.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddSwaggerGen(options =&gt; </span><br><span class="line">&#123;</span><br><span class="line">    options.AddSecurityDefinition(<span class="string">&quot;Bearer&quot;</span>, <span class="keyword">new</span> OpenApiSecurityScheme()</span><br><span class="line">    &#123;</span><br><span class="line">        Description = <span class="string">&quot;ADD Token into request head：Bearer Token&quot;</span>,</span><br><span class="line">        Name = <span class="string">&quot;Authorization&quot;</span>,</span><br><span class="line">        In = ParameterLocation.Header,</span><br><span class="line">        Type = SecuritySchemeType.ApiKey,</span><br><span class="line">        BearerFormat = <span class="string">&quot;JWT&quot;</span>,</span><br><span class="line">        Scheme = <span class="string">&quot;Bearer&quot;</span></span><br><span class="line">    &#125;);</span><br><span class="line">    options.AddSecurityRequirement(<span class="keyword">new</span> OpenApiSecurityRequirement</span><br><span class="line">    &#123;</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">new</span> OpenApiSecurityScheme</span><br><span class="line">            &#123;</span><br><span class="line">                Reference = <span class="keyword">new</span> OpenApiReference &#123;</span><br><span class="line">                    Type = ReferenceType.SecurityScheme,</span><br><span class="line">                    Id = <span class="string">&quot;Bearer&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="keyword">new</span> <span class="built_in">string</span>[] &#123; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>Next:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-5/">.Net6 + WebApi Basics 5</a></p>
+<p><strong>Last:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-3/">.Net6 + WebApi Basics 3</a></p>
 <hr>
 <p>Good Day<br>😎</p>
 
@@ -295,7 +313,7 @@
                                     <div class="prev-or-next">
                                       <div class="post-foot-next">
                                         
-                                          <a href="/Net6-WebApi-Basics-6/" target="_self">
+                                          <a href="/Net-6-WebApi-Basics-3/" target="_self">
                                             <i class="iconfont icon-chevronleft"></i>
                                             <span>
                                               Prev
@@ -306,7 +324,7 @@
                                       <div class="post-attach">
                                         <span class="post-pubtime">
                                           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-                                          2023-01-15 22:08:47
+                                          2023-01-02 20:58:27
                                         </span>
                                          <span class="post-categories">
                                               <i class="iconfont icon-bookmark" title="Categories"></i>
@@ -355,7 +373,7 @@
                                               </span>
                                               
                                               <span class="span--tag mr-8">
-                                                <b><a href="/tags/Architecture/" title="Architecture" style="color:Orange"> #Architecture
+                                                <b><a href="/tags/Swagger/" title="Swagger" style="color:Orange"> #Swagger
                                                 </a></b>
                                               </span>
                                               
@@ -364,7 +382,7 @@
                                       </div>
                                       <div class="post-foot-prev">
                                         
-                                          <a href="/Net6-WebApi-Basics-8/" target="_self">
+                                          <a href="/Net-6-WebApi-Basics-5/" target="_self">
                                             <span>
                                               Next
                                             </span>
@@ -383,7 +401,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Tier-Architecture-for-NET-Framework"><span class="toc-text">3-Tier Architecture for .NET Framework</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#New-3-Tier-Architecture-for-NET"><span class="toc-text">New 3-Tier Architecture for .NET</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-3-tier"><span class="toc-text">Why 3-tier?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-use-3-tier"><span class="toc-text">How to use 3-tier?</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Swagger"><span class="toc-text">Swagger</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Common-Ways-to-use-Swagger"><span class="toc-text">Common Ways to use Swagger</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Comment-in-Swagger"><span class="toc-text">Comment in Swagger </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-I-Turn-on-Documentation-File-Generation"><span class="toc-text">Step I. Turn on Documentation File Generation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-II-Add-Comment-to-Swagger"><span class="toc-text">Step II. Add Comment to Swagger</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Version-Control-in-Swagger"><span class="toc-text">Version Control in Swagger</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JWT-Authentication"><span class="toc-text">JWT Authentication</span></a></li></ol></li></ol>
       
     </div>
   </div>
@@ -678,12 +696,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net%206%20%2B%20WebApi%20Basics%207%20-%203-Tier%20Architecture + '&url=' + http%3A%2F%2Fexample.com%2FNet6-WebApi-Basics-7%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net%206%20%2B%20WebApi%20Basics%204%20-%20Swagger%20UI + '&url=' + http%3A%2F%2Fexample.com%2FNet-6-WebApi-Basics-4%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/Net6-WebApi-Basics-7/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/Net-6-WebApi-Basics-4/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

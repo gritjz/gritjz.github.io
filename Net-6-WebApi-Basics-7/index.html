@@ -11,7 +11,7 @@
   
   <title>
     
-      .Net 6 + WebApi Basics 2 - Restful API 
+      .Net 6 + WebApi Basics 7 - 3-Tier Architecture 
       
       
       |
@@ -172,11 +172,11 @@
                               <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
                               <div class="container post-details" id="post-details">
                                 <div class="post-content">
-                                  <div class="post-title">.Net 6 + WebApi Basics 2 - Restful API</div>
+                                  <div class="post-title">.Net 6 + WebApi Basics 7 - 3-Tier Architecture</div>
                                   <div class="post-attach">
                                     <span class="post-pubtime">
                                       <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-                                      2022-12-28 11:21:14
+                                      2023-01-15 22:08:47
                                     </span>
                                      <span class="post-categories">
                                           <i class="iconfont icon-bookmark" title="Categories"></i>
@@ -225,7 +225,7 @@
                                           </span>
                                           
                                           <span class="span--tag mr-8">
-                                            <b><a href="/tags/Restful-API/" title="Restful API" style="color:Orange"> #Restful API
+                                            <b><a href="/tags/Architecture/" title="Architecture" style="color:Orange"> #Architecture
                                             </a></b>
                                           </span>
                                           
@@ -234,45 +234,58 @@
                                   </div>
                                   
                                   <div class="markdown-body">
-                                    <h1 id="Restful-API"><a href="#Restful-API" class="headerlink" title="Restful API"></a><strong>Restful API</strong></h1><pre><code>There are two basic points to be noted for Restful API.
-1. Use HTTP functions to execute CRUD operations.
-2. The resources are stored in URL.
-</code></pre>
-<h2 id="Regular-URL-Format"><a href="#Regular-URL-Format" class="headerlink" title="Regular URL Format"></a>Regular URL Format</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Create user</span><br><span class="line">http<span class="punctuation">:</span><span class="comment">//localhost/createuser</span></span><br><span class="line"></span><br><span class="line">Delete user with id = <span class="number">1</span></span><br><span class="line">http<span class="punctuation">:</span><span class="comment">//localhost/deleteuser?userid=1</span></span><br><span class="line"></span><br><span class="line">Get user&#x27;s list</span><br><span class="line">http<span class="punctuation">:</span><span class="comment">//localhost/getuser</span></span><br><span class="line"></span><br><span class="line">Get user with id = <span class="number">1</span></span><br><span class="line">http<span class="punctuation">:</span><span class="comment">//localhost/getuser?userid=1</span></span><br><span class="line"></span><br><span class="line">update user with id = <span class="number">1</span></span><br><span class="line">http<span class="punctuation">:</span><span class="comment">//localhost/updateuser?userid=1</span></span><br></pre></td></tr></table></figure>
+                                    <h1 id="3-Tier-Architecture-for-NET-Framework"><a href="#3-Tier-Architecture-for-NET-Framework" class="headerlink" title="3-Tier Architecture for .NET Framework"></a>3-Tier Architecture for .NET Framework</h1><p>Regarding 3-Tier Architecture, you can find a lot of information on the web.</p>
+<p><a href="https://www.c-sharpcorner.com/UploadFile/dacca2/understand-3-tier-architecture-in-C-Sharp-net/">C# Corner</a></p>
+<p><a href="https://www.geeksforgeeks.org/what-is-net-3-tier-architecture/">GeekforGeek</a></p>
+<p>Simply put, 3-Tier Architecture contains <strong>three layers</strong>: </p>
+<p><code>Presentation Tier (UI)</code></p>
+<p><code>Business Tier (BLL)</code></p>
+<p><code>Data Tier (DAL)</code></p>
+<p>Generally speaking, however, the three-tier architecture is not only these three tiers, but there is also a<br><em><strong><code>Models</code></strong></em> tier, which corresponds to the entity classes in the database.</p>
+<p>Each of these three tiers has its own task and is interconnected but does not interfere with each other.</p>
+<p><code>UI</code> : Interact directly with users, like web pages.</p>
+<p><code>BLL</code>: this tier processes the business logic, like execute command, make calculations or middlewares. It is also responsible for the interaction between DAL and UI tiers.</p>
+<p><code>DAL</code>: Only responsible for the interaction between BLL and database.</p>
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200103194305/NET-3-Tier-Architecture.png" alt="3tier" style="zoom:50%;" />
 
-<h2 id="Restful-URL-Format-with-HTTP-Functions"><a href="#Restful-URL-Format-with-HTTP-Functions" class="headerlink" title="Restful URL Format with HTTP Functions"></a>Restful URL Format with HTTP Functions</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Search users&#x27; list</span><br><span class="line"><span class="punctuation">[</span>GET<span class="punctuation">]</span><span class="punctuation">:</span> http<span class="punctuation">:</span><span class="comment">//localhost/user </span></span><br><span class="line"></span><br><span class="line">Search user <span class="number">1</span>&#x27;s list</span><br><span class="line"><span class="punctuation">[</span>GET<span class="punctuation">]</span><span class="punctuation">:</span> http<span class="punctuation">:</span><span class="comment">//localhost/user/1 </span></span><br><span class="line"></span><br><span class="line">Create an user</span><br><span class="line"><span class="punctuation">[</span>POST<span class="punctuation">]</span><span class="punctuation">:</span> http<span class="punctuation">:</span><span class="comment">//localhost/user </span></span><br><span class="line"></span><br><span class="line">Update user with id=<span class="number">1</span></span><br><span class="line"><span class="punctuation">[</span>PUT<span class="punctuation">]</span><span class="punctuation">:</span> http<span class="punctuation">:</span><span class="comment">//localhost/user/1 </span></span><br><span class="line"></span><br><span class="line">Delete user with id=<span class="number">1</span></span><br><span class="line"><span class="punctuation">[</span>DELETE<span class="punctuation">]</span><span class="punctuation">:</span> http<span class="punctuation">:</span><span class="comment">//localhost/user/1 </span></span><br></pre></td></tr></table></figure>
 
-<p>For example,<br><code>http://localhost/updateuser?userid=1</code></p>
-<p>This address can be seperated into two parts by <code>?</code>:</p>
-<p><code>URL + ? + Index</code></p>
-<p>Before <code>?</code>, it is a <strong><code>URL</code></strong>, where stores the resources.</p>
-<p>After  <code>?</code>, it is a <strong><code>index</code></strong>, which shows where to find the resources.</p>
+<h1 id="New-3-Tier-Architecture-for-NET"><a href="#New-3-Tier-Architecture-for-NET" class="headerlink" title="New 3-Tier Architecture for .NET"></a>New 3-Tier Architecture for .NET</h1><p>After Microsoft published the .NET Core, the previous 3-Tier Architecture has been modified to new views: Repository, Services, and Api, which are more intuitive to understand what tier’s job is respectively.</p>
+<p>However, even the names of tiers have been changed, their actual job keeps the same. </p>
+<p><code>Repository</code> can be seen as DAL, Database.</p>
+<p><code>Services</code>   can be seen as BLL, Business logic.</p>
+<p><code>API</code>        can be seen as UI, Front-end</p>
+<p><code>Models</code> No Changes</p>
+<p>Let’s make some practice with the weather app to figure out how each of them works.</p>
+<p>Build three <code>Class Libray</code> projects, and named <code>Repository, Services and Models</code>, repectively.</p>
+<p><img src="/Net-6-WebApi-Basics-7/4b878ac4add14aaee3595c79e3c30cf8.png" alt="Class Libray"><br><img src="/Net-6-WebApi-Basics-7/cf958e3d9032dd416d05be03da5f8a67.png" alt="Class Libray2"></p>
+<p>After creation of each tier, you need to link them based on their processing logics by <code>Project Reference</code>.</p>
+<p><code>Respository</code> project reference with <code>Models</code><br><img src="/Net-6-WebApi-Basics-7/ed419a6c190dc47453e2169aa3abdf97.png" alt="Alt text"></p>
+<p><code>Services</code> project reference with <code>Respository </code><br><img src="/Net-6-WebApi-Basics-7/5ca329328fcfd03333996a69d816cffc.png" alt="Alt text"></p>
+<p><code>WebApplication1 (API or UI)</code> project reference with <code>Services</code><br><img src="/Net-6-WebApi-Basics-7/e8cb866e19bbee2e7814a278bef4ced0.png" alt="Alt text"></p>
+<h2 id="Why-3-tier"><a href="#Why-3-tier" class="headerlink" title="Why 3-tier?"></a>Why 3-tier?</h2><p>Decoupling, polymorphism, specification development.</p>
+<h1 id="How-to-use-3-tier"><a href="#How-to-use-3-tier" class="headerlink" title="How to use 3-tier?"></a>How to use 3-tier?</h1><p>NEXT, Let’s figure out the code part.</p>
+<p>Create new class in <code>Models</code>, <code>Repository</code>, and <code>Services</code>, and name them <code>UserClass.cs</code>, <code>UserRepository.cs</code>, <code>UserService.cs</code>, respectively.</p>
+<p><img src="/Net-6-WebApi-Basics-7/5a5c66b40533a4a770b04014047a6817.png" alt="3-tier class"></p>
+<p><strong>UserClass.cs</strong></p>
+<p>You can move <code>UserClass.cs</code> from main program to <code>Models</code>.</p>
+<p><strong>Note</strong>: Install SqlSugar database in NuGet for <code>Models</code>, as it presents the entities of database.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Models</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> </span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">SugarTable(<span class="string">&quot;Table_User&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserClass</span></span><br><span class="line">    &#123;</span><br><span class="line">        [<span class="meta">SugarColumn(IsIdentity = true, IsPrimaryKey = true)</span>]</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> ID &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        [<span class="meta">SugarColumn(ColumnName = <span class="string">&quot;User&quot;</span>)</span>]</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">string</span> UserName &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> Age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>UserRepository.cs</strong></p>
+<p>Build the object to connect with database, and <code>GetList()</code> to get all of the data from <code>Models</code></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Repository</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserRepository</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> ISqlSugarClient Db &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">UserRepository</span>(<span class="params">ISqlSugarClient db</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Db = db;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> Get data from DB from UserRepository</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">List</span>&lt;<span class="title">UserClass</span>&gt; <span class="title">GetList</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> Db.Queryable&lt;UserClass&gt;().ToList();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>UserService.cs</strong></p>
+<p><code>GetUsers()</code> to build a business logic to gain data from <code>Repository</code> tier.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Services</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">UserService</span>(<span class="params">UserRepository userRepository</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            UserRepository = userRepository;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">public</span> UserRepository UserRepository &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> List&lt;UserClass&gt; <span class="title">GetUsers</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> UserRepository.GetList();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Now, you have already built the link with <code>Models(Entity) </code> tier in the <code>Repository(Database)</code> tier and use them in the <code>Service(Business Logic)</code> tier.</p>
+<p>Then, we need to figure out the <code>API(Front-end)</code> tier.<br>All what needs to do is adding services to the IOC container by Dependency Injection in <code>Program.cs</code>.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddScoped&lt;UserRepository&gt;();</span><br><span class="line">builder.Services.AddScoped&lt;UserService&gt;();</span><br></pre></td></tr></table></figure>
+<p><em><strong>AddSingleton vs AddScoped vs AddTransient</strong></em></p>
+<p><a href="https://youtu.be/v6Nr7Zman_Y">Video</a></p>
+<p><a href="https://www.52abp.com/post/yoyomooc/44.addSingletonvsAddScopedvsAddTransient">Practice</a></p>
 <hr>
-<h3 id="Try-a-Code"><a href="#Try-a-Code" class="headerlink" title="Try a Code"></a><strong>Try a Code</strong></h3><p>Let’s make a trial on the template code of <strong>WeatherForcast</strong> to understand how the <code>URL</code> and <code>Index</code> are set up.</p>
-<p><strong>URL Setup</strong></p>
-<p>Comment the Get() function</p>
-<img src="Comment.png"  alt="Comment" style="zoom:50%;"/>
-
-<p>Replace with following code</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpGet(<span class="string">&quot;GetWeatherForecast/&#123;userid&#125;&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">Get</span>(<span class="params"><span class="built_in">string</span> userid</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> userid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><em><strong>Result:</strong></em><br><code>https://localhost:7048/WeatherForecast/GetWeatherForecast/123</code></p>
-<img src="code1.png" alt="code1" style="zoom:50%;"/>
-
-<p>In <code>HttpGet</code> attribute, use <code>&#123;userid&#125;</code> to identify the <code>userid</code> in URL. The <code>userid</code> can be set in <code>Get()</code>.</p>
-<p><strong>Index Setup</strong></p>
-<p>Now, replace with following code to see how <code>Index</code> is setup.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">HttpGet(<span class="string">&quot;GetWeatherForecast/&#123;userid&#125;/&#123;index0&#125;&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">Get</span>(<span class="params"><span class="built_in">string</span> userid, <span class="built_in">string</span> index1, <span class="built_in">string</span> index2</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> userid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><em><strong>Result:</strong></em><br><code>https://localhost:7048/WeatherForecast/GetWeatherForecast/A/B?index1=C&amp;index2=D</code></p>
-<img src="code2.png" alt="code2" style="zoom:50%;"/>
-
-<p><strong>Therefore,</strong></p>
-<p>Parameters in both <code>HttpGet</code> and <code>Get</code> are specified as <strong>URL</strong>.</p>
-<p>Parameters in <code>HttpGet</code>, but not in <code>Get</code> are specified as <strong>URL</strong>.</p>
-<p>Parameters in <code>Get</code>, but not in <code>HttpGet</code> are specified as <strong>Index</strong>.</p>
-<p>Multiple <code>Index</code> are connected with <code>&amp;</code> after <code>?</code>.</p>
-<hr>
-<p><strong>Next:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-3/">.Net6 + WebApi Basics 3</a></p>
-<p><strong>Last:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-1/">.Net6 + WebApi Basics 1</a></p>
+<p><strong>Next:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-8/">.Net6 + WebApi Basics 8</a></p>
+<p><strong>Last:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-6/">.Net6 + WebApi Basics 6</a></p>
 <hr>
 <p>Good Day<br>😎</p>
 
@@ -282,7 +295,7 @@
                                     <div class="prev-or-next">
                                       <div class="post-foot-next">
                                         
-                                          <a href="/Net6-WebApi-Basics-1/" target="_self">
+                                          <a href="/Net-6-WebApi-Basics-6/" target="_self">
                                             <i class="iconfont icon-chevronleft"></i>
                                             <span>
                                               Prev
@@ -293,7 +306,7 @@
                                       <div class="post-attach">
                                         <span class="post-pubtime">
                                           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-                                          2022-12-28 11:21:14
+                                          2023-01-15 22:08:47
                                         </span>
                                          <span class="post-categories">
                                               <i class="iconfont icon-bookmark" title="Categories"></i>
@@ -342,7 +355,7 @@
                                               </span>
                                               
                                               <span class="span--tag mr-8">
-                                                <b><a href="/tags/Restful-API/" title="Restful API" style="color:Orange"> #Restful API
+                                                <b><a href="/tags/Architecture/" title="Architecture" style="color:Orange"> #Architecture
                                                 </a></b>
                                               </span>
                                               
@@ -351,7 +364,7 @@
                                       </div>
                                       <div class="post-foot-prev">
                                         
-                                          <a href="/Net6-WebApi-Basics-3/" target="_self">
+                                          <a href="/Net-6-WebApi-Basics-8/" target="_self">
                                             <span>
                                               Next
                                             </span>
@@ -370,7 +383,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Restful-API"><span class="toc-text">Restful API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Regular-URL-Format"><span class="toc-text">Regular URL Format</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Restful-URL-Format-with-HTTP-Functions"><span class="toc-text">Restful URL Format with HTTP Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Try-a-Code"><span class="toc-text">Try a Code</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Tier-Architecture-for-NET-Framework"><span class="toc-text">3-Tier Architecture for .NET Framework</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#New-3-Tier-Architecture-for-NET"><span class="toc-text">New 3-Tier Architecture for .NET</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-3-tier"><span class="toc-text">Why 3-tier?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-use-3-tier"><span class="toc-text">How to use 3-tier?</span></a></li></ol>
       
     </div>
   </div>
@@ -665,12 +678,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net%206%20%2B%20WebApi%20Basics%202%20-%20Restful%20API + '&url=' + http%3A%2F%2Fexample.com%2FNet6-WebApi-Basics-2%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net%206%20%2B%20WebApi%20Basics%207%20-%203-Tier%20Architecture + '&url=' + http%3A%2F%2Fexample.com%2FNet-6-WebApi-Basics-7%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/Net6-WebApi-Basics-2/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/Net-6-WebApi-Basics-7/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

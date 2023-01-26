@@ -11,7 +11,7 @@
   
   <title>
     
-      .Net 6 + WebApi Basics 5 - Entry Point and Configuration File 
+      .Net 6 + WebApi Basics 3 - JSON Formatter 
       
       
       |
@@ -172,11 +172,11 @@
                               <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
                               <div class="container post-details" id="post-details">
                                 <div class="post-content">
-                                  <div class="post-title">.Net 6 + WebApi Basics 5 - Entry Point and Configuration File</div>
+                                  <div class="post-title">.Net 6 + WebApi Basics 3 - JSON Formatter</div>
                                   <div class="post-attach">
                                     <span class="post-pubtime">
                                       <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-                                      2023-01-07 23:24:27
+                                      2022-12-29 21:48:13
                                     </span>
                                      <span class="post-categories">
                                           <i class="iconfont icon-bookmark" title="Categories"></i>
@@ -224,66 +224,38 @@
                                             </a></b>
                                           </span>
                                           
+                                          <span class="span--tag mr-8">
+                                            <b><a href="/tags/JSON/" title="JSON" style="color:Orange"> #JSON
+                                            </a></b>
+                                          </span>
+                                          
                                       </span>
                                       
                                   </div>
                                   
                                   <div class="markdown-body">
-                                    <h1 id="Entry-Point-and-Configuration-File"><a href="#Entry-Point-and-Configuration-File" class="headerlink" title="Entry Point and Configuration File"></a>Entry Point and Configuration File</h1><h2 id="Entry-Point-File-for-Net-6"><a href="#Entry-Point-File-for-Net-6" class="headerlink" title="Entry Point File for .Net 6"></a>Entry Point File for .Net 6</h2><p>In .Net framework, every program should have a <code>main()</code> in <code>Program.cs</code> as the entry point file. In .Net 6, Microsoft introduced the new concepts of C# 9.0, <a href="https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements">Top-level statement</a>, so that there is no <code>main()</code> any more. </p>
-<p>Even the <code>main()</code> is no longer shown explicitly, it can be still shown when decompiling. So you can treat it as the normal <code>main()</code> exists, which limits only <strong>1</strong> entry point file per project can use the top-level statement.</p>
-<h3 id="Structure-of-Program-cs"><a href="#Structure-of-Program-cs" class="headerlink" title="Structure of Program.cs"></a>Structure of <code>Program.cs</code></h3><p>Let’s watch the code line by line.</p>
-<hr>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> builder = WebApplication.CreateBuilder(args);</span><br></pre></td></tr></table></figure>
-<p><code>builder</code> will be the object to access point to configure services in the HTTP pipeline and routes.</p>
-<hr>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddControllers();</span><br><span class="line">builder.Services.AddEndpointsApiExplorer();</span><br><span class="line">builder.Services.AddSwaggerGen();</span><br></pre></td></tr></table></figure>
+                                    <h1 id="JSON-Formatter-for-Date"><a href="#JSON-Formatter-for-Date" class="headerlink" title="JSON Formatter for Date"></a>JSON Formatter for Date</h1><h2 id="Why-Formatting-Date"><a href="#Why-Formatting-Date" class="headerlink" title="Why Formatting Date"></a>Why Formatting Date</h2><p>When we receive the returned data, the Json time we return is a long string, which is obviously not front-end friendly. </p>
+<p>As following example, <code>&quot;date&quot;</code> has a lot ambiguous display making people difficult to read.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2022-12-29T15:52:14.9140737-05:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;temperatureC&quot;</span><span class="punctuation">:</span> <span class="number">-8</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;temperatureF&quot;</span><span class="punctuation">:</span> <span class="number">18</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;summary&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Bracing&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+<p>So we have to format the date and time in the prefered way.</p>
+<h2 id="Method-to-Format-Date"><a href="#Method-to-Format-Date" class="headerlink" title="Method to Format Date"></a>Method to Format Date</h2><p><strong>First,</strong><br>We need to install a add-on package with <code>Nuget</code></p>
+<p>Browse Nuget and install<br><code>Microsoft.AspNetCore.Mvc.NewtonsoftJson</code></p>
+<p><img src="/Net-6-WebApi-Basics-3/NewtonsoftJson.png" alt="Install NewtonsoftJson"></p>
+<p><em><strong>Note:</strong></em></p>
+<p>while installing <code>NewtonsoftJson</code>, the version is chosen based on your project’s dependencies. Here I am using version <code>6.0.12</code> for <code>.NET 6</code>.</p>
+<p><strong>Then,</strong></p>
+<p>Find <code>builder.Services.AddControllers()</code> in <code>Program.cs</code>, and modify with following code.</p>
+<p><code>&quot;yyyy-MM-dd HH:mm:ss&quot;</code> is the customized format.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddControllers()</span><br><span class="line">  .AddNewtonsoftJson(options =&gt;</span><br><span class="line">  &#123;</span><br><span class="line">      options.SerializerSettings.DateFormatString = <span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
 
-<p><code>builder.Services</code> is used to configure the services.</p>
-<p>This is actually the concept of the <a href="https://www.tutorialsteacher.com/ioc/ioc-container">IOC container</a>, which uses dependency injection to achieve the following functions.</p>
-<p><strong>Dependency Injection</strong></p>
-<p>Simply put, dependency injection is not as complex as its name. </p>
-<p>Whenever we call a class, we need to use <code>new</code>.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var x = new object();</span><br></pre></td></tr></table></figure>
-<p>The IOC container is to help the project execute the above <code>new</code> operation in advance. This operation is called dependency injection of service.</p>
-<p><strong>For example,</strong></p>
-<p><code>builder.Services.AddControllers();</code></p>
-<p>AddControllers() as its name is to inject service of controllers in advance. During this process, IOC is equivalent to calling the constructor in <code>WeatherForecastController.cs</code> as follows.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">readonly</span> ILogger&lt;WeatherForecastController&gt; _logger;</span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> This is Constructor</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;logger&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">WeatherForecastController</span>(<span class="params">ILogger&lt;WeatherForecastController&gt; logger</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    _logger = logger;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Here we can see that there is parameter in the constructor, so when we call, IOC automatically passes in an <code>ILogger</code> parameter. </p>
-<p>If it is another type of parameter, IOC will also be responsible for passing in other parameters.</p>
-<hr>
-<h2 id="Configuration-File"><a href="#Configuration-File" class="headerlink" title="Configuration File"></a>Configuration File</h2><p>We can get the configurations of project in <code>appsettings.json</code>.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//appsettings.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;Logging&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;LogLevel&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;Default&quot;</span>: <span class="string">&quot;Information&quot;</span>,</span><br><span class="line">      <span class="string">&quot;Microsoft.AspNetCore&quot;</span>: <span class="string">&quot;Warning&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;AllowedHosts&quot;</span>: <span class="string">&quot;*&quot;</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-<h3 id="Use-configurations-in-Program-cs"><a href="#Use-configurations-in-Program-cs" class="headerlink" title="Use configurations in Program.cs"></a>Use configurations in Program.cs</h3><p>Configure the settings of <code>appsettings.json</code> by following operations.</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Level 1</span></span><br><span class="line">Configuration<span class="punctuation">[</span><span class="string">&quot;xxxx&quot;</span><span class="punctuation">]</span>;</span><br><span class="line"><span class="comment">//Level 2</span></span><br><span class="line">Configuration<span class="punctuation">[</span><span class="string">&quot;xxxx:yyyy&quot;</span><span class="punctuation">]</span>;</span><br><span class="line"><span class="comment">//Convert type</span></span><br><span class="line">Configuration.GetValue(<span class="string">&quot;xxx&quot;</span>);</span><br><span class="line"><span class="comment">//Get and serialize to a certain type</span></span><br><span class="line">Configuration.GetSection(<span class="string">&quot;xxx&quot;</span>).Get&lt;<span class="string">&quot;TYPE&quot;</span>&gt;();</span><br></pre></td></tr></table></figure>
+<p>Result:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;date&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2022-12-29 15:55:43&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;temperatureC&quot;</span><span class="punctuation">:</span> <span class="number">39</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;temperatureF&quot;</span><span class="punctuation">:</span> <span class="number">102</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;summary&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Chilly&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>For example,</strong></p>
-<p>Modify the <code>appsettings.json</code></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;Logging&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;LogLevel&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;Default&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Information&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;Microsoft.AspNetCore&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Warning&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;AllowedHosts&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;Test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ABC&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;Test2&quot;</span><span class="punctuation">:</span> <span class="string">&quot;123&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;UserSetting&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;Name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Steven&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;Age&quot;</span><span class="punctuation">:</span>  <span class="number">18</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>Add following codes in <code>Program.cs</code> to use configurations.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x1 = builder.Configuration[<span class="string">&quot;Test&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> x2 = builder.Configuration[<span class="string">&quot;Logging:LogLevel:Default&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> x3 = builder.Configuration.GetValue&lt;<span class="built_in">int</span>&gt;(<span class="string">&quot;Test2&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p><strong>Result:</strong><br><img src="/Net6-WebApi-Basics-5/f17e10a437e1b1e96f4757dcfe929b77.png" alt="x1x2x3"></p>
-<p>Note: <code>x3</code> is converted from string to int.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x4 = builder.Configuration.GetSection(<span class="string">&quot;UserSetting&quot;</span>).Get&lt;UserClass&gt;();</span><br></pre></td></tr></table></figure>
-<p>Add a new class called <code>UserClass</code></p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">WebApplication1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserClass</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> Age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>So, we can get the information from <code>&quot;UserSetting&quot;</code> in <code>appsettings.json</code> and serialize it to <code>&quot;UserClass&quot;</code> type.</p>
-<p><strong>Result:</strong><br><img src="/Net6-WebApi-Basics-5/7c3120affe9cda4e171b4bb77e08616d.png" alt="x4"></p>
 <hr>
-<h3 id="Use-configurations-in-controller-or-other-classes"><a href="#Use-configurations-in-controller-or-other-classes" class="headerlink" title="Use configurations in controller or other classes."></a>Use configurations in controller or other classes.</h3><p>We have already known how to use configurations in <code>Program.cs</code>. Now we’d use it in a controller class. </p>
-<p><strong>IConfiguration</strong></p>
-<p>We need to use <code>IConfiguration</code> in the constructor of the controller class.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">AControllerClass</span>(<span class="params">IConfiguration configuration</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Configuration = configuration;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> IConfiguration Configuration &#123; <span class="keyword">get</span>; &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>For example,</strong></p>
-<p>Add <code>IConfiguration</code> parameter into constructor of <code>WeatherForecastController</code>.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">readonly</span> ILogger&lt;WeatherForecastController&gt; _logger;</span><br><span class="line"><span class="keyword">public</span> IConfiguration Configuration &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> This is Constructor</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;logger&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">WeatherForecastController</span>(<span class="params">ILogger&lt;WeatherForecastController&gt; logger, IConfiguration configuration</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    _logger = logger;</span><br><span class="line">    Configuration = configuration;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Use configurations in functions.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Get Weather</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet(Name = <span class="string">&quot;GetWeatherForecast&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Get</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//use configuration as the same ways used in Program.cs</span></span><br><span class="line">    <span class="keyword">var</span> x1Controller = Configuration[<span class="string">&quot;Test&quot;</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Next:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-4/">.Net6 + WebApi Basics 4</a></p>
+<p><strong>Last:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-2/">.Net6 + WebApi Basics 2</a></p>
 <hr>
-<p><strong>Next:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-6/">.Net6 + WebApi Basics 6</a></p>
-<p><strong>Last:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-4/">.Net6 + WebApi Basics 4</a></p>
-<hr>
-<p>Good Day<br>😎</p>
+<p>Easy!<br>Good Day<br>😎</p>
 
                                   </div>
 
@@ -291,7 +263,7 @@
                                     <div class="prev-or-next">
                                       <div class="post-foot-next">
                                         
-                                          <a href="/Net6-WebApi-Basics-4/" target="_self">
+                                          <a href="/Net-6-WebApi-Basics-2/" target="_self">
                                             <i class="iconfont icon-chevronleft"></i>
                                             <span>
                                               Prev
@@ -302,7 +274,7 @@
                                       <div class="post-attach">
                                         <span class="post-pubtime">
                                           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-                                          2023-01-07 23:24:27
+                                          2022-12-29 21:48:13
                                         </span>
                                          <span class="post-categories">
                                               <i class="iconfont icon-bookmark" title="Categories"></i>
@@ -350,12 +322,17 @@
                                                 </a></b>
                                               </span>
                                               
+                                              <span class="span--tag mr-8">
+                                                <b><a href="/tags/JSON/" title="JSON" style="color:Orange"> #JSON
+                                                </a></b>
+                                              </span>
+                                              
                                           </span>
                                           
                                       </div>
                                       <div class="post-foot-prev">
                                         
-                                          <a href="/Net6-WebApi-Basics-6/" target="_self">
+                                          <a href="/Net-6-WebApi-Basics-4/" target="_self">
                                             <span>
                                               Next
                                             </span>
@@ -374,7 +351,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Entry-Point-and-Configuration-File"><span class="toc-text">Entry Point and Configuration File</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Entry-Point-File-for-Net-6"><span class="toc-text">Entry Point File for .Net 6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Structure-of-Program-cs"><span class="toc-text">Structure of Program.cs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuration-File"><span class="toc-text">Configuration File</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-configurations-in-Program-cs"><span class="toc-text">Use configurations in Program.cs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-configurations-in-controller-or-other-classes"><span class="toc-text">Use configurations in controller or other classes.</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JSON-Formatter-for-Date"><span class="toc-text">JSON Formatter for Date</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Formatting-Date"><span class="toc-text">Why Formatting Date</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Method-to-Format-Date"><span class="toc-text">Method to Format Date</span></a></li></ol></li></ol>
       
     </div>
   </div>
@@ -669,12 +646,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net%206%20%2B%20WebApi%20Basics%205%20-%20Entry%20Point%20and%20Configuration%20File + '&url=' + http%3A%2F%2Fexample.com%2FNet6-WebApi-Basics-5%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net%206%20%2B%20WebApi%20Basics%203%20-%20JSON%20Formatter + '&url=' + http%3A%2F%2Fexample.com%2FNet-6-WebApi-Basics-3%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/Net6-WebApi-Basics-5/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/Net-6-WebApi-Basics-3/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

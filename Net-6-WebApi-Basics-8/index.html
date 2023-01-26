@@ -11,7 +11,7 @@
   
   <title>
     
-      .Net 6 + WebApi Basics 1 - WebApi 
+      .Net 6 + WebApi Basics 8 - Generic Repository 
       
       
       |
@@ -172,11 +172,11 @@
                               <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
                               <div class="container post-details" id="post-details">
                                 <div class="post-content">
-                                  <div class="post-title">.Net 6 + WebApi Basics 1 - WebApi</div>
+                                  <div class="post-title">.Net 6 + WebApi Basics 8 - Generic Repository</div>
                                   <div class="post-attach">
                                     <span class="post-pubtime">
                                       <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-                                      2022-12-25 13:17:56
+                                      2023-01-19 23:27:15
                                     </span>
                                      <span class="post-categories">
                                           <i class="iconfont icon-bookmark" title="Categories"></i>
@@ -229,12 +229,21 @@
                                   </div>
                                   
                                   <div class="markdown-body">
-                                    <p>This is a tutorial series for developers from zero to basic level to quickly understand <code>.Net6 + WebApi</code>. </p>
+                                    <h1 id="Generic-Repository"><a href="#Generic-Repository" class="headerlink" title="Generic Repository"></a>Generic Repository</h1><p>The <code>Services</code> tier is used to link <code>Repository</code> with <code>UI</code>, but a project may have multiple services while the database properties, like Add or Update functions, are generally the same. Creating a specific <code>Repository</code> class for each service would be more than worth the cost. </p>
+<p>Thus, use <code>Generic Repository</code> so that the same Repository code can be used regardless of the type of e different <code>Models</code>.</p>
+<h1 id="Implement-a-Generic-Repository"><a href="#Implement-a-Generic-Repository" class="headerlink" title="Implement a Generic Repository"></a>Implement a Generic Repository</h1><p>Create a class for generic repository with the following code, based on <strong>Sqlsugar</strong>, named <code>Repository</code>.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Repository</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Repository</span>&lt;<span class="title">T</span>&gt; : <span class="title">SimpleClient</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="keyword">class</span>, <span class="title">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Repository</span>(<span class="params">ISqlSugarClient context = <span class="literal">null</span></span>):<span class="title">base</span>(<span class="params">context</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//.NET IOC</span></span><br><span class="line">            <span class="keyword">base</span>.Context = context;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> Customized functions</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt; <span class="title">CommQuery</span>(<span class="params"><span class="built_in">string</span> json</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//base.Context.Queryable&lt;T&gt;().ToList();</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Then, modify Services tier in <code>UserService.cs</code>.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Services</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserService</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//[PREVIOUS] UserRepository</span></span><br><span class="line">        <span class="comment">//public UserService(UserRepository userRepository)</span></span><br><span class="line">        <span class="comment">//&#123;</span></span><br><span class="line">        <span class="comment">//    UserRepository = userRepository;</span></span><br><span class="line">        <span class="comment">//&#125;</span></span><br><span class="line">        <span class="comment">//public UserRepository UserRepository &#123; get; &#125;</span></span><br><span class="line">        <span class="comment">//public List&lt;UserClass&gt; GetUsers()</span></span><br><span class="line">        <span class="comment">//&#123;</span></span><br><span class="line">        <span class="comment">//    return UserRepository.GetList();</span></span><br><span class="line">        <span class="comment">//&#125;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//[AFTER] Use Generic Repository</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">UserService</span>(<span class="params">Repository&lt;UserClass&gt; repository</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Repository = repository;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">public</span> Repository&lt;UserClass&gt; Repository &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> List&lt;UserClass&gt; <span class="title">GetUsers</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> Repository.GetList();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>As you can see from the above, the generic <code>T</code> calls the <code>UserClass</code> class in <code>Model</code> tier. If you are operating other tables, you only need to modify <code>T</code> in the <code>Service</code> tier.</p>
+<p>Finally, inject the generic repository into IOC in <code>Program.cs</code></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//builder.Services.AddScoped&lt;UserRepository&gt;();</span></span><br><span class="line">builder.Services.AddScoped(<span class="keyword">typeof</span>(Repository&lt;&gt;));</span><br><span class="line"><span class="comment">//Service injection keeps same.</span></span><br><span class="line">builder.Services.AddScoped&lt;UserService&gt;();</span><br></pre></td></tr></table></figure>
+
+
 <hr>
-<h1 id="What-is-a-WebApi"><a href="#What-is-a-WebApi" class="headerlink" title="What is a WebApi?"></a><strong>What is a WebApi?</strong></h1><p>Simply put, WebApi is the <em><strong>interface</strong></em> between front-end and back-end for <em><strong>data interaction</strong></em>.<br>The front-end sends data to the back-end and the back-end returns data to the front-end using WebApi.</p>
-<h2 id="Create-a-WebApi-Program"><a href="#Create-a-WebApi-Program" class="headerlink" title="Create a WebApi Program"></a>Create a WebApi Program</h2><p>It is convinient to create a WebApi Program.<br><strong>Step 1</strong> - Open Visual Studio<br><img src="/Net6-WebApi-Basics-1/Step1.png" alt="VS" title="VS 2022"><br><strong>Step 2</strong> - Create a new project<br><img src="/Net6-WebApi-Basics-1/Step2.png" alt="New Project"><br><strong>Step 3</strong> - Choose ASP.NET Core Web API<br><img src="/Net6-WebApi-Basics-1/Step3.png" alt="Choose Template"><br><strong>Step 4</strong> - Project Name and Directory<br><img src="/Net6-WebApi-Basics-1/Step4.png" alt="Name and Directory"><br><strong>Step 5</strong> - Choose Framework in .NET 6<br><img src="/Net6-WebApi-Basics-1/Step5.png" alt="Framework"><br><strong>Step 6</strong> - Build and Run Program<br><img src="/Net6-WebApi-Basics-1/Step6.png" alt="Run"><br><strong>Step 7</strong> - Check Availability<br><img src="/Net6-WebApi-Basics-1/Step7.gif" alt="Availability"><br>In the opened website template, which is a weather forecast website provided by default, you can see that<br><code>https://localhost:7048/swagger/index.html</code> is URL.<br><code>7048</code> is the port number.</p>
-<hr>
-<p><strong>Next:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-2/">.Net6 + WebApi Basics 2</a></p>
+<p><strong>Next:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-9/">.Net6 + WebApi Basics 9</a></p>
+<p><strong>Last:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-7/">.Net6 + WebApi Basics 7</a></p>
 <hr>
 <p>Good Day<br>😎</p>
 
@@ -244,7 +253,7 @@
                                     <div class="prev-or-next">
                                       <div class="post-foot-next">
                                         
-                                          <a href="/Install-Mermaid-Diagram-in-Hexo/" target="_self">
+                                          <a href="/Net-6-WebApi-Basics-7/" target="_self">
                                             <i class="iconfont icon-chevronleft"></i>
                                             <span>
                                               Prev
@@ -255,7 +264,7 @@
                                       <div class="post-attach">
                                         <span class="post-pubtime">
                                           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-                                          2022-12-25 13:17:56
+                                          2023-01-19 23:27:15
                                         </span>
                                          <span class="post-categories">
                                               <i class="iconfont icon-bookmark" title="Categories"></i>
@@ -308,7 +317,7 @@
                                       </div>
                                       <div class="post-foot-prev">
                                         
-                                          <a href="/Net6-WebApi-Basics-2/" target="_self">
+                                          <a href="/Net-6-WebApi-Basics-9/" target="_self">
                                             <span>
                                               Next
                                             </span>
@@ -327,7 +336,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-a-WebApi"><span class="toc-text">What is a WebApi?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-a-WebApi-Program"><span class="toc-text">Create a WebApi Program</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Generic-Repository"><span class="toc-text">Generic Repository</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Implement-a-Generic-Repository"><span class="toc-text">Implement a Generic Repository</span></a></li></ol>
       
     </div>
   </div>
@@ -622,12 +631,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net%206%20%2B%20WebApi%20Basics%201%20-%20WebApi + '&url=' + http%3A%2F%2Fexample.com%2FNet6-WebApi-Basics-1%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net%206%20%2B%20WebApi%20Basics%208%20-%20Generic%20Repository + '&url=' + http%3A%2F%2Fexample.com%2FNet-6-WebApi-Basics-8%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/Net6-WebApi-Basics-1/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/Net-6-WebApi-Basics-8/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
