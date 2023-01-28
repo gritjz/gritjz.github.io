@@ -11,13 +11,13 @@
   
   <title>
     
-      .Net 6 + WebApi Basics 9 
+      .Net 6 + WebApi Basics 9 - Lifetimes for Dependency Injection 
       
       
       |
     
      Steven&#39;s Blog
-  </title><meta name="robots" content="noindex">
+  </title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon1.png">
@@ -172,7 +172,7 @@
                               <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
                               <div class="container post-details" id="post-details">
                                 <div class="post-content">
-                                  <div class="post-title">.Net 6 + WebApi Basics 9</div>
+                                  <div class="post-title">.Net 6 + WebApi Basics 9 - Lifetimes for Dependency Injection</div>
                                   <div class="post-attach">
                                     <span class="post-pubtime">
                                       <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
@@ -229,27 +229,67 @@
                                   </div>
                                   
                                   <div class="markdown-body">
-                                    <h1 id="Lifetimes-for-Dependency-Injection"><a href="#Lifetimes-for-Dependency-Injection" class="headerlink" title="Lifetimes for Dependency Injection"></a>Lifetimes for Dependency Injection</h1><p>When a service requests from another service via DI, generally in IOC, it is important to know whether the object received is the new instance or an existing instance. Thus, ASP.NET gives three options to request different types of service object.</p>
+                                    <h1 id="Types-of-Lifetime-for-Dependency-Injection"><a href="#Types-of-Lifetime-for-Dependency-Injection" class="headerlink" title="Types of Lifetime for Dependency Injection"></a>Types of Lifetime for Dependency Injection</h1><p>When a service requests from another service via DI, generally in IOC, it is important to know whether the object received is the new instance or an existing instance. Thus, ASP.NET gives three options to request different types of service object.</p>
 <p>There are three types of lifetime for dependency injection(DI) in .NET 6:<br> <code>Transient</code>, <code>Scoped</code>, and <code>Singleton</code>. </p>
 <p>They define the lifetime of services created using DI. </p>
 <h2 id="Transient"><a href="#Transient" class="headerlink" title="Transient"></a>Transient</h2><blockquote>
-<p>The transient service always create a new instance for every request.</p>
+<p>The transient service always create one <em><strong>NEW</strong></em> instance to <em><strong>EVERY</strong></em> request, and <em><strong>EVERY</strong></em> controller and <em><strong>EVERY</strong></em> service within the request, which means no matter what to use will have a different instance to use.</p>
 </blockquote>
-<p>Simply put, you have planned to join 10 meetings today, and then meet 10 different persons.</p>
+<p>Simply put, you have planned to have 10 meetings today in the meeting room, then 10 different persons come in and go out.</p>
 <h2 id="Scoped"><a href="#Scoped" class="headerlink" title="Scoped"></a>Scoped</h2><blockquote>
-<p>The scoped service create <strong>one</strong> instance for every request, and the same instance is used for all requests.</p>
+<p>The scoped service create <strong>ONE</strong> instance for <em><strong>EVERY</strong></em> request, and the same instance is used thoughout this request process, which means the controllers or services within this request will use same instance.</p>
 </blockquote>
-<p>Simply put, you have planned to join 10 meetings today, and then meet the same person for 10 times.</p>
+<p>Simply put, you have planned to have 10 meetings today in the meeting room, then only 1 person come in and go out.</p>
 <h2 id="Singleton"><a href="#Singleton" class="headerlink" title="Singleton"></a>Singleton</h2><blockquote>
 <p>The singleton service create <em><strong>ONE</strong></em> instance for <em><strong>FIRST</strong></em> request, and the same instance is used for all requests.</p>
 </blockquote>
-<!-- flag of hidden posts -->
+<p>Simply put, you have planned to have 10 meetings today in the meeting room, then only 1 person come in and stay in the room, and go out after finishing the 10 meetings.</p>
+<h1 id="Lifetime-Analysis"><a href="#Lifetime-Analysis" class="headerlink" title="Lifetime Analysis"></a>Lifetime Analysis</h1><h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a><u>Performance</u></h2><p>The time of creating new instance can determine the perfomance.</p>
+<p><code>Singleton</code> &gt; <code>Scoped</code> &gt; <code>Transient</code></p>
+<blockquote>
+<p><code>Singleton</code> creates the service instance only once, so performance is the best. </p>
+</blockquote>
+<blockquote>
+<p><code>Transient</code> creates a different instance for everythin and has the worst performance.</p>
+</blockquote>
+<h2 id="Rebustness"><a href="#Rebustness" class="headerlink" title="Rebustness"></a><u>Rebustness</u></h2><p>Thread safety is an indicator of robustness.</p>
+<p><code>Singleton</code> &lt; <code>Scoped</code> &lt; <code>Transient</code></p>
+<blockquote>
+<p><code>Transient</code> uses a different instance for each request, controller, and service, and there is no risk that the service being used will be modified in the middle of the process.</p>
+</blockquote>
+<blockquote>
+<p><code>Singleton</code> uses only one instance. Once the instance is modified, it will affect the whole process.</p>
+</blockquote>
+<h2 id="Resource-Releases"><a href="#Resource-Releases" class="headerlink" title="Resource Releases"></a><u>Resource Releases</u></h2><p>.NET has a pretty fancy mechanism for garbage collection, but it is still better to have fewer time of using garbage collector.</p>
+<p><code>Singleton</code> &lt; <code>Scoped</code>  &lt; <code>Transient</code> </p>
+<blockquote>
+<p><code>Transient</code> will release the resources once any request, controllers, or services is used up, while <code>Singleton</code> is still there when it is used up and not released.</p>
+</blockquote>
+<h2 id="Frequency-of-Use"><a href="#Frequency-of-Use" class="headerlink" title="Frequency of Use"></a><u>Frequency of Use</u></h2><p><code>Transient</code> &#x3D; <code>Scoped</code> &gt; <code>Singleton</code></p>
+<blockquote>
+<p>Even though <code>Singleton</code> has better performance, for better robustness in the real-life use, <code>Transient</code> and <code>Scoped</code> are mostly used in development, and <code>Singleton</code> is rarely used.</p>
+</blockquote>
+<hr>
+<p><strong>Next:</strong> .Net6 + WebApi Basics 10</p>
+<!-- **Next:** .Net6 + WebApi Basics 10[.Net6 + WebApi Basics 10](https://gritjz.github.io/Net6-WebApi-Basics-9/) -->
+
+<p><strong>Last:</strong> <a href="https://gritjz.github.io/Net6-WebApi-Basics-7/">.Net6 + WebApi Basics 8</a></p>
+<hr>
+<p>Good Day<br>😎</p>
+
                                   </div>
 
                                   
                                     <div class="prev-or-next">
                                       <div class="post-foot-next">
                                         
+                                          <a href="/Net-6-WebApi-Basics-8/" target="_self">
+                                            <i class="iconfont icon-chevronleft"></i>
+                                            <span>
+                                              Prev
+                                            </span>
+                                          </a>
+                                          
                                       </div>
                                       <div class="post-attach">
                                         <span class="post-pubtime">
@@ -319,7 +359,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lifetimes-for-Dependency-Injection"><span class="toc-text">Lifetimes for Dependency Injection</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Transient"><span class="toc-text">Transient</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scoped"><span class="toc-text">Scoped</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Singleton"><span class="toc-text">Singleton</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Types-of-Lifetime-for-Dependency-Injection"><span class="toc-text">Types of Lifetime for Dependency Injection</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Transient"><span class="toc-text">Transient</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scoped"><span class="toc-text">Scoped</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Singleton"><span class="toc-text">Singleton</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lifetime-Analysis"><span class="toc-text">Lifetime Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Performance"><span class="toc-text">Performance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rebustness"><span class="toc-text">Rebustness</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resource-Releases"><span class="toc-text">Resource Releases</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Frequency-of-Use"><span class="toc-text">Frequency of Use</span></a></li></ol></li></ol>
       
     </div>
   </div>
@@ -614,7 +654,7 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net%206%20%2B%20WebApi%20Basics%209 + '&url=' + http%3A%2F%2Fexample.com%2FNet-6-WebApi-Basics-9%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + .Net%206%20%2B%20WebApi%20Basics%209%20-%20Lifetimes%20for%20Dependency%20Injection + '&url=' + http%3A%2F%2Fexample.com%2FNet-6-WebApi-Basics-9%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
