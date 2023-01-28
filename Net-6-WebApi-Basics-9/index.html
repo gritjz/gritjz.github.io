@@ -235,8 +235,15 @@
 <h2 id="Transient"><a href="#Transient" class="headerlink" title="Transient"></a>Transient</h2><blockquote>
 <p>The transient service always create a new instance for every request.</p>
 </blockquote>
-<p>Simply put, you sent 10 invitations, and then meet 10 different people.</p>
-<h2 id="Scoped"><a href="#Scoped" class="headerlink" title="Scoped"></a>Scoped</h2><!-- flag of hidden posts -->
+<p>Simply put, you have planned to join 10 meetings today, and then meet 10 different persons.</p>
+<h2 id="Scoped"><a href="#Scoped" class="headerlink" title="Scoped"></a>Scoped</h2><blockquote>
+<p>The scoped service create <strong>one</strong> instance for every request, and the same instance is used for all requests.</p>
+</blockquote>
+<p>Simply put, you have planned to join 10 meetings today, and then meet the same person for 10 times.</p>
+<h2 id="Singleton"><a href="#Singleton" class="headerlink" title="Singleton"></a>Singleton</h2><blockquote>
+<p>The singleton service create <em><strong>ONE</strong></em> instance for <em><strong>FIRST</strong></em> request, and the same instance is used for all requests.</p>
+</blockquote>
+<!-- flag of hidden posts -->
                                   </div>
 
                                   
@@ -312,7 +319,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lifetimes-for-Dependency-Injection"><span class="toc-text">Lifetimes for Dependency Injection</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Transient"><span class="toc-text">Transient</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scoped"><span class="toc-text">Scoped</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lifetimes-for-Dependency-Injection"><span class="toc-text">Lifetimes for Dependency Injection</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Transient"><span class="toc-text">Transient</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scoped"><span class="toc-text">Scoped</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Singleton"><span class="toc-text">Singleton</span></a></li></ol></li></ol>
       
     </div>
   </div>
