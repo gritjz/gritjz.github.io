@@ -17,7 +17,7 @@
       |
     
      Steven&#39;s Blog
-  </title><meta name="robots" content="noindex">
+  </title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon1.png">
@@ -229,8 +229,29 @@
                                   </div>
                                   
                                   <div class="markdown-body">
-                                    <h1 id="Routing-in-Net-6"><a href="#Routing-in-Net-6" class="headerlink" title="Routing in .Net 6"></a>Routing in .Net 6</h1><h1 id="Passing-Parameters"><a href="#Passing-Parameters" class="headerlink" title="Passing Parameters"></a>Passing Parameters</h1><p>There are six ways to transfer parameters through the functions.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FromBody  //application/json, generally pass a model class body</span><br><span class="line">FromForm  //incoming data from a submitted form sent by the content type</span><br><span class="line">FromHeader //generally on model properties</span><br><span class="line">FromQuery //generally on model itself.</span><br><span class="line">FromRoute //From the route</span><br><span class="line">FromServices  //from services that is going to be injected.</span><br></pre></td></tr></table></figure>
+                                    <h1 id="Routing-in-Net-6"><a href="#Routing-in-Net-6" class="headerlink" title="Routing in .Net 6"></a>Routing in .Net 6</h1><p>Here is an example in the sample project.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ApiController</span>]</span><br><span class="line">[<span class="meta">Route(<span class="string">&quot;[controller]&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">WeatherForecastController</span> : <span class="title">ControllerBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> <span class="built_in">string</span>[] Summaries = <span class="keyword">new</span>[]</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="string">&quot;Freezing&quot;</span>, <span class="string">&quot;Bracing&quot;</span>, <span class="string">&quot;Chilly&quot;</span>, <span class="string">&quot;Cool&quot;</span>, <span class="string">&quot;Mild&quot;</span>, <span class="string">&quot;Warm&quot;</span>, <span class="string">&quot;Balmy&quot;</span>, <span class="string">&quot;Hot&quot;</span>, <span class="string">&quot;Sweltering&quot;</span>, <span class="string">&quot;Scorching&quot;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>[Route(&quot;[controller]&quot;)]</code> is the route in the URL</p>
+<p><code>controller</code> is a placeholder for the function name, <code>WeatherForecastController</code>.</p>
+<p>In Swagger page, this controller will get the URL as:<br><img src="/Net-6-WebApi-Basics-10/41765157a6c61e7582054b3bcbcf8c8d.png" alt="Alt text"></p>
+<p>The route, <code>WeatherForecast</code>, is the URL route path of controller’s name, <code>WeatherForecastController</code>, removes the placeholder, <code>controller</code>.</p>
+<h2 id="Route-Calls-Functions"><a href="#Route-Calls-Functions" class="headerlink" title="Route Calls Functions"></a>Route Calls Functions</h2><p>Add the <code>Get()</code>, which returns the temperature information.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">ApiController</span>]</span><br><span class="line">[<span class="meta">Route(<span class="string">&quot;controller/[action]&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">WeatherForecastController</span> : <span class="title">ControllerBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> <span class="built_in">string</span>[] Summaries = <span class="keyword">new</span>[]</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="string">&quot;Freezing&quot;</span>, <span class="string">&quot;Bracing&quot;</span>, <span class="string">&quot;Chilly&quot;</span>, <span class="string">&quot;Cool&quot;</span>, <span class="string">&quot;Mild&quot;</span>, <span class="string">&quot;Warm&quot;</span>, <span class="string">&quot;Balmy&quot;</span>, <span class="string">&quot;Hot&quot;</span>, <span class="string">&quot;Sweltering&quot;</span>, <span class="string">&quot;Scorching&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">[<span class="meta">ApiExplorerSettings(GroupName = <span class="string">&quot;V1&quot;</span>, IgnoreApi = false)</span>]</span><br><span class="line">[<span class="meta">HttpPost</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> IEnumerable&lt;WeatherForecast&gt; <span class="title">Get</span>(<span class="params">WeatherForecast weather</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> Enumerable.Range(<span class="number">1</span>, <span class="number">5</span>).Select(index =&gt; <span class="keyword">new</span> WeatherForecast</span><br><span class="line">    &#123;</span><br><span class="line">        Date = DateTime.Now.AddDays(index),</span><br><span class="line">        TemperatureC = Random.Shared.Next(<span class="number">-20</span>, <span class="number">55</span>),</span><br><span class="line">        Summary = Summaries[Random.Shared.Next(Summaries.Length)]</span><br><span class="line">    &#125;)</span><br><span class="line">    .ToArray();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Add <code>[action]</code> into the <code>Route</code> attribute as <code>[Route(&quot;controller/[action]&quot;)]</code>.</p>
+<p>The route will be directed to <code>https://localhost:7048/controller/Get</code></p>
+<p><img src="/Net-6-WebApi-Basics-10/bc4fa97d6139c3d1571cdbb038992fc6.png" alt="Alt text"></p>
+<h3 id="Multiple-Functions’-Call"><a href="#Multiple-Functions’-Call" class="headerlink" title="Multiple Functions’ Call"></a>Multiple Functions’ Call</h3><p>Except for using <code>[action]</code>, there are two other ways to call function through attributes.</p>
+<ol>
+<li><p><code>[HttpGet(&quot;xxx&quot;)]</code></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//USE--&gt;[HttpGet(&quot;xxx&quot;)]</span></span><br><span class="line"></span><br><span class="line">[<span class="meta">HttpGet(<span class="string">&quot;xxx&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">GetData</span>()</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;1&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>[Route(&quot;xxx&quot;)]</code></p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//USE--&gt;[Route(&quot;xxx&quot;)]</span></span><br><span class="line"></span><br><span class="line">[<span class="meta">HttpGet</span>]</span><br><span class="line">[<span class="meta">Route(<span class="string">&quot;xxx&quot;</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">GetData</span>()</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;1&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>URL is <code>https://localhost:7048/controller/xxx</code>.</p>
+<p><img src="/Net-6-WebApi-Basics-10/bb4efd03b1b2423c6c00781040ab2666.png" alt="Alt text"></p>
+<h1 id="Passing-Parameters"><a href="#Passing-Parameters" class="headerlink" title="Passing Parameters"></a>Passing Parameters</h1><p>There are six ways to transfer parameters through the functions.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FromBody  <span class="comment">//application/json, generally pass a model class body</span></span><br><span class="line">FromForm  <span class="comment">//incoming data from a submitted form sent by the content type</span></span><br><span class="line">FromHeader <span class="comment">//generally on model properties</span></span><br><span class="line">FromQuery <span class="comment">//generally on model itself.</span></span><br><span class="line">FromRoute <span class="comment">//From the route</span></span><br><span class="line">FromServices  <span class="comment">//from services that is going to be injected.</span></span><br></pre></td></tr></table></figure>
 
 <p>Use following example to explain, <code>GetList()</code> will retrive all of the data stored in the database.<br> DBTestController.cs</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Get data from DB</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">[<span class="meta">HttpGet</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;UserClass&gt; <span class="title">GetList</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> UserServices.GetUsers();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -250,13 +271,27 @@
 <p><code>[HttpGet(&quot;&#123;id&#125;&quot;)]</code>. </p>
 <p>And the final URL is also different.<br><code>https://localhost:7048/api/DbTest/123</code></p>
 <p>The parameter is appended with a <code>/</code>.</p>
-<!-- flag of hidden posts -->
+<hr>
+<p><strong>Next:</strong> .Net 6 + WebApi Basics 11</p>
+<!-- **Next:** .Net6 + WebApi Basics 10[.Net6 + WebApi Basics 10](https://gritjz.github.io/Net6-WebApi-Basics-9/) -->
+
+<p><strong>Last:</strong> <a href="https://gritjz.github.io/Net-6-WebApi-Basics-9/">.Net 6 + WebApi Basics 9</a></p>
+<hr>
+<p>Good Day<br>😎</p>
+
                                   </div>
 
                                   
                                     <div class="prev-or-next">
                                       <div class="post-foot-next">
                                         
+                                          <a href="/Net-6-WebApi-Basics-9/" target="_self">
+                                            <i class="iconfont icon-chevronleft"></i>
+                                            <span>
+                                              Prev
+                                            </span>
+                                          </a>
+                                          
                                       </div>
                                       <div class="post-attach">
                                         <span class="post-pubtime">
@@ -326,7 +361,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Routing-in-Net-6"><span class="toc-text">Routing in .Net 6</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Passing-Parameters"><span class="toc-text">Passing Parameters</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Routing-in-Net-6"><span class="toc-text">Routing in .Net 6</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Route-Calls-Functions"><span class="toc-text">Route Calls Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Multiple-Functions%E2%80%99-Call"><span class="toc-text">Multiple Functions’ Call</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Passing-Parameters"><span class="toc-text">Passing Parameters</span></a></li></ol>
       
     </div>
   </div>
