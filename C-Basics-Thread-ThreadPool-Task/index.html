@@ -17,7 +17,7 @@
       |
     
      Steven&#39;s Blog
-  </title><meta name="robots" content="noindex">
+  </title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon1.png">
@@ -223,27 +223,38 @@
 <h1 id="ThreadPool"><a href="#ThreadPool" class="headerlink" title="ThreadPool"></a>ThreadPool</h1><p><code>ThreadPool</code>, provided by CLR, provides coarse-grained thread control and is mainly used to execute code fragments that are executed in a short period of time. A process has a thread pool, which is unified and scheduled by CLR. It has less control over threads and is also underpowered when returning values, multiple threads in parallel&#x2F;serial.</p>
 <h1 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h1><p><code>Task</code>, a wrapper around <code>ThreadPool</code> and <code>Thread</code>, can choose whether to use a thread pool or a new thread depending on the duration of the task. And by further extending it, it adds features such as return values, multiple threads parallel&#x2F;serial. </p>
 <p>The core of <code>Task</code> is a scheduler, <code>ThreadPoolTaskScheduler</code>, by default. Task uses to operate a thread pool thread asynchronously.</p>
-<p>A big difference between <code>Task</code> and <code>Thread</code> is that if there is a block in Task, the whole task will be blocked and the current thread ID will not change, if there is a block in thread, it will go to execute another thread and then come back to execute the original thread and the thread ID will change to another ID.</p>
-<p><code>ThreadPool</code> is a pool of threads on basis of <code>Thread</code> to reduce the overhead of creating threads frequently. Threads are expensive, new stacks have to be opened and CPU context switching has to be added, so ThreadPool is suitable for small operations that are executed frequently and for short periods of time. The scheduling algorithm is adaptive and will adjust the configuration according to the pattern of program execution, so you usually do not need to schedule threads yourself. The IO thread corresponds to Native’s overlapped io, and the IO completion port is used under Win to achieve non-blocking IO.</p>
+<p>A big difference between <code>Task</code> and <code>Thread</code> is that </p>
+<ul>
+<li>If there is a block appears in <code>Task</code>, the whole Task will be blocked and the current thread ID will not change. </li>
+<li>If there is a block in <code>Thread</code>, it will go to execute another thread and then come back to execute the original thread, and the thread ID will change to another ID.</li>
+</ul>
+<p><code>ThreadPool</code> is a pool of threads on basis of <code>Thread</code> to reduce the overhead of creating threads frequently. Threads are expensive, new stacks have to be opened and CPU context switching has to be added, so <u><em><strong>ThreadPool is suitable for small operations that are executed frequently and for short periods of time.</strong></em></u> The scheduling algorithm is adaptive and will adjust the configuration according to the pattern of program execution, so you usually do not need to schedule threads yourself. The IO thread corresponds to Native’s overlapped io, and the IO completion port is used under Win to achieve non-blocking IO.</p>
 <p><code>Task</code> or <code>TPL</code> is a higher level of encapsulation, the great thing is the <strong>continuation</strong>. The significance of continuation is that high-performance programs usually run on IO boundaries or UI event boundaries, and TPL’s continuation makes it easier to write such high-scalability code.</p>
 <p><code>Task</code> will decide whether to use <code>Thread</code> or <code>ThreadPool</code> based on some <strong>flags</strong>, such as whether it is long-running, and also do some detailed optimization, such as running several Task in the same thread, when continuation, Task will let the CPU idle for a few milliseconds to wait for the predecessor Task to finish to reduce CPU context switching.</p>
 <h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><ul>
 <li><p>Use Task as much as possible, and Thread or ThreadPool only secondarily.</p>
 </li>
-<li><p>When using a Task, tell the Task if it is long-running and try not to Wait.</p>
+<li><p>While using a Task, tell the Task if it is long-running and try not to Wait.</p>
 </li>
-<li><p>IO after the continuation to end as soon as possible, and then return the thread, you can use the Worker to do, or it will affect the later IO.</p>
+<li><p>Continuation after IO is best to end as soon as possible, and then release the thread, you can use the <code>Worker</code> to avoid affecting the later IO processes.</p>
 </li>
 </ul>
 <hr>
 <p>Good Day<br>😎</p>
-<!-- flag of hidden posts -->
+
                                   </div>
 
                                   
                                     <div class="prev-or-next">
                                       <div class="post-foot-next">
                                         
+                                          <a href="/C-Reflection/" target="_self">
+                                            <i class="iconfont icon-chevronleft"></i>
+                                            <span>
+                                              Prev
+                                            </span>
+                                          </a>
+                                          
                                       </div>
                                       <div class="post-attach">
                                         <span class="post-pubtime">
