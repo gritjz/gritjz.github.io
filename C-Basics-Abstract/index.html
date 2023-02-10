@@ -11,7 +11,7 @@
   
   <title>
     
-      C# Basics - Abstract 
+      C# Basics - Virtual 
       
       
       |
@@ -172,7 +172,7 @@
                               <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
                               <div class="container post-details" id="post-details">
                                 <div class="post-content">
-                                  <div class="post-title">C# Basics - Abstract</div>
+                                  <div class="post-title">C# Basics - Virtual</div>
                                   <div class="post-attach">
                                     <span class="post-pubtime">
                                       <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
@@ -207,7 +207,7 @@
                                           </span>
                                           
                                           <span class="span--tag mr-8">
-                                            <b><a href="/tags/Abstract/" title="Abstract" style="color:Orange"> #Abstract
+                                            <b><a href="/tags/Virtual/" title="Virtual" style="color:Orange"> #Virtual
                                             </a></b>
                                           </span>
                                           
@@ -223,9 +223,13 @@
 
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span> : <span class="title">Person</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">new</span> <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Student.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Abstract</p>
+<p>Virtual</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Button_Click</span>(<span class="params"><span class="built_in">object</span> sender, RoutedEventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Person person = <span class="keyword">new</span> Person();  </span><br><span class="line">    Student student = <span class="keyword">new</span> Student();</span><br><span class="line"></span><br><span class="line">    person.test();</span><br><span class="line">    student.test();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Person.&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span>()</span> =&gt; MessageBox.Show(<span class="string">&quot;Person&quot;</span>);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span> : <span class="title">Person</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Student.&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span>()</span> =&gt; MessageBox.Show(<span class="string">&quot;Student&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>Convert Son to Father, display father’s method</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Student student = <span class="keyword">new</span> Student();</span><br><span class="line">Person person = (Person)student;</span><br><span class="line"></span><br><span class="line">person.test();</span><br><span class="line">student.test();</span><br></pre></td></tr></table></figure>
+
+<p>Convert Son to Father, and display Son’s method.<br>Use abstract keyword.</p>
 <!-- flag of hidden posts -->
                                   </div>
 
@@ -268,7 +272,7 @@
                                               </span>
                                               
                                               <span class="span--tag mr-8">
-                                                <b><a href="/tags/Abstract/" title="Abstract" style="color:Orange"> #Abstract
+                                                <b><a href="/tags/Virtual/" title="Virtual" style="color:Orange"> #Virtual
                                                 </a></b>
                                               </span>
                                               
@@ -567,7 +571,7 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + C%23%20Basics%20-%20Abstract + '&url=' + http%3A%2F%2Fexample.com%2FC-Basics-Abstract%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + C%23%20Basics%20-%20Virtual + '&url=' + http%3A%2F%2Fexample.com%2FC-Basics-Abstract%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
