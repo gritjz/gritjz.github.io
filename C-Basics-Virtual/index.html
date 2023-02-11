@@ -216,9 +216,34 @@
                                   </div>
                                   
                                   <div class="markdown-body">
-                                    <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Button_Click</span>(<span class="params"><span class="built_in">object</span> sender, RoutedEventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Person.&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span> : <span class="title">Person</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Student.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                                    <h1 id="Concept-of-Virtual-Methods"><a href="#Concept-of-Virtual-Methods" class="headerlink" title="Concept of Virtual Methods"></a>Concept of Virtual Methods</h1><p>General functions are statically compiled into the execution file during compilation, and their relative addresses do not change during the running of the program, that is, they are written to be fixed! </p>
+<p>The virtual function is <strong>not</strong> statically compiled during compilation, and its relative address is uncertain. It will dynamically determine the function to be called according to the object instance at runtime. </p>
+<p>The class defined during the declaration is called the declaration class, and the execution A class that is instantiated is called an instance class.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AAA aaa = <span class="keyword">new</span> BBB(); <span class="comment">// AAA is the declaration class, and BBB is the instance class</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/C-Basics-Abstract/029aa848dadb2144d9912d571a652c2e.png" alt="Alt text"></p>
+<h2 id="How-to-determine-which-class-to-be-called"><a href="#How-to-determine-which-class-to-be-called" class="headerlink" title="How to determine which class to be called?"></a>How to determine which class to be called?</h2><ol>
+<li>When calling the function of an object <code>aaa</code>, the system will go directly to check the object to affirm it declaration class <code>AAA</code>, that is, to affirm the class to see whether the function called is a virtual function.<ol>
+<li>If it is not a virtual function, then it will directly execute the function. </li>
+<li>If there is virtual keyword, that is, a virtual function, then this time it will <strong>not</strong> immediately execute the function, but go to check the object’s <code>instance class</code>, which is <code>BBB</code>.</li>
+</ol>
+</li>
+<li>In this <code>instance class</code>, <code>BBB</code>, it will check whether the function is overridden (through the <code>override</code> keyword).<ol>
+<li>If yes, then OK, it will immediately execute this overridden function in the instance class. </li>
+<li>If no, the system will keep looking for the parent class of the instance class and repeat the same check in the instance class until it finds the first parent class that overrides the virtual function, and then executes the overridden function in that parent class.</li>
+</ol>
+</li>
+</ol>
+<h1 id="Purpose-of-Virtual-Methods"><a href="#Purpose-of-Virtual-Methods" class="headerlink" title="Purpose of Virtual Methods"></a>Purpose of Virtual Methods</h1><ol>
+<li>Allow derived classes (i.e., their children) to extend the parent class.</li>
+<li>Virtual methods are a manifestation of the polymorphic property.</li>
+<li>Increase maintainability and clarity in the development process.</li>
+</ol>
+<h1 id="Example-of-Using-Virtual-Methods"><a href="#Example-of-Using-Virtual-Methods" class="headerlink" title="Example of Using Virtual Methods"></a>Example of Using Virtual Methods</h1><p>Let’s make a trial on virtual methods step by step.</p>
+<p>First, Create a WPF project that has a button function. And create a base class, <code>Person</code> and its derived class, <code>Student</code>.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Button_Click</span>(<span class="params"><span class="built_in">object</span> sender, RoutedEventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Person.&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span> : <span class="title">Person</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Student.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/C-Basics-Virtual/029aa848dadb2144d9912d571a652c2e.png" alt="Alt text"></p>
+<p>Then, </p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Person person = <span class="keyword">new</span> Person();  </span><br><span class="line">Student student = <span class="keyword">new</span> Student();</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> v1 = person.name;</span><br><span class="line"><span class="built_in">string</span> v2 = student.name;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span> : <span class="title">Person</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">new</span> <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Student.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -229,8 +254,8 @@
 <p>Convert Son to Father, display father’s method</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Student student = <span class="keyword">new</span> Student();</span><br><span class="line">Person person = (Person)student;</span><br><span class="line"></span><br><span class="line">person.test();</span><br><span class="line">student.test();</span><br></pre></td></tr></table></figure>
 
-<p>Convert Son to Father, and display Son’s method.<br>Use abstract keyword.</p>
-<!-- flag of hidden posts -->
+<p>Convert Son to Father, and display Son’s method.<br>Use <code>Virtual</code> in Father class and use <code>override</code> in Son class.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Person.&quot;</span>;</span><br><span class="line">    <span class="comment">//Use virtual in father class</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span>()</span> =&gt; MessageBox.Show(<span class="string">&quot;Person&quot;</span>);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span> : <span class="title">Person</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Student.&quot;</span>;</span><br><span class="line">    <span class="comment">//Use override in son class</span></span><br><span class="line">    <span class="function"><span class="keyword">override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span>()</span> =&gt; MessageBox.Show(<span class="string">&quot;Student&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><!-- flag of hidden posts -->
                                   </div>
 
                                   
@@ -286,6 +311,23 @@
                                     
                                 </div>
                                 
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Concept-of-Virtual-Methods"><span class="toc-text">Concept of Virtual Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-determine-which-class-to-be-called"><span class="toc-text">How to determine which class to be called?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Purpose-of-Virtual-Methods"><span class="toc-text">Purpose of Virtual Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Example-of-Using-Virtual-Methods"><span class="toc-text">Example of Using Virtual Methods</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
 
                                   
                               </div>
@@ -571,12 +613,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + C%23%20Basics%20-%20Virtual + '&url=' + http%3A%2F%2Fexample.com%2FC-Basics-Abstract%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + C%23%20Basics%20-%20Virtual + '&url=' + http%3A%2F%2Fexample.com%2FC-Basics-Virtual%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/C-Basics-Abstract/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/C-Basics-Virtual/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
