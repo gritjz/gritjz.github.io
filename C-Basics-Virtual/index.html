@@ -17,7 +17,7 @@
       |
     
      Steven&#39;s Blog
-  </title><meta name="robots" content="noindex">
+  </title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon1.png">
@@ -216,13 +216,16 @@
                                   </div>
                                   
                                   <div class="markdown-body">
-                                    <h1 id="Concept-of-Virtual-Methods"><a href="#Concept-of-Virtual-Methods" class="headerlink" title="Concept of Virtual Methods"></a>Concept of Virtual Methods</h1><p>General functions are statically compiled into the execution file during compilation, and their relative addresses do not change during the running of the program, that is, they are written to be fixed! </p>
-<p>The virtual function is <strong>not</strong> statically compiled during compilation, and its relative address is uncertain. It will dynamically determine the function to be called according to the object instance at runtime. </p>
+                                    <h1 id="Concept-of-Virtual-Methods"><a href="#Concept-of-Virtual-Methods" class="headerlink" title="Concept of Virtual Methods"></a>Concept of Virtual Methods</h1><blockquote>
+<p>In general, functions are statically compiled into the execution file during compilation, and their relative addresses do not change during the running of the program, that is, they are written to be <strong>fixed</strong>! </p>
+</blockquote>
+<p>The <code>virtual</code> function is <strong>not</strong> statically compiled during compilation, and its relative address is <strong>uncertain</strong>. It will dynamically determine the function to be called according to the object instance at runtime. </p>
 <p>The class defined during the declaration is called an <code>declaration class</code>, and the execution A class that is instantiated is called an <code>instance class</code>.</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AAA aaa = <span class="keyword">new</span> BBB(); <span class="comment">// AAA is the declaration class, and BBB is the instance class</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AAA is the declaration class, and BBB is the instance class</span></span><br><span class="line">AAA aaa = <span class="keyword">new</span> BBB();</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="Principles-to-determine-which-class-to-be-called"><a href="#Principles-to-determine-which-class-to-be-called" class="headerlink" title="Principles to determine which class to be called"></a><strong>Principles</strong> to determine which class to be called</h2><blockquote>
+<h1 id="PRINCIPLES"><a href="#PRINCIPLES" class="headerlink" title="PRINCIPLES"></a><u><em>PRINCIPLES</em></u></h1><p>To determine which class to be called.</p>
+<blockquote>
 <ol>
 <li>When calling the function of an object <code>aaa</code>, the system will go directly to check the object to affirm it declaration class <code>AAA</code>, that is, to affirm the class to see whether the function called is a virtual function.<blockquote>
 <ol>
@@ -245,40 +248,52 @@
 <li>Virtual methods are a manifestation of the polymorphic property.</li>
 <li>Increase maintainability and clarity in the development process.</li>
 </ol>
-<h1 id="Example-of-Using-Virtual-Methods"><a href="#Example-of-Using-Virtual-Methods" class="headerlink" title="Example of Using Virtual Methods"></a>Example of Using Virtual Methods</h1><p>Before we try to use virtual, let’s review on inheritence between classes.</p>
+<h1 id="Examples-of-Using-Virtual-Methods"><a href="#Examples-of-Using-Virtual-Methods" class="headerlink" title="Examples of Using Virtual Methods"></a>Examples of Using Virtual Methods</h1><p>Before we try to use virtual, let’s review on inheritence between classes.</p>
 <p>First, Create a WPF project that has a button function. And create a base class, <code>Person</code> and its derived class, <code>Student</code>.</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Button_Click</span>(<span class="params"><span class="built_in">object</span> sender, RoutedEventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Person.&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span> : <span class="title">Person</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Student.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/C-Basics-Virtual/029aa848dadb2144d9912d571a652c2e.png" alt="Alt text"></p>
-<p>Then, you will see there is a hint on the field, <code>name</code>, in <code>Student</code> class as follows.<br><img src="/C-Basics-Virtual/0bddb793d090c3129b97bf9df6883875.png" alt="Alt text"></p>
+<img src="029aa848dadb2144d9912d571a652c2e.png" alt="text" style="zoom:50%;" />
+
+<p>Then, you will see there is a hint on the field, <code>name</code>, in <code>Student</code> class as follows.</p>
+<img src="0bddb793d090c3129b97bf9df6883875.png" alt="text" style="zoom:50%;" />
+
 <p>This means the derived class, <code>Student</code>, has the same field as its base class, <code>Person</code>, called <code>name</code>.<br>Let’s call them respectively.</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Person person = <span class="keyword">new</span> Person();  </span><br><span class="line">Student student = <span class="keyword">new</span> Student();</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> v1 = person.name;</span><br><span class="line"><span class="built_in">string</span> v2 = student.name;</span><br></pre></td></tr></table></figure>
+<img src="283f72ac9ef22d2bf475ec2113b62c5c.png" alt="text" style="zoom:50%;" />
 
-<p><img src="/C-Basics-Virtual/283f72ac9ef22d2bf475ec2113b62c5c.png" alt="Alt text"></p>
 <p>Despite having inheritance, they still display what their respective field contains.<br>You can also add <code>new</code> keyword to the field to make the field belongs to the class. It will return the same result as above.</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span> : <span class="title">Person</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">new</span> <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Student.&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Let’s add a <code>test()</code> to make more tests.</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Button_Click</span>(<span class="params"><span class="built_in">object</span> sender, RoutedEventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Person person = <span class="keyword">new</span> Person();  </span><br><span class="line">    Student student = <span class="keyword">new</span> Student();</span><br><span class="line"></span><br><span class="line">    person.test();</span><br><span class="line">    student.test();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Person.&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">test</span>()</span> =&gt; <span class="string">&quot;[test] Person&quot;</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span> : <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Student.&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">test</span>()</span> =&gt; <span class="string">&quot;[test] Student&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/C-Basics-Virtual/d01cf9992b5573591089138c4fda88f4.png" alt="Alt text"></p>
+<img src="d01cf9992b5573591089138c4fda88f4.png" alt="text" style="zoom:50%;" />
+
 <p>As <code>name</code>, the <code>test()</code> will return its class’s respective contents.</p>
 <p>Now, how about converting <code>Student</code> to <code>Person</code> type.</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Student student = <span class="keyword">new</span> Student();</span><br><span class="line">Person person = (Person)student;</span><br><span class="line"></span><br><span class="line">person.test();</span><br><span class="line">student.test();</span><br></pre></td></tr></table></figure>
-<p><img src="/C-Basics-Virtual/d01cf9992b5573591089138c4fda88f4.png" alt="Alt text"><br>As shown, even <code>student</code> object is converted into base class type of <code>Person</code>, the result keeps the same.</p>
+
+<img src="d01cf9992b5573591089138c4fda88f4.png" alt="text" style="zoom:50%;" />
+
+<p>As shown, even <code>student</code> object is converted into base class type of <code>Person</code>, the result keeps the same.</p>
 <p>Remembered the <strong>Principles</strong> of determining which class to be called above? </p>
 <blockquote>
-<p>When calling the function of an object <code>aaa</code>, the system will go directly to check the object to affirm it declaration class <code>AAA</code>, that is, to affirm the class to see whether the function called is a virtual function.</p>
+<ol>
+<li>When calling the function of an object <code>aaa</code>, the system will go directly to check the object to affirm it declaration class <code>AAA</code>, that is, to affirm the class to see whether the function called is a virtual function.<blockquote>
 <ol>
 <li><strong>If it is not a virtual function, then it will directly execute the function.</strong></li>
 </ol>
 </blockquote>
+</li>
+</ol>
+</blockquote>
 <p>When calling the objects of <code>student</code> or <code>person</code>, it checked their <code>declaration class</code>: <code>Student</code> and <code>Person</code></p>
 <p>Both of <code>test()</code> in these two class do <strong>NOT</strong> have <code>virtual</code> keyword, so the function will be directly called and no need to bother their <code>instance class</code>.</p>
-<p><strong>How can we use base class’s object to call its derived class’s function?</strong></p>
-<p>Use <code>Virtual</code> in base class and use <code>override</code> in derived class.</p>
+<h2 id="Call-Derived-Functions"><a href="#Call-Derived-Functions" class="headerlink" title="Call Derived Functions"></a>Call Derived Functions</h2><p>Use <code>Virtual</code> in base class and use <code>override</code> in derived class.</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Person.&quot;</span>;</span><br><span class="line">    <span class="comment">//Use virtual in base class</span></span><br><span class="line">     <span class="function"><span class="keyword">virtual</span> <span class="keyword">public</span> <span class="built_in">string</span> <span class="title">test</span>()</span> =&gt; <span class="string">&quot;[test] Person&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span> : <span class="title">Person</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Student.&quot;</span>;</span><br><span class="line">    <span class="comment">//Use override in derived class</span></span><br><span class="line">    <span class="function"><span class="keyword">override</span> <span class="keyword">public</span> <span class="built_in">string</span> <span class="title">test</span>()</span> =&gt; <span class="string">&quot;[test] Student&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/C-Basics-Virtual/2d087a12f98adb00b6f1233f497ba2f6.png" alt="Alt text"></p>
+
+<img src="2d087a12f98adb00b6f1233f497ba2f6.png" alt="text" style="zoom:50%;" />
+
 <p>See how we called the object as below.</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Student student = <span class="keyword">new</span> Student();</span><br><span class="line">Person person = (Person)student;</span><br><span class="line"></span><br><span class="line">person.test();</span><br><span class="line">student.test();</span><br></pre></td></tr></table></figure>
 <p>Let’s follow the <code>Principles</code> step by step to see how the objects were called.</p>
@@ -292,34 +307,41 @@
 </li>
 </ol>
 <p>Base on <code>Principles</code>, we can easily figure out how the objects are called in an inheritance relationships with the keywords of <code>virtual</code> and <code>override</code>.</p>
-<p>Finally, let’s do one more test on multiple inheritance condition to see if <code>Principles</code> matches.</p>
+<h2 id="Multiple-Inheritance"><a href="#Multiple-Inheritance" class="headerlink" title="Multiple Inheritance"></a>Multiple Inheritance</h2><p>Finally, let’s do one more test on multiple inheritance condition to see how <code>Principles</code> matches.</p>
 <p>Add another class called <code>Parent</code>, derived to <code>Student</code>.</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Person.&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">public</span> <span class="built_in">string</span> <span class="title">test</span>()</span> =&gt; <span class="string">&quot;[test] Person&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span> : <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Student.&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">override</span> <span class="keyword">public</span> <span class="built_in">string</span> <span class="title">test</span>()</span> =&gt; <span class="string">&quot;[test] Student&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Parent</span> : <span class="title">Student</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> name = <span class="string">&quot;This is Parent.&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">string</span> <span class="title">test</span>()</span> =&gt; <span class="string">&quot;[test] Parent&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Called them as before and display them.</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Student student = <span class="keyword">new</span> Student();</span><br><span class="line">Parent parent = <span class="keyword">new</span> Parent();</span><br><span class="line">Person person = (Person)parent;</span><br><span class="line"></span><br><span class="line">person.test();</span><br><span class="line">student.test();</span><br><span class="line">parent.test();</span><br></pre></td></tr></table></figure>
-<p><img src="/C-Basics-Virtual/9bd84c8dc90cee0bca1ed020033830a2.png" alt="Alt text"></p>
+
+<img src="9bd84c8dc90cee0bca1ed020033830a2.png" alt="text" style="zoom:50%;" />
+
 <ol>
-<li><p>When called <code>person.test()</code>, it would check its declaration class, <code>Person</code>.</p>
-</li>
-<li><p>In <code>Person</code> class, the test() has the virtual, so it will check its instance class : <code>Parent</code>.</p>
-</li>
-<li><p>In <code>Parent</code> class, the test() does not have virtual keyword, so it will follow the <code>Principles</code>:</p>
-<blockquote>
+<li>When called <code>person.test()</code>, it would check its declaration class, <code>Person</code>.</li>
+<li>In <code>Person</code> class, the test() has the virtual, so it will check its instance class : <code>Parent</code>.</li>
+<li>In <code>Parent</code> class, the test() does not have virtual keyword, so it will follow the <code>Principles</code>:<blockquote>
 <ol start="2">
 <li>If no, the system will keep looking for the parent class of the instance class and repeat the same check in the instance class until it finds the first parent class that overrides the virtual function, and then executes the overridden function in that parent class.</li>
 </ol>
 </blockquote>
 </li>
-<li><p>It will check <code>Parent</code>‘s inherited class: <code>Student</code>, then found <code>override</code> keyword in <code>Student</code> and return it.</p>
-</li>
+<li>It will check <code>Parent</code>‘s inherited class: <code>Student</code>, then found <code>override</code> keyword in <code>Student</code> and return it.</li>
 </ol>
-<!-- flag of hidden posts -->
+<hr>
+<p>Good Day<br>😎</p>
+
                                   </div>
 
                                   
                                     <div class="prev-or-next">
                                       <div class="post-foot-next">
                                         
+                                          <a href="/C-Basics-Thread-ThreadPool-Task/" target="_self">
+                                            <i class="iconfont icon-chevronleft"></i>
+                                            <span>
+                                              Prev
+                                            </span>
+                                          </a>
+                                          
                                       </div>
                                       <div class="post-attach">
                                         <span class="post-pubtime">
@@ -376,7 +398,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Concept-of-Virtual-Methods"><span class="toc-text">Concept of Virtual Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Principles-to-determine-which-class-to-be-called"><span class="toc-text">Principles to determine which class to be called</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Purpose-of-Virtual-Methods"><span class="toc-text">Purpose of Virtual Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Example-of-Using-Virtual-Methods"><span class="toc-text">Example of Using Virtual Methods</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Concept-of-Virtual-Methods"><span class="toc-text">Concept of Virtual Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PRINCIPLES"><span class="toc-text">PRINCIPLES</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Purpose-of-Virtual-Methods"><span class="toc-text">Purpose of Virtual Methods</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Examples-of-Using-Virtual-Methods"><span class="toc-text">Examples of Using Virtual Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Call-Derived-Functions"><span class="toc-text">Call Derived Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multiple-Inheritance"><span class="toc-text">Multiple Inheritance</span></a></li></ol></li></ol>
       
     </div>
   </div>
