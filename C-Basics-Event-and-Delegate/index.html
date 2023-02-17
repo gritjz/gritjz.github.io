@@ -222,6 +222,16 @@
                                   
                                   <div class="markdown-body">
                                     <h1 id="Event-and-Delegate"><a href="#Event-and-Delegate" class="headerlink" title="Event and Delegate"></a>Event and Delegate</h1><p>Developers that are new to the .NET Core platform often struggle when deciding between a design based on delegates and a design based on events. The choice of delegates or events is often difficult, because the two language features are similar. Events are even built using the language support for delegates.</p>
+<h1 id="Delegate"><a href="#Delegate" class="headerlink" title="Delegate"></a>Delegate</h1><p><a href="https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/">Delegate</a> is a type that represents references to methods with a particular parameter list and return type. When you instantiate a delegate, you can associate its instance with any method with a compatible signature and return type. </p>
+<ol>
+<li>When calling delegate, it will call every methods in the <strong>list</strong>.</li>
+<li>It is similar to pointer in C++ when delegate has only one method to call. But delegate is object-oriented and <strong>type-safe</strong>.</li>
+<li>Delegate can reference the methods from any class or other structures, only if they have the <strong>same return type</strong> and <strong>match the signature</strong> (including ref and out).<blockquote>
+<p>In the context of method overloading, the signature of a method does not include the return value. But in the context of delegates, the signature does include the return value. </p>
+<p>In other words, a method must have the same return type as the delegate.</p>
+</blockquote>
+</li>
+</ol>
 <hr>
 <p>Good Day<br>😎</p>
 <!-- flag of hidden posts -->
@@ -292,7 +302,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Event-and-Delegate"><span class="toc-text">Event and Delegate</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Event-and-Delegate"><span class="toc-text">Event and Delegate</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Delegate"><span class="toc-text">Delegate</span></a></li></ol>
       
     </div>
   </div>
