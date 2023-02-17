@@ -232,6 +232,33 @@
 </blockquote>
 </li>
 </ol>
+<p>Here is an example of using delegate.</p>
+<p>Create a WPF project (or any other project) and setup the Loaded handler function. </p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">MainWindow</span> : <span class="title">Window</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MainWindow</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        InitializeComponent();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Window_Loaded</span>(<span class="params"><span class="built_in">object</span> sender, RoutedEventArgs e</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Add delegate</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">MyDel</span>(<span class="params"><span class="built_in">int</span> x</span>)</span>; <span class="comment">// declaration of a delegate</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">MainWindow</span> : <span class="title">Window</span></span><br><span class="line">&#123;</span><br><span class="line">    MyDel myDel; <span class="comment">//instance of a delegate</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MainWindow</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        InitializeComponent();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Window_Loaded</span>(<span class="params"><span class="built_in">object</span> sender, RoutedEventArgs e</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        myDel = <span class="keyword">new</span> MyDel(TestDelFunc);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">TestDelFunc</span>(<span class="params"><span class="built_in">int</span> x</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        MessageBox.Show(<span class="string">&quot;This is MyDel-&gt;TestDelFunc.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Declaration of delegate</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">MyDel</span>(<span class="params"><span class="built_in">int</span> x</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<pre><code>`delegate` is the keyword.
+
+`void` is the return type of delegate.
+
+`MyDel` is the type of delegate.
+
+`int x` is the paramether of delegate.
+</code></pre>
+<p><strong>Instantiation of delegate</strong></p>
+<p><code>myDel = new MyDel(TestDelFunc);</code></p>
+<p>An instantiated delegate can be invoked as instantiating a class. The difference is the parameter becomes an function, <code>TestDelFunc</code>.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">TestDelFunc</span>(<span class="params"><span class="built_in">int</span> x</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MessageBox.Show(<span class="string">&quot;This is MyDel-&gt;TestDelFunc.&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Compared with Declaration, <code>TestDelFunc</code> method has the same style.</p>
+<h1 id="Process-of-a-Invoking-a-Delegate"><a href="#Process-of-a-Invoking-a-Delegate" class="headerlink" title="Process of a Invoking a Delegate"></a>Process of a Invoking a Delegate</h1><ol>
+<li>delegate instantiated</li>
+<li>delegate calls the methods with any return type and parameters</li>
+<li>return to caller</li>
+</ol>
+<p>Once a delegate is instantiated, a method call made to the delegate will be passed by the delegate to that method. The parameters passed to the delegate by the caller are passed to the method, and the return value, if any, from the method is returned to the caller by the delegate. </p>
 <hr>
 <p>Good Day<br>😎</p>
 <!-- flag of hidden posts -->
@@ -302,7 +329,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Event-and-Delegate"><span class="toc-text">Event and Delegate</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Delegate"><span class="toc-text">Delegate</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Event-and-Delegate"><span class="toc-text">Event and Delegate</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Delegate"><span class="toc-text">Delegate</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Process-of-a-Invoking-a-Delegate"><span class="toc-text">Process of a Invoking a Delegate</span></a></li></ol>
       
     </div>
   </div>
