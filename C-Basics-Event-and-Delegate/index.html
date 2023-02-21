@@ -255,11 +255,13 @@
 <p>An instantiated delegate can be invoked as instantiating a class. The difference is the parameter becomes an function, <code>TestDelFunc</code>.</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">TestDelFunc</span>(<span class="params"><span class="built_in">int</span> x</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MessageBox.Show(<span class="string">&quot;This is MyDel-&gt;TestDelFunc.&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Compared with Declaration, <code>TestDelFunc</code> method has the same style.</p>
-<h1 id="Process-of-a-Invoking-a-Delegate"><a href="#Process-of-a-Invoking-a-Delegate" class="headerlink" title="Process of a Invoking a Delegate"></a>Process of a Invoking a Delegate</h1><ol>
-<li>delegate instantiated</li>
-<li>delegate calls the methods with any return type and parameters</li>
-<li>return to caller</li>
-</ol>
+<h1 id="Process-of-a-Invoking-a-Delegate"><a href="#Process-of-a-Invoking-a-Delegate" class="headerlink" title="Process of a Invoking a Delegate"></a>Process of a Invoking a Delegate</h1><pre class="mermaid">
+graph TD
+    A[delegate instantiated] --> |return type and parameters| B(delegate calls the methods) 
+    --> C(return to caller)
+</pre>
+
+
 <p>Once a delegate is instantiated, a method call made to the delegate will be passed by the delegate to that method. The parameters passed to the delegate by the caller are passed to the method, and the return value, if any, from the method is returned to the caller by the delegate. </p>
 <hr>
 <p>Good Day<br>😎</p>
