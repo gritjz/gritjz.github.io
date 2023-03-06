@@ -226,6 +226,7 @@
 <p>The event mechanism is used in C# to implement communication between threads.</p>
 </blockquote>
 <p>Delegate by Event<br>Events are declared and generated in a class, and are associated with event handlers by using delegates in the same class or in other classes. Classes containing events are used to publish events. This is called the publisher class. Other classes that receive the event are called subscriber classes. Events use a publish-subscriber model.</p>
+<p>A publisher is an object that contains event and delegate definitions. The connection between events and delegates is also defined in this object. An object of the publisher class calls the event and notifies other objects.</p>
 <p>通过事件使用委托<br>事件在类中声明且生成，且通过使用同一个类或其他类中的委托与事件处理程序关联。包含事件的类用于发布事件。这被称为 发布器（publisher） 类。其他接受该事件的类被称为 订阅器（subscriber） 类。事件使用 发布-订阅（publisher-subscriber） 模型。</p>
 <p>发布器（publisher） 是一个包含事件和委托定义的对象。事件和委托之间的联系也定义在这个对象中。发布器（publisher）类的对象调用这个事件，并通知其他的对象。</p>
 <p>订阅器（subscriber） 是一个接受事件并提供事件处理程序的对象。在发布器（publisher）类中的委托调用订阅器（subscriber）类中的方法（事件处理程序）。</p>
