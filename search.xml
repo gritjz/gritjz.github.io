@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Add a new project to a branch of your Github repository. 将一个新项目添加到Git仓库的分支</title>
+      <link href="/Add-a-new-project-to-a-branch-of-your-Github-repository/"/>
+      <url>/Add-a-new-project-to-a-branch-of-your-Github-repository/</url>
+      
+        <content type="html"><![CDATA[<p>When you have a new <strong>Project B</strong> that can be the supplement to <strong>Project A</strong>, which has been existed in your Github repository. The best way is to add the <strong>B</strong> to the branch of <strong>A</strong> .  Since they are two seperated project in your local PC, you would need a way to </p><ul><li>Add <strong>B</strong> to the <em><strong>new branch</strong></em> of <strong>A</strong></li><li>Keep <strong>A</strong> unchanged in the original <em><strong>master</strong></em></li></ul><p>Here are the general steps:</p><ol><li><strong>Initialize the Local Repository</strong>: If your project is not yet under Git version control, you need to initialize a new Git repository. Open a terminal in your project directory and run the following command:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></li><li><strong>Add Files to the Repository</strong>: Use the following command to add your project files to the Git repository:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure> This will add all new, modified, and deleted files to the staging area.</li><li><strong>Commit Changes</strong>: Run the following command to commit your changes to the local repository:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;Initial commit&quot;</span></span><br></pre></td></tr></table></figure> This will save your changes to the local repository.</li><li><strong>Connect to the Remote Repository</strong>: If your project needs to sync with a remote repository, you need to connect it to a remote repository. Run the following command:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin &lt;RemoteRepositoryURL&gt;</span><br></pre></td></tr></table></figure> <code>&lt;RemoteRepositoryURL&gt;</code> is the URL of your remote repository.</li><li><strong>Create and Switch to a New Branch</strong>: Run the following command to create a new branch and switch to it:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b &lt;NewBranchName&gt;</span><br></pre></td></tr></table></figure> Alternatively, if you are using a newer version of Git (2.23 and above), you can use the following command:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git switch -c &lt;NewBranchName&gt;</span><br></pre></td></tr></table></figure></li><li><strong>Push to the Remote Repository</strong>: Finally, push the new branch to the remote repository:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin &lt;NewBranchName&gt;</span><br></pre></td></tr></table></figure> This will push your new branch to the remote repository and set it as the default upstream branch.</li></ol><p>This way, your new project is added to a new branch in the Git repository.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Git </category>
+          
+          <category> Github </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
+            
+            <tag> Github </tag>
+            
+            <tag> TRICK </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C# Basics - Delegate</title>
       <link href="/C-Basics-Delegate/"/>
       <url>/C-Basics-Delegate/</url>
